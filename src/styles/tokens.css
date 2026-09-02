@@ -1,0 +1,59 @@
+/* ============================================================
+   Adonai — design tokens
+   Dark-committed palette drawn from the logo: black ground,
+   living-flame reds, ember gold, bone-white text.
+   ============================================================ */
+
+:root {
+  /* grounds & surfaces */
+  --bg:            #0a0a0b;
+  --bg-elev:       #141416;
+  --surface:       #1a1a1d;
+  --surface-2:     #232327;
+  --hairline:      rgba(247, 243, 238, 0.10);
+  --hairline-soft: rgba(247, 243, 238, 0.06);
+
+  /* the flame */
+  --fire:          #e4321a;
+  --fire-bright:   #ff5a2c;
+  --fire-deep:     #8a0f04;
+  --ember:         #f2b01e;
+  --grad-fire:     linear-gradient(180deg, #ff5a2c 0%, #e11d0b 55%, #8a0f04 100%);
+  --grad-fire-h:   linear-gradient(90deg, #ff5a2c 0%, #e11d0b 100%);
+
+  /* ink */
+  --text:          #f6f2ec;
+  --text-dim:      #b3aaa1;
+  --text-mute:     #7d756c;
+  --on-fire:       #fff6f2;
+
+  /* semantic */
+  --ok:            #4bbf7b;
+  --warn:          #e0a423;
+  --err:           #e5533d;
+
+  /* type */
+  --font-display:  "Cinzel", "Times New Roman", serif;
+  --font-read:     "Spectral", Georgia, "Times New Roman", serif;
+  --font-ui:       "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0:  clamp(0.95rem, 0.92rem + 0.2vw, 1.05rem);
+  --step-1:  clamp(1.13rem, 1.05rem + 0.4vw, 1.33rem);
+  --step-2:  clamp(1.35rem, 1.2rem + 0.7vw, 1.7rem);
+  --step-3:  clamp(1.6rem, 1.35rem + 1.2vw, 2.2rem);
+  --step-4:  clamp(1.95rem, 1.5rem + 2vw, 3rem);
+
+  /* space & shape */
+  --gutter: clamp(1rem, 0.7rem + 2vw, 1.5rem);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.7);
+
+  /* layout */
+  --app-max: 480px;
+  --tabbar-h: 64px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}

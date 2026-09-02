@@ -1,0 +1,45 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-width: var(--app-max);
+  margin-inline: auto;
+  padding-top: var(--safe-t);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.inner {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--gutter);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.14em;
+  color: var(--text);
+}
+
+.date {
+  font-size: 0.72rem;
+  color: var(--text-mute);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  text-align: right;
+  max-width: 42%;
+}

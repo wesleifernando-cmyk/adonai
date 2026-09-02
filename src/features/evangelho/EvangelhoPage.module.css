@@ -1,0 +1,81 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status {
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  padding: 24px 0;
+}
+
+.celebracao {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.cor { color: var(--text-mute); font-weight: 400; text-transform: capitalize; }
+
+.leitura {
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--fire);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+}
+
+.leituraTitulo {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.ref {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 12px;
+}
+
+.texto p + p { margin-top: 0.9em; }
+
+.vers {
+  font-family: var(--font-ui);
+  font-size: 0.62em;
+  font-weight: 700;
+  color: var(--ember);
+  margin-right: 0.28em;
+  margin-left: 0.1em;
+  vertical-align: 0.4em;
+  line-height: 0;
+}
+
+.extra {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  padding: 14px 16px;
+}
+.extra summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  list-style: none;
+}
+.extra summary::-webkit-details-marker { display: none; }
+.extra summary::before { content: "＋ "; color: var(--fire); }
+.extra[open] summary::before { content: "－ "; }
+.extra[open] summary { margin-bottom: 10px; color: var(--text); }
+
+.aviso {
+  font-size: 0.78rem;
+  color: var(--text-mute);
+  line-height: 1.5;
+  padding: 4px 2px;
+}

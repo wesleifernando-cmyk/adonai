@@ -1,0 +1,142 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero {
+  padding: 12px 0 6px;
+}
+
+.saudacao {
+  font-size: var(--step-4);
+  line-height: 1.05;
+  color: var(--text);
+  margin-top: 4px;
+}
+.saudacao span {
+  background: var(--grad-fire-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  margin-top: 10px;
+  font-family: var(--font-read);
+  font-size: var(--step-1);
+  color: var(--text-dim);
+  max-width: 32ch;
+}
+
+.card {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 18px;
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+.card:active { transform: scale(0.99); }
+.card:hover { border-color: var(--hairline); }
+
+.cardFeatured {
+  background:
+    radial-gradient(120% 120% at 85% 0%, rgba(255, 90, 44, 0.18), transparent 60%),
+    var(--surface);
+  border-color: rgba(255, 90, 44, 0.28);
+}
+
+.cardGroup {
+  background:
+    linear-gradient(180deg, rgba(242, 176, 30, 0.06), transparent),
+    var(--surface);
+}
+
+.cardTitle {
+  font-size: var(--step-2);
+  color: var(--text);
+  margin-top: 8px;
+}
+
+.cardText {
+  margin-top: 8px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ember);
+  letter-spacing: 0.02em;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.miniTitle {
+  font-size: var(--step-1);
+  color: var(--text);
+  margin-top: 8px;
+  line-height: 1.2;
+}
+
+.miniText {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-mute);
+}
+
+.devText {
+  margin-top: 10px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.secTitle {
+  font-size: var(--step-2);
+  color: var(--text);
+  margin: 10px 0 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+.tile:hover { border-color: rgba(255, 90, 44, 0.3); background: var(--surface); }
+
+.tileLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--text);
+}
+.tileDesc {
+  font-size: 0.76rem;
+  color: var(--text-mute);
+}

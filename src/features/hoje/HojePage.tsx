@@ -1,0 +1,84 @@
+import { Link } from "react-router-dom";
+import { santoDoDia, santoJovemDoDia } from "../../content/santos";
+import { devocionais } from "../../content/devocionais";
+import { pickForToday, todayLong } from "../../lib/dates";
+import styles from "./HojePage.module.css";
+
+const atalhos = [
+  { to: "/biblia", label: "Bíblia", desc: "Ler e estudar" },
+  { to: "/catecismo", label: "Catecismo", desc: "O que a Igreja crê" },
+  { to: "/herois-da-fe", label: "Heróis da Fé", desc: "Santos que inspiram" },
+  { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },
+  { to: "/quiz", label: "Quiz católico", desc: "Aprender jogando" },
+  { to: "/catolico-responde", label: "Católico Responde", desc: "Tirar dúvidas da fé" },
+];
+
+export function HojePage() {
+  const santo = santoDoDia();
+  const jovem = santoJovemDoDia();
+  const devocional = pickForToday(devocionais);
+
+  return (
+    <div className={styles.page}>
+      <section className={styles.hero}>
+        <p className="eyebrow">{todayLong()}</p>
+        <h1 className={styles.saudacao}>
+          A paz esteja <span>contigo</span>
+        </h1>
+        <p className={styles.sub}>
+          Comece o dia com a Palavra, um santo e um instante de oração.
+        </p>
+      </section>
+
+      <Link to="/evangelho" className={`${styles.card} ${styles.cardFeatured}`}>
+        <p className="eyebrow">Evangelho do dia</p>
+        <h2 className={styles.cardTitle}>A leitura de hoje na liturgia</h2>
+        <p className={styles.cardText}>
+          O Evangelho proclamado hoje na Santa Missa, com a antífona e a oração do dia.
+        </p>
+        <span className={styles.cta}>Abrir a Palavra →</span>
+      </Link>
+
+      <div className={styles.pair}>
+        <Link to={`/santos/${santo.slug}`} className={styles.card}>
+          <p className="eyebrow">Santo do dia</p>
+          <h3 className={styles.miniTitle}>{santo.nome}</h3>
+          <p className={styles.miniText}>{santo.titulo}</p>
+        </Link>
+
+        <Link to={`/santos/${jovem.slug}`} className={styles.card}>
+          <p className="eyebrow">Jovem de referência</p>
+          <h3 className={styles.miniTitle}>{jovem.nome}</h3>
+          <p className={styles.miniText}>{jovem.periodo}</p>
+        </Link>
+      </div>
+
+      <Link to="/devocionais" className={styles.card}>
+        <p className="eyebrow">Devocional de hoje · {devocional.tema}</p>
+        <h3 className={styles.miniTitle}>{devocional.titulo}</h3>
+        <p className={styles.devText}>{devocional.texto[0]}</p>
+        <span className={styles.cta}>Ler e rezar →</span>
+      </Link>
+
+      <section>
+        <h2 className={styles.secTitle}>Explorar a fé</h2>
+        <div className={styles.grid}>
+          {atalhos.map((a) => (
+            <Link key={a.to} to={a.to} className={styles.tile}>
+              <span className={styles.tileLabel}>{a.label}</span>
+              <span className={styles.tileDesc}>{a.desc}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <Link to="/comunidade" className={`${styles.card} ${styles.cardGroup}`}>
+        <p className="eyebrow">Grupo de oração Adonai</p>
+        <h3 className={styles.miniTitle}>Pregações, retiro Desperta e fotos</h3>
+        <p className={styles.miniText}>
+          Acompanhe o que o grupo vive: encontros de domingo, missões e eventos.
+        </p>
+      </Link>
+    </div>
+  );
+}

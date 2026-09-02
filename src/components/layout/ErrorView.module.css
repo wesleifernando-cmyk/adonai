@@ -1,0 +1,33 @@
+.wrap {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  padding: 32px var(--gutter);
+  max-width: var(--app-max);
+  margin-inline: auto;
+}
+
+.title {
+  font-size: var(--step-2);
+  color: var(--text);
+}
+
+.text {
+  color: var(--text-dim);
+  font-family: var(--font-read);
+  max-width: 34ch;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--grad-fire-h);
+  color: var(--on-fire);
+  font-weight: 700;
+  font-size: 0.9rem;
+}

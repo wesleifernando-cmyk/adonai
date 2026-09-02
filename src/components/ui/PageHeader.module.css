@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-block: 8px 20px;
+}
+
+.title {
+  font-size: var(--step-3);
+  color: var(--text);
+}
+
+.lead {
+  font-family: var(--font-read);
+  font-size: var(--step-1);
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 42ch;
+}

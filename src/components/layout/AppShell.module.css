@@ -1,0 +1,23 @@
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 45% at 50% -8%, rgba(228, 50, 26, 0.16), transparent 62%),
+    var(--bg);
+}
+
+.main {
+  flex: 1;
+  padding-top: calc(56px + var(--safe-t) + 12px);
+  padding-bottom: calc(var(--tabbar-h) + var(--safe-b) + 20px);
+}
+
+/* keep the app feeling like a phone screen on wide viewports */
+@media (min-width: 600px) {
+  .shell {
+    max-width: var(--app-max);
+    margin-inline: auto;
+    border-inline: 1px solid var(--hairline-soft);
+  }
+}

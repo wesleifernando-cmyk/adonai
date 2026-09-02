@@ -1,0 +1,47 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-width: var(--app-max);
+  margin-inline: auto;
+  height: calc(var(--tabbar-h) + var(--safe-b));
+  padding-bottom: var(--safe-b);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--hairline);
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-mute);
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: color 0.15s ease;
+}
+
+.link svg {
+  width: 23px;
+  height: 23px;
+}
+
+.link:active { transform: translateY(1px); }
+
+.active {
+  color: var(--text);
+}
+
+.active svg {
+  color: var(--fire-bright);
+  filter: drop-shadow(0 0 6px rgba(255, 90, 44, 0.55));
+}

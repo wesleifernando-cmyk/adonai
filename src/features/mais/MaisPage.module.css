@@ -1,0 +1,51 @@
+.grupo + .grupo { margin-top: 22px; }
+
+.grupoTitulo {
+  font-size: var(--step-1);
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.lista {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.lista li + li .row { border-top: 1px solid var(--hairline-soft); }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface);
+  font-weight: 500;
+  color: var(--text);
+  transition: background 0.14s ease;
+}
+.row:hover { background: var(--surface-2); }
+
+.right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-mute);
+}
+.nota {
+  font-style: normal;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ember);
+  background: rgba(242, 176, 30, 0.12);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.rodape {
+  margin-top: 28px;
+  font-size: 0.74rem;
+  color: var(--text-mute);
+  text-align: center;
+  line-height: 1.5;
+}
