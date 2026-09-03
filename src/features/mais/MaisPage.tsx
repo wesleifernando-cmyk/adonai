@@ -11,6 +11,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
       { to: "/biblia", label: "Bíblia", nota: "em construção" },
       { to: "/catecismo", label: "Catecismo da Igreja", nota: "em construção" },
       { to: "/documentos", label: "Documentos da Igreja", nota: "em construção" },
+      { to: "/noticias", label: "Notícias da fé", nota: "em breve" },
     ],
   },
   {

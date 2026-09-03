@@ -18,6 +18,7 @@ import { ComunidadePage } from "./features/comunidade/ComunidadePage";
 import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
+import { NoticiasPage } from "./features/noticias/NoticiasPage";
 import { MaisPage } from "./features/mais/MaisPage";
 
 export const router = createBrowserRouter([
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       { path: "comunidade", element: <ComunidadePage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
+      { path: "noticias", element: <NoticiasPage /> },
       { path: "admin", element: <AdminPage /> },
       { path: "mais", element: <MaisPage /> }
     ]

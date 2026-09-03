@@ -23,6 +23,9 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] Catecismo: decidir forma (link oficial / citação por parágrafo / licença)
 - [ ] Documentos dos Papas: resumos próprios + link vatican.va
 - [ ] Tema claro (leitura de dia)
+- [ ] **Notícias da fé** (/noticias): Vaticano + Igreja no Brasil + Vale do Paraíba
+      (Aparecida/A12 e Canção Nova ficam na região). Só título + resumo + data + link
+      pra fonte, com crédito. Precisa de uma função pequena lendo RSS (dá pra fazer no 1º deploy)
 
 ## Fase 2 — contas e comunidade (backend: Supabase plano grátis)
 
@@ -48,9 +51,26 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] Notificações ("Evangelho do dia" no celular)
 - [ ] Empacotar como aplicativo (Play Store / App Store)
 
+## Bíblia — situação da licença (pesquisado em set/2026)
+
+O texto antigo da Bíblia é livre, mas **toda tradução moderna tem direitos autorais**
+(70 anos após a morte do tradutor). Em português:
+
+- **Com direitos (precisam de licença):** Ave-Maria, CNBB, Pastoral (Paulinas),
+  Jerusalém (Paulus), Vozes, Matos Soares (livre só a partir de ~2027)
+- **Livre + católica (73 livros):** só a **Bíblia de Figueiredo** (traduzida da Vulgata,
+  Pe. António Pereira de Figueiredo, †1797 → domínio público). Português arcaico e hoje
+  existe mais como PDF escaneado (archive.org) — precisa digitalizar/limpar
+- **Livre mas cânon protestante (faltam 7 livros):** Almeida 1911, Tradução Brasileira 1917,
+  "Bíblia Livre" — não servem sozinhas para app católico
+
+**Encaminhamento:** (1) pedir por escrito à CNBB / Editora Ave-Maria / Diocese de Taubaté
+autorização de uso não comercial em app de missão; (2) enquanto isso, usar o texto de
+Figueiredo rotulado como tradução antiga e/ou link para uma Bíblia oficial online.
+
 ## Decisões abertas (precisam da equipe)
 
-- Tradução da Bíblia · forma de usar o Catecismo
+- Tradução da Bíblia (ver acima) · forma de usar o Catecismo
 - Quem faz a **revisão teológica** dos textos e das respostas da IA
 - Print da tela de login (referência de design)
 - Chave/QR do Pix da Missão Adonai
