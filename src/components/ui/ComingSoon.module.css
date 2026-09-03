@@ -10,7 +10,10 @@
 }
 
 .body :global(strong) { color: var(--text); font-weight: 600; }
-.body :global(ul) { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.body :global(p) + :global(p) { margin-top: 12px; }
+.body :global(p) + :global(ul),
+.body :global(ul) + :global(p) { margin-top: 14px; }
+.body :global(ul) { display: flex; flex-direction: column; gap: 6px; }
 .body :global(li) { padding-left: 16px; position: relative; }
 .body :global(li)::before {
   content: "";
