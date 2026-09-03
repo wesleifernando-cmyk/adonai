@@ -5,11 +5,24 @@
 }
 
 .hero {
-  padding: 12px 0 6px;
+  padding: 4px 0 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
+.logo {
+  width: min(230px, 62%);
+  margin-bottom: 6px;
+}
+
+.hero .eyebrow { margin-top: 2px; }
+
+.hero .sub { margin-left: auto; margin-right: auto; }
+
 .saudacao {
-  font-size: var(--step-4);
+  font-size: var(--step-3);
   line-height: 1.05;
   color: var(--text);
   margin-top: 4px;

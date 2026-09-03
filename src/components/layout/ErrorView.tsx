@@ -1,5 +1,5 @@
 import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom";
-import { FireMark } from "../ui/FireMark";
+import { BrandMark } from "../ui/Brand";
 import styles from "./ErrorView.module.css";
 
 export function ErrorView() {
@@ -8,7 +8,7 @@ export function ErrorView() {
 
   return (
     <div className={styles.wrap}>
-      <FireMark size={48} />
+      <BrandMark size={64} />
       <p className="eyebrow">{is404 ? "Página não encontrada" : "Algo saiu do lugar"}</p>
       <h1 className={styles.title}>
         {is404 ? "Esse caminho ainda não existe" : "Tivemos um imprevisto"}

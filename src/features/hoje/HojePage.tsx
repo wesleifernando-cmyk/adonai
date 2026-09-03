@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BrandLogo } from "../../components/ui/Brand";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
 import { pickForToday, todayLong } from "../../lib/dates";
@@ -21,6 +22,7 @@ export function HojePage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        <BrandLogo width={230} className={styles.logo} />
         <p className="eyebrow">{todayLong()}</p>
         <h1 className={styles.saudacao}>
           A paz esteja <span>contigo</span>
