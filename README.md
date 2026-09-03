@@ -82,9 +82,9 @@ Fontes: Cinzel (títulos), Spectral (leitura), Figtree (interface).
 
 ## Pendências de conteúdo (decisões abertas)
 
-- **Bíblia**: definir a tradução. Quase todas em português são protegidas
-  (Ave-Maria, CNBB, Pastoral). Opções: usar uma versão de uso livre,
-  pedir licença, ou consumir uma API autorizada.
+- **Bíblia**: leitor já funciona com a **Tradução Brasileira** (domínio público,
+  66 livros) — arquivos em `public/biblia/tb/`. Falta: os 7 livros
+  deuterocanônicos e a revisão do português ("Bíblia Adonai").
 - **Catecismo**: texto © Libreria Editrice Vaticana / Loyola. Decidir entre
   linkar o oficial, citar por parágrafo ou pedir autorização.
 - **Documentos dos Papas**: `vatican.va` permite uso com atribuição — trazer

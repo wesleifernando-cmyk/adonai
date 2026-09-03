@@ -19,7 +19,11 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
       - Históricos (arte anterior a ~1900): domínio público (Wikimedia Commons) → pode entrar
       - Modernos (Carlo Acutis, Padre Pio, Maria Goretti...): fotos têm direitos autorais →
         usar imagem oficial com autorização, arte/ícone, ou o monograma que já existe
-- [ ] Bíblia: definir tradução de uso livre e carregar o texto dos capítulos
+- [x] Bíblia: **leitor funcionando** com a Tradução Brasileira (domínio público, 66 livros,
+      31.100 versículos) — lista de livros, seletor de capítulo, navegação, compartilhar
+- [ ] Bíblia: 7 livros deuterocanônicos (Tobias, Judite, 1-2 Macabeus, Sabedoria,
+      Eclesiástico, Baruc) + trechos de Ester/Daniel — vêm da revisão da "Bíblia Adonai"
+- [ ] "Bíblia Adonai": modernizar o português, começando pelos Evangelhos, com revisão humana
 - [ ] Catecismo: decidir forma (link oficial / citação por parágrafo / licença)
 - [ ] Documentos dos Papas: resumos próprios + link vatican.va
 - [ ] Tema claro (leitura de dia)

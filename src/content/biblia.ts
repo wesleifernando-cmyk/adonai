@@ -99,3 +99,14 @@ export const novoTestamento: LivroBiblico[] = [
   { slug: "judas", nome: "Judas", abrev: "Jd", capitulos: 1, grupo: "Cartas" },
   { slug: "apocalipse", nome: "Apocalipse", abrev: "Ap", capitulos: 22, grupo: "Apocalipse" },
 ];
+
+const TODOS_LIVROS = [...antigoTestamento, ...novoTestamento];
+
+export function acharLivro(slug: string): LivroBiblico | undefined {
+  return TODOS_LIVROS.find((l) => l.slug === slug);
+}
+
+export function livroVizinho(slug: string, dir: 1 | -1): LivroBiblico | undefined {
+  const i = TODOS_LIVROS.findIndex((l) => l.slug === slug);
+  return i < 0 ? undefined : TODOS_LIVROS[i + dir];
+}

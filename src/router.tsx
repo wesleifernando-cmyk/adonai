@@ -3,6 +3,8 @@ import { AppShell } from "./components/layout/AppShell";
 import { ErrorView } from "./components/layout/ErrorView";
 import { HojePage } from "./features/hoje/HojePage";
 import { BibliaPage } from "./features/biblia/BibliaPage";
+import { LivroPage } from "./features/biblia/LivroPage";
+import { CapituloPage } from "./features/biblia/CapituloPage";
 import { CatecismoPage } from "./features/catecismo/CatecismoPage";
 import { SantosPage } from "./features/santos/SantosPage";
 import { SantoPage } from "./features/santos/SantoPage";
@@ -30,6 +32,8 @@ export const router = createBrowserRouter([
       { index: true, element: <HojePage /> },
       { path: "evangelho", element: <EvangelhoPage /> },
       { path: "biblia", element: <BibliaPage /> },
+      { path: "biblia/:livro", element: <LivroPage /> },
+      { path: "biblia/:livro/:capitulo", element: <CapituloPage /> },
       { path: "catecismo", element: <CatecismoPage /> },
       { path: "santos", element: <SantosPage /> },
       { path: "santos/:slug", element: <SantoPage /> },
