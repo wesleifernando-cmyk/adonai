@@ -32,10 +32,16 @@ export function SantoPage() {
     <article className={styles.detail}>
       <Link to="/santos" className={styles.back}>← Santos</Link>
 
-      <div className={styles.retrato}>
-        <SantoRetrato nome={santo.nome} imagem={santo.imagem} destaque />
-        {santo.imagemCredito && <p className={styles.credito}>{santo.imagemCredito}</p>}
-      </div>
+      {santo.imagem ? (
+        <div className={styles.retrato}>
+          <SantoRetrato nome={santo.nome} imagem={santo.imagem} destaque />
+          {santo.imagemCredito && <p className={styles.credito}>{santo.imagemCredito}</p>}
+        </div>
+      ) : (
+        <div className={styles.retratoMini}>
+          <SantoRetrato nome={santo.nome} size={72} />
+        </div>
+      )}
 
       <p className="eyebrow">Memória: {festaLonga(santo.festa)}</p>
       <h1 className={styles.name}>{santo.nome}</h1>

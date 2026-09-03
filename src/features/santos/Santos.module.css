@@ -90,6 +90,7 @@
 .detail { display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; }
 
 .retrato { margin: 4px 0 16px; }
+.retratoMini { margin: 6px 0 14px; }
 .credito {
   margin-top: 8px;
   font-size: 0.68rem;
