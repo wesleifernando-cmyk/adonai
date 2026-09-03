@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { santos } from "../../content/santos";
+import { SantoRetrato } from "../../components/ui/SantoRetrato";
+import { CompartilharBtn } from "../../components/ui/CompartilharBtn";
 import styles from "./Santos.module.css";
 
 const MESES = [
@@ -30,6 +32,11 @@ export function SantoPage() {
     <article className={styles.detail}>
       <Link to="/santos" className={styles.back}>← Santos</Link>
 
+      <div className={styles.retrato}>
+        <SantoRetrato nome={santo.nome} imagem={santo.imagem} destaque />
+        {santo.imagemCredito && <p className={styles.credito}>{santo.imagemCredito}</p>}
+      </div>
+
       <p className="eyebrow">Memória: {festaLonga(santo.festa)}</p>
       <h1 className={styles.name}>{santo.nome}</h1>
       <p className={styles.subtitle}>{santo.titulo} · {santo.periodo}</p>
@@ -51,8 +58,17 @@ export function SantoPage() {
         ))}
       </div>
 
+      <div className={styles.acoes}>
+        <CompartilharBtn
+          titulo={`${santo.nome} — ${santo.titulo}`}
+          texto={`"${santo.frase}" (${santo.fonteFrase})`}
+          path={`/santos/${santo.slug}`}
+        />
+        <span className={styles.acoesNota}>Curtir e comentar: em breve (Fase 2)</span>
+      </div>
+
       <p className={styles.rev}>
-        Texto biográfico de curadoria da equipe Adonai, a partir de fontes históricas de domínio
+        Texto biográfico de curadoria da Missão Adonai, a partir de fontes históricas de domínio
         público. Sujeito a revisão.
       </p>
     </article>

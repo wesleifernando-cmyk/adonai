@@ -12,6 +12,10 @@ export type Santo = {
   historia: string[];
   frase: string;
   fonteFrase: string;
+  /** arquivo em /public/santos/<slug>.jpg — preencher só quando houver imagem de uso livre */
+  imagem?: string;
+  /** crédito/atribuição da imagem (obrigatório quando houver imagem) */
+  imagemCredito?: string;
 };
 
 /**

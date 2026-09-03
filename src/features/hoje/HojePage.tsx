@@ -14,6 +14,7 @@ const atalhos = [
   { to: "/herois-da-fe", label: "Heróis da Fé", desc: "Santos que inspiram" },
   { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },
   { to: "/quiz", label: "Quiz católico", desc: "Aprender jogando" },
+  { to: "/testemunhos", label: "Testemunhos", desc: "O que Deus fez" },
   { to: "/catolico-responde", label: "Católico Responde", desc: "Tirar dúvidas da fé" },
 ];
 

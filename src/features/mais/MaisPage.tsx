@@ -27,6 +27,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
     titulo: "Missão e interação",
     itens: [
       { to: "/quiz", label: "Quiz católico", nota: "fase 2" },
+      { to: "/testemunhos", label: "Testemunhos", nota: "fase 2" },
       { to: "/catolico-responde", label: "Católico Responde", nota: "fase 3" },
       { to: "/comunidade", label: "Missão Adonai", nota: "fase 2" },
       { to: "/ajude", label: "Ajude-nos" },

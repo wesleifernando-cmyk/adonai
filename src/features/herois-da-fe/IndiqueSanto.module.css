@@ -1,0 +1,86 @@
+.box {
+  margin-top: 24px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(110% 100% at 12% 0%, rgba(242, 176, 30, 0.1), transparent 60%),
+    var(--surface);
+  padding: 20px;
+}
+
+.titulo {
+  font-size: var(--step-1);
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.texto {
+  margin-top: 8px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.form input {
+  flex: 1 1 180px;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+}
+.form input::placeholder { color: var(--text-mute); }
+.form button {
+  height: 46px;
+  padding: 0 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--grad-fire-h);
+  color: var(--on-fire);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ok {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--ok);
+}
+
+.jaIndicados { margin-top: 16px; }
+.jaTitulo {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-mute);
+  margin-bottom: 8px;
+}
+.jaIndicados ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.jaIndicados li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: var(--bg-elev);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}

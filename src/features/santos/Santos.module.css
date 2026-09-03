@@ -53,13 +53,13 @@
 .row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 12px 16px;
   background: var(--surface);
   transition: background 0.14s ease;
 }
 .row:hover { background: var(--surface-2); }
+.rowText { flex: 1; min-width: 0; }
 
 .rowName {
   display: block;
@@ -88,6 +88,14 @@
 
 /* -------- detail -------- */
 .detail { display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; }
+
+.retrato { margin: 4px 0 16px; }
+.credito {
+  margin-top: 8px;
+  font-size: 0.68rem;
+  color: var(--text-mute);
+  line-height: 1.4;
+}
 
 .back {
   align-self: flex-start;
@@ -147,8 +155,22 @@
 .body { margin-top: 14px; }
 .body p + p { margin-top: 0.9em; }
 
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline-soft);
+}
+.acoesNota {
+  font-size: 0.74rem;
+  color: var(--text-mute);
+}
+
 .rev {
-  margin-top: 20px;
+  margin-top: 18px;
   font-size: 0.74rem;
   color: var(--text-mute);
   line-height: 1.5;

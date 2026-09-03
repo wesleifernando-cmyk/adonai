@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
+import { SantoRetrato } from "../../components/ui/SantoRetrato";
 import { santos, santoDoDia } from "../../content/santos";
 import styles from "./Santos.module.css";
 
@@ -28,7 +29,8 @@ export function SantosPage() {
         {outros.map((s) => (
           <li key={s.slug}>
             <Link to={`/santos/${s.slug}`} className={styles.row}>
-              <div>
+              <SantoRetrato nome={s.nome} imagem={s.imagem} size={44} />
+              <div className={styles.rowText}>
                 <span className={styles.rowName}>{s.nome}</span>
                 <span className={styles.rowMeta}>
                   {s.titulo}
