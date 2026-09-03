@@ -5,7 +5,7 @@
 }
 
 .hero {
-  padding: 4px 0 6px;
+  padding: 6px 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,44 +13,55 @@
 }
 
 .logo {
-  width: min(220px, 60%);
-  margin-bottom: 10px;
+  width: min(248px, 66%);
+  margin-bottom: 12px;
 }
 
-.lema {
+.tagline {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.saudacao {
+  margin-top: 10px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--step-3);
-  line-height: 1.08;
+  font-size: var(--step-4);
+  line-height: 1.02;
   color: var(--text);
-  max-width: 15ch;
+  max-width: 12ch;
+}
+.saudacao span {
+  background: var(--grad-fire-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .grupo {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 10px;
-  font-size: 0.72rem;
+  margin-top: 14px;
+  font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ember);
+  color: var(--text-mute);
 }
 
-.saudacao {
-  margin-top: 14px;
-  font-family: var(--font-read);
-  font-size: 0.9rem;
-  color: var(--text-mute);
-}
-.saudacao span {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+/* espaço acima da pirâmide do "fogo" (o <p> com aria-label) */
+.hero > p[aria-label] { margin-top: 24px; }
+
+.data {
+  margin-top: 18px;
   font-family: var(--font-ui);
-  font-size: 0.64rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--text-mute);
-  margin-bottom: 2px;
 }
 
 .card {
@@ -74,6 +85,13 @@
 .cardGroup {
   background:
     linear-gradient(180deg, rgba(242, 176, 30, 0.06), transparent),
+    var(--surface);
+}
+
+.cardHelp {
+  border-color: rgba(242, 176, 30, 0.3);
+  background:
+    radial-gradient(120% 120% at 12% 0%, rgba(242, 176, 30, 0.12), transparent 60%),
     var(--surface);
 }
 

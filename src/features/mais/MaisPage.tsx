@@ -24,11 +24,12 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
     ],
   },
   {
-    titulo: "Comunidade e interação",
+    titulo: "Missão e interação",
     itens: [
       { to: "/quiz", label: "Quiz católico", nota: "fase 2" },
       { to: "/catolico-responde", label: "Católico Responde", nota: "fase 3" },
-      { to: "/comunidade", label: "Grupo de oração Adonai", nota: "fase 2" },
+      { to: "/comunidade", label: "Missão Adonai", nota: "fase 2" },
+      { to: "/ajude", label: "Ajude-nos" },
       { to: "/admin", label: "Administração", nota: "restrito" },
     ],
   },
@@ -64,7 +65,7 @@ export function MaisPage() {
       </div>
 
       <p className={styles.rodape}>
-        Adonai · versão 0.1 · projeto do grupo de oração. Instagram @go.adonai.
+        Adonai · versão 0.1 · Missão Adonai. Instagram @go.adonai.
       </p>
     </div>
   );

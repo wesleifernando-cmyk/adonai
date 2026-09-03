@@ -11,7 +11,7 @@ export function DevocionaisPage() {
       <PageHeader
         eyebrow="Devocionais"
         title="Reflexões para rezar"
-        lead="Textos curtos do grupo de oração: uma passagem, uma meditação e uma oração para levar no dia."
+        lead="Textos curtos da Missão Adonai: uma passagem, uma meditação e uma oração para levar no dia."
       />
 
       <div className={list.stack}>

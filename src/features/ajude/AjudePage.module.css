@@ -1,0 +1,52 @@
+.pix {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(242, 176, 30, 0.3);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(100% 90% at 50% 0%, rgba(242, 176, 30, 0.12), transparent 60%),
+    var(--surface);
+  padding: 24px 20px;
+}
+
+.qrSlot {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px dashed var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  color: var(--text-mute);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.qrSlot small {
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.pixInfo { max-width: 34ch; }
+.pixText {
+  margin-top: 8px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.nota {
+  margin-top: 18px;
+  font-size: 0.78rem;
+  color: var(--text-mute);
+  line-height: 1.5;
+  text-align: center;
+}

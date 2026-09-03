@@ -16,7 +16,7 @@ export function ErrorView() {
       <p className={styles.text}>
         {is404
           ? "O endereço que você abriu não faz parte do app — talvez seja uma seção que ainda está sendo construída."
-          : "Recarregue a página. Se continuar, avise a equipe do grupo de oração."}
+          : "Recarregue a página. Se continuar, avise a equipe da Missão Adonai."}
       </p>
       <Link to="/" className={styles.btn}>Voltar para o início</Link>
     </div>

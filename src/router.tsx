@@ -16,6 +16,7 @@ import { QuizPage } from "./features/quiz/QuizPage";
 import { CatolicoRespondePage } from "./features/catolico-responde/CatolicoRespondePage";
 import { ComunidadePage } from "./features/comunidade/ComunidadePage";
 import { AdminPage } from "./features/admin/AdminPage";
+import { AjudePage } from "./features/ajude/AjudePage";
 import { MaisPage } from "./features/mais/MaisPage";
 
 export const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: "quiz", element: <QuizPage /> },
       { path: "catolico-responde", element: <CatolicoRespondePage /> },
       { path: "comunidade", element: <ComunidadePage /> },
+      { path: "ajude", element: <AjudePage /> },
       { path: "admin", element: <AdminPage /> },
       { path: "mais", element: <MaisPage /> }
     ]

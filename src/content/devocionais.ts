@@ -6,7 +6,7 @@ export type Devocional = {
   oracao: string;
 };
 
-/** Reflexões curtas do grupo de oração. Conteúdo próprio — revisar antes de publicar. */
+/** Reflexões curtas da Missão Adonai. Conteúdo próprio — revisar antes de publicar. */
 export const devocionais: Devocional[] = [
   {
     titulo: "O fogo que não se apaga",

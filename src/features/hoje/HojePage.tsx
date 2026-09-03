@@ -4,7 +4,7 @@ import { ChurchMark } from "../../components/ui/ChurchMark";
 import { LemaFogo } from "../../components/ui/LemaFogo";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
-import { LEMA_PRINCIPAL, SAUDACAO_DIARIA } from "../../content/lemas";
+import { LEMA_PRINCIPAL } from "../../content/lemas";
 import { pickForToday, todayLong } from "../../lib/dates";
 import styles from "./HojePage.module.css";
 
@@ -25,19 +25,20 @@ export function HojePage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <BrandLogo width={230} className={styles.logo} />
-        <h1 className={styles.lema}>{LEMA_PRINCIPAL}</h1>
+        <BrandLogo width={248} className={styles.logo} />
+        <p className={styles.tagline}>{LEMA_PRINCIPAL}</p>
+        <h1 className={styles.saudacao}>
+          A paz esteja <span>contigo</span>
+        </h1>
         <p className={styles.grupo}>
           <ChurchMark size={15} />
-          Grupo de oração Adonai · Igreja Católica
+          Missão Adonai · Igreja Católica
         </p>
-        <p className={styles.saudacao}>
-          <span>{todayLong()}</span>
-          {SAUDACAO_DIARIA}.
-        </p>
-      </section>
 
-      <LemaFogo />
+        <LemaFogo />
+
+        <p className={styles.data}>{todayLong()}</p>
+      </section>
 
       <Link to="/evangelho" className={`${styles.card} ${styles.cardFeatured}`}>
         <p className="eyebrow">Evangelho do dia</p>
@@ -82,10 +83,18 @@ export function HojePage() {
       </section>
 
       <Link to="/comunidade" className={`${styles.card} ${styles.cardGroup}`}>
-        <p className="eyebrow">Grupo de oração Adonai</p>
+        <p className="eyebrow">Missão Adonai</p>
         <h3 className={styles.miniTitle}>Pregações, retiro Desperta e fotos</h3>
         <p className={styles.miniText}>
-          Acompanhe o que o grupo vive: encontros de domingo, missões e eventos.
+          Acompanhe o que a missão vive: encontros, missões e eventos.
+        </p>
+      </Link>
+
+      <Link to="/ajude" className={`${styles.card} ${styles.cardHelp}`}>
+        <p className="eyebrow">Ajude-nos</p>
+        <h3 className={styles.miniTitle}>Qualquer ajuda é bem-vinda</h3>
+        <p className={styles.miniText}>
+          Sua oferta mantém os encontros, o retiro Desperta e as missões de pé.
         </p>
       </Link>
     </div>

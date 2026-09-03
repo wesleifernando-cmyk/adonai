@@ -1,6 +1,6 @@
 # Adonai
 
-Plataforma devocional católica **mobile-first** do grupo de oração Adonai.
+Plataforma devocional católica **mobile-first** da Missão Adonai.
 Feita para rodar bem na tela do celular e, no futuro, virar aplicativo
 (o mesmo código pode ser empacotado com Capacitor / Expo).
 

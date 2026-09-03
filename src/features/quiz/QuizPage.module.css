@@ -1,0 +1,93 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(255, 90, 44, 0.28);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 120% at 85% 0%, rgba(255, 90, 44, 0.14), transparent 60%),
+    var(--surface);
+  padding: 20px;
+  opacity: 0.82;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  color: var(--text-mute);
+  font-size: 0.9rem;
+}
+
+.btn,
+.btnGhost {
+  height: 46px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: not-allowed;
+}
+.btn { background: var(--grad-fire-h); color: var(--on-fire); }
+.btnGhost { background: transparent; color: var(--text-dim); border: 1px solid var(--hairline); }
+
+.loginNote {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: var(--text-mute);
+  text-align: center;
+}
+
+.bloco {
+  margin-top: 18px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+}
+.blocoTitulo { font-size: var(--step-1); color: var(--text); }
+
+.lista {
+  margin: 12px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.lista li {
+  position: relative;
+  padding-left: 18px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fire);
+}
+
+.blocoTexto {
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.voltar {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ember);
+}

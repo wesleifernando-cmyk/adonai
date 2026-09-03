@@ -1,31 +1,26 @@
-.strip {
+.fogo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 18px 20px;
-  border-radius: var(--radius);
-  color: var(--on-fire);
-  background:
-    radial-gradient(90% 140% at 10% 0%, rgba(255, 200, 120, 0.28), transparent 55%),
-    var(--grad-fire);
-  border: 1px solid rgba(255, 120, 60, 0.4);
-  box-shadow: 0 14px 40px -18px rgba(225, 29, 11, 0.7);
-}
-
-.flame {
-  flex: none;
-  width: 30px;
-  height: 30px;
-  color: var(--ember);
-  filter: drop-shadow(0 0 8px rgba(242, 176, 30, 0.6));
-}
-.flame svg { width: 100%; height: 100%; }
-
-.text {
+  text-align: center;
+  gap: 3px;
+  padding: 10px 0 4px;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--step-1);
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--text);
   letter-spacing: 0.01em;
   text-wrap: balance;
+}
+
+.l1 { font-size: var(--step-1); }
+.l2 { font-size: var(--step-2); }
+.l3 { font-size: var(--step-3); }
+
+.fogo em {
+  font-style: normal;
+  background: var(--grad-fire-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
