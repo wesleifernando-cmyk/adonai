@@ -42,8 +42,34 @@
   border-radius: 999px;
 }
 
+.lemas {
+  margin-top: 30px;
+  padding: 22px 20px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(90% 120% at 15% 0%, rgba(228, 50, 26, 0.14), transparent 60%),
+    var(--surface);
+  text-align: center;
+}
+.lemaBig {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  color: var(--text);
+  line-height: 1.1;
+}
+.lemaFogo {
+  margin-top: 12px;
+  font-family: var(--font-read);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ember);
+  line-height: 1.45;
+}
+
 .rodape {
-  margin-top: 28px;
+  margin-top: 20px;
   font-size: 0.74rem;
   color: var(--text-mute);
   text-align: center;

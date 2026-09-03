@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
+import { LEMA_PRINCIPAL, LEMA_FOGO } from "../../content/lemas";
 import styles from "./MaisPage.module.css";
 
 const grupos: { titulo: string; itens: { to: string; label: string; nota?: string }[] }[] = [
@@ -56,6 +57,11 @@ export function MaisPage() {
           </ul>
         </section>
       ))}
+
+      <div className={styles.lemas}>
+        <p className={styles.lemaBig}>{LEMA_PRINCIPAL}</p>
+        <p className={styles.lemaFogo}>{LEMA_FOGO}</p>
+      </div>
 
       <p className={styles.rodape}>
         Adonai · versão 0.1 · projeto do grupo de oração. Instagram @go.adonai.

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { BrandLogo } from "../../components/ui/Brand";
+import { ChurchMark } from "../../components/ui/ChurchMark";
+import { LemaFogo } from "../../components/ui/LemaFogo";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
+import { LEMA_PRINCIPAL, SAUDACAO_DIARIA } from "../../content/lemas";
 import { pickForToday, todayLong } from "../../lib/dates";
 import styles from "./HojePage.module.css";
 
@@ -23,14 +26,18 @@ export function HojePage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <BrandLogo width={230} className={styles.logo} />
-        <p className="eyebrow">{todayLong()}</p>
-        <h1 className={styles.saudacao}>
-          A paz esteja <span>contigo</span>
-        </h1>
-        <p className={styles.sub}>
-          Comece o dia com a Palavra, um santo e um instante de oração.
+        <h1 className={styles.lema}>{LEMA_PRINCIPAL}</h1>
+        <p className={styles.grupo}>
+          <ChurchMark size={15} />
+          Grupo de oração Adonai · Igreja Católica
+        </p>
+        <p className={styles.saudacao}>
+          <span>{todayLong()}</span>
+          {SAUDACAO_DIARIA}.
         </p>
       </section>
+
+      <LemaFogo />
 
       <Link to="/evangelho" className={`${styles.card} ${styles.cardFeatured}`}>
         <p className="eyebrow">Evangelho do dia</p>
