@@ -21,6 +21,14 @@ import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
 import { NoticiasPage } from "./features/noticias/NoticiasPage";
+import { RosarioPage } from "./features/rosario/RosarioPage";
+import { RezarPage } from "./features/rosario/RezarPage";
+import { AprendaPage } from "./features/rosario/AprendaPage";
+import { HistoriaRosarioPage } from "./features/rosario/HistoriaPage";
+import { MisteriosPage } from "./features/rosario/MisteriosPage";
+import { ConjuntoPage } from "./features/rosario/ConjuntoPage";
+import { AparicoesPage } from "./features/rosario/AparicoesPage";
+import { AparicaoPage } from "./features/rosario/AparicaoPage";
 import { MaisPage } from "./features/mais/MaisPage";
 
 export const router = createBrowserRouter([
@@ -48,6 +56,14 @@ export const router = createBrowserRouter([
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },
+      { path: "rosario", element: <RosarioPage /> },
+      { path: "rosario/rezar", element: <RezarPage /> },
+      { path: "rosario/aprenda", element: <AprendaPage /> },
+      { path: "rosario/historia", element: <HistoriaRosarioPage /> },
+      { path: "rosario/misterios", element: <MisteriosPage /> },
+      { path: "rosario/misterios/:slug", element: <ConjuntoPage /> },
+      { path: "rosario/aparicoes", element: <AparicoesPage /> },
+      { path: "rosario/aparicoes/:slug", element: <AparicaoPage /> },
       { path: "admin", element: <AdminPage /> },
       { path: "mais", element: <MaisPage /> }
     ]

@@ -27,6 +27,12 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] Catecismo: decidir forma (link oficial / citação por parágrafo / licença)
 - [ ] Documentos dos Papas: resumos próprios + link vatican.va
 - [ ] Tema claro (leitura de dia)
+- [x] **Rosário** (/rosario): rezar (passo a passo guiado, com contador de Ave-Marias),
+      aprender (tutorial + diagrama do terço), história completa (até São João Paulo II
+      e os Mistérios Luminosos), estudo dos 20 mistérios com referência bíblica, e
+      aparições de Nossa Senhora (Aparecida em destaque, Guadalupe, Lourdes, Fátima,
+      Medalha Milagrosa) — pronto para receber imagem de Nossa Senhora Aparecida
+      quando a equipe enviar (fica em `src/content/rosario/aparicoes.ts`, campo `imagem`)
 - [ ] **Notícias da fé** (/noticias): Vaticano + Igreja no Brasil + Vale do Paraíba
       (Aparecida/A12 e Canção Nova ficam na região). Só título + resumo + data + link
       pra fonte, com crédito. Precisa de uma função pequena lendo RSS (dá pra fazer no 1º deploy)

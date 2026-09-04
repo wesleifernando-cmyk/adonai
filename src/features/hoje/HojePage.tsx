@@ -5,11 +5,13 @@ import { LemaFogo } from "../../components/ui/LemaFogo";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
 import { LEMA_PRINCIPAL } from "../../content/lemas";
+import { conjuntoDoDia } from "../../content/rosario/misterios";
 import { pickForToday, todayLong } from "../../lib/dates";
 import styles from "./HojePage.module.css";
 
 const atalhos = [
   { to: "/biblia", label: "Bíblia", desc: "Ler e estudar" },
+  { to: "/rosario", label: "Rosário", desc: "Rezar e meditar" },
   { to: "/catecismo", label: "Catecismo", desc: "O que a Igreja crê" },
   { to: "/herois-da-fe", label: "Heróis da Fé", desc: "Santos que inspiram" },
   { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },
@@ -22,6 +24,7 @@ export function HojePage() {
   const santo = santoDoDia();
   const jovem = santoJovemDoDia();
   const devocional = pickForToday(devocionais);
+  const misterios = conjuntoDoDia();
 
   return (
     <div className={styles.page}>
@@ -48,6 +51,12 @@ export function HojePage() {
           O Evangelho proclamado hoje na Santa Missa, com a antífona e a oração do dia.
         </p>
         <span className={styles.cta}>Abrir a Palavra →</span>
+      </Link>
+
+      <Link to="/rosario/rezar" className={styles.card}>
+        <p className="eyebrow">Rosário de hoje · {misterios.nome}</p>
+        <h3 className={styles.miniTitle}>{misterios.resumo}</h3>
+        <span className={styles.cta}>Rezar agora →</span>
       </Link>
 
       <div className={styles.pair}>

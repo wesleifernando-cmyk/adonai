@@ -9,6 +9,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
     itens: [
       { to: "/evangelho", label: "Evangelho do dia" },
       { to: "/biblia", label: "Bíblia" },
+      { to: "/rosario", label: "Rosário" },
       { to: "/catecismo", label: "Catecismo da Igreja", nota: "em construção" },
       { to: "/documentos", label: "Documentos da Igreja", nota: "em construção" },
       { to: "/noticias", label: "Notícias da fé", nota: "em breve" },
