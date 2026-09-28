@@ -20,6 +20,9 @@ import { ComunidadePage } from "./features/comunidade/ComunidadePage";
 import { PregadoresPage } from "./features/comunidade/PregadoresPage";
 import { PregadorPage } from "./features/comunidade/PregadorPage";
 import { MusicasPage } from "./features/comunidade/MusicasPage";
+import { MusicaPage } from "./features/comunidade/MusicaPage";
+import { AudiobooksPage } from "./features/comunidade/AudiobooksPage";
+import { AudiobookPage } from "./features/comunidade/AudiobookPage";
 import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
@@ -59,6 +62,9 @@ export const router = createBrowserRouter([
       { path: "comunidade/pregadores", element: <PregadoresPage /> },
       { path: "comunidade/pregadores/:slug", element: <PregadorPage /> },
       { path: "comunidade/musicas", element: <MusicasPage /> },
+      { path: "comunidade/musicas/:slug", element: <MusicaPage /> },
+      { path: "comunidade/audiobooks", element: <AudiobooksPage /> },
+      { path: "comunidade/audiobooks/:slug", element: <AudiobookPage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },

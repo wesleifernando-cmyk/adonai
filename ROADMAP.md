@@ -69,6 +69,12 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [x] **Músicas Adonai** (/comunidade/musicas): Spotify do grupo embutido (artista "Go Adonai")
 - [ ] Pregação própria da Missão ("Até Encontrá-la", Retiro Desperta): aguardando áudio
       comprimido do usuário (arquivo original tem 315 MB, precisa reduzir para MP3)
+- [x] **Anderson Reis** adicionado aos pregadores: tríduo Céu/Inferno/Purgatório + 5 outras,
+      Instagram confirmado (@andersonpregador, via link oficial do canal dele)
+- [x] **Louvor católico** (/comunidade/musicas): Adonai, Colo de Deus, Flavinho, Cristo
+      Alegria, Fraternidade O Caminho (todos Spotify, verificados) + playlist "Em alta"
+- [x] **Audiobooks católicos** (/comunidade/audiobooks): Glória Polo, Confissões de Santo
+      Agostinho, Bíblia Narrada por Cid Moreira (4 livros pra começar)
 
 ## Bíblia — situação da licença (pesquisado em set/2026)
 

@@ -10,6 +10,7 @@ export type Pregador = {
   descricao: string;
   canalNome: string;
   canalUrl?: string;
+  instagramUrl?: string;
   videos: VideoPregacao[];
 };
 
@@ -156,6 +157,25 @@ export const pregadores: Pregador[] = [
       { titulo: "Direção Espiritual — Episódio 05", youtubeId: "1LGszh8xIL0", data: "04/09/2024" },
       { titulo: "Direção Espiritual — 15/05/2019", youtubeId: "UxwJyQCf3v4" },
       { titulo: "Direção Espiritual 2025", youtubeId: "KixhjIjUK_g" },
+    ],
+  },
+  {
+    slug: "anderson-reis",
+    nome: "Anderson Reis",
+    descricao:
+      "Pregador e missionário católico há mais de 20 anos. Começa aqui pelo tríduo sobre Céu, Inferno e Purgatório.",
+    canalNome: "Anderson Reis Oficial",
+    canalUrl: "https://www.youtube.com/channel/UCujutKwW-uS5t1wPattHnfA",
+    instagramUrl: "https://www.instagram.com/andersonpregador/",
+    videos: [
+      { titulo: "Céu: o maior dom de Deus (tríduo, dia 1)", youtubeId: "i9ZLe9eKXMg" },
+      { titulo: "Inferno (tríduo, dia 2)", youtubeId: "R4XpIO7-lik" },
+      { titulo: "Purgatório: um inferno temporário (tríduo, dia 3)", youtubeId: "M_8-E3Ikf0E" },
+      { titulo: "Maria, terror dos demônios", youtubeId: "24IaM4zwBos" },
+      { titulo: "Alma Missionária", youtubeId: "CauXpCqO7bM" },
+      { titulo: "Combate Espiritual", youtubeId: "R7dp-Q65bX0" },
+      { titulo: "O Inferno existe!", youtubeId: "wJYOXLGI8k0" },
+      { titulo: "O amor não é amado", youtubeId: "VI8NzTOhpIw", data: "07/02/2021" },
     ],
   },
 ];
