@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { ChurchMark } from "../../components/ui/ChurchMark";
 import { pregacoes } from "../../content/comunidade/pregacoes";
@@ -12,6 +13,14 @@ export function ComunidadePage() {
         title="Pregações e vida da missão"
         lead="Pregações dos encontros e do retiro Desperta. Fotos e álbuns entram na Fase 2."
       />
+
+      <Link to="/comunidade/moises-rocha" className={`${list.item} ${list.link}`} style={{ marginBottom: 16, alignItems: "center" }}>
+        <div>
+          <p className={list.itemEyebrow}>Pregador convidado · YouTube</p>
+          <h2 className={list.itemTitle}>Pregações de Moisés Rocha</h2>
+        </div>
+        <span className={list.chev} aria-hidden="true">→</span>
+      </Link>
 
       <div className={list.stack}>
         {pregacoes.map((p) => (
