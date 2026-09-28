@@ -177,3 +177,11 @@ Figueiredo rotulado como tradução antiga e/ou link para uma Bíblia oficial on
 - Quem faz a **revisão teológica** dos textos e das respostas da IA
 - Print da tela de login (referência de design)
 - Chave/QR do Pix da Missão Adonai
+
+## Pedido novo (anotado, executar depois do deploy)
+
+- [ ] **Leitor de livro dentro do site**: os PDFs da Biblioteca não abrem mais direto/baixam
+      por padrão — abrem num leitor no próprio site, com efeito de **virar página** (tipo
+      livro de verdade), bonito no celular e no tablet. Manter um botão separado de "baixar
+      PDF" pra quem quiser o arquivo. Viável com uma lib de PDF (pdf.js) + efeito de
+      passar página (ex. StPageFlip / react-pageflip).
