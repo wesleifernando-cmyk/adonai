@@ -24,8 +24,18 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] Bíblia: 7 livros deuterocanônicos (Tobias, Judite, 1-2 Macabeus, Sabedoria,
       Eclesiástico, Baruc) + trechos de Ester/Daniel — vêm da revisão da "Bíblia Adonai"
 - [ ] "Bíblia Adonai": modernizar o português, começando pelos Evangelhos, com revisão humana
-- [ ] Catecismo: decidir forma (link oficial / citação por parágrafo / licença)
-- [ ] Documentos dos Papas: resumos próprios + link vatican.va
+- [x] Catecismo: **Compêndio oficial já linkado** (vatican.va, leitura online). Texto integral
+      (© Libreria Editrice Vaticana) segue em decisão: citação por parágrafo ou licença
+- [x] Documentos dos Papas: Evangelii Gaudium e Laudato Si' com link oficial (PDF vatican.va);
+      os demais da lista ainda sem link
+- [x] **Biblioteca** (/livros): livros católicos em PDF/leitura online, só fontes oficiais
+      (vatican.va) ou domínio público verificável (Internet Archive) — começou com 5
+- [x] **Audiobooks** (/audiobooks): virou seção própria, ao lado de Bíblia e Rosário — não
+      fica mais escondido dentro de Comunidade/Pregações
+- [ ] Ampliar Audiobooks e Biblioteca: mais livros sobre Nossa Senhora, vidas de santos e
+      doutrina — pedido explícito da equipe ("não fica com coisinha")
+- [ ] Ampliar pregadores já existentes: Padre Léo e Monsenhor Jonas Abib pedidos com "bastante"
+      pregação (hoje têm 5 e 6 — a equipe quer bem mais)
 - [ ] Tema claro (leitura de dia)
 - [x] **Rosário** (/rosario): rezar (passo a passo guiado, com contador de Ave-Marias),
       aprender (tutorial + diagrama do terço), história completa (até São João Paulo II
@@ -39,7 +49,10 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 
 ## Fase 2 — contas e comunidade (backend: Supabase plano grátis)
 
-- [ ] **Login / cadastro** (prévia da tela já está no Quiz)
+- [ ] **Login / cadastro** (prévia da tela já está no Quiz). Login com Instagram é uma opção
+      real (OAuth via Meta), mas exige criar um app no Meta for Developers e passar pela
+      revisão da Meta — não é imediato. Pode entrar como opção **junto** de e-mail/senha,
+      não como único jeito de entrar (nem todo jovem quer linkar o Instagram)
 - [ ] **Quiz católico**: pontuação, ranking, dificuldade crescente, perguntas sem repetição
       (banco curado + geração assistida por IA), explicação com fonte
 - [ ] **Testemunhos**: usuário conta a história dele (conversão, missão, superação), com nome
@@ -48,7 +61,26 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] **Área ADM**: subir pregações (áudio), álbuns de foto (Desperta, encontros, missões,
       eventos), publicar/esconder, revisar textos e sugestões de santos
 - [ ] Página "quem somos / o que fazemos" da Missão Adonai
-- [ ] Fila de sugestões de santos chega para a equipe (hoje fica só no aparelho)
+- [ ] Fila de sugestões de santos/pregações/músicas chega para a equipe — hoje fica só no
+      aparelho de quem sugeriu (localStorage), ninguém mais vê. Precisa de banco de dados
+      central pra isso funcionar de verdade
+
+### Fila de moderação de conteúdo indicado pelo usuário (definido pela equipe)
+
+Quando um usuário logado indica uma música/pregação/livro pelo site:
+1. Uma **triagem automática** (checagem simples de palavras-chave, ou um classificador de
+   IA) avalia se o conteúdo parece católico antes de qualquer coisa — barra na hora
+   indicações claramente fora do tema (funk, sertanejo, autoajuda etc.)
+2. O que passar (ou ficar em dúvida) vai pra uma **fila de aprovação** visível só para os
+   administradores — nada é publicado sozinho
+3. **Administradores** (acesso total): Weslei, Sandro e Bárbara
+4. **Revisores** (avaliam a fila, mas sem os poderes de admin): outras pessoas do grupo,
+   escolhidas pela equipe
+5. Só depois de aprovado o conteúdo aparece pra todo mundo no app
+
+Isso substitui a ideia de "atualizar sozinho de 5 em 5 horas" — publicar automaticamente
+sem revisão é arriscado pra um app que promete ser só conteúdo católico. A triagem por IA
+pode rodar sozinha e rápido; a aprovação final continua sendo de gente.
 
 ## Fase 3 — IA
 
@@ -57,9 +89,37 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 
 ## Fase 4 — alcance
 
-- [ ] Compartilhar fotos direto no Instagram (@go.adonai)
+- [x] Botão de Instagram em Comunidade (@go.adonai) — leva direto pro perfil/stories.
+      **Importante:** não existe API pública pra "embutir" Stories ao vivo dentro do site
+      (nem Meta libera isso pra terceiros); o link direto é o equivalente prático que existe
+- [ ] Compartilhar conteúdo do site **para** o Instagram Stories: funciona bem em celular via
+      o botão "Compartilhar" que já existe (usa o menu nativo do aparelho — a pessoa escolhe
+      Instagram como destino ali). Um botão dedicado só pra Stories exigiria app nativo
+- [ ] **TikTok**: dá pra embutir vídeos públicos de perfis católicos (like o YouTube — TikTok
+      tem oEmbed oficial), sempre com crédito e link pro perfil. Não dá pra puxar Stories/vídeos
+      automaticamente sem a pessoa escolher quais
+- [ ] **Vitrine de influenciadores católicos**: página dando crédito e linkando perfis
+      (Instagram/TikTok/YouTube) de criadores de conteúdo católico como referência — precisa
+      da equipe escolher quem
 - [ ] Notificações ("Evangelho do dia" no celular)
 - [ ] Empacotar como aplicativo (Play Store / App Store)
+
+## Assinatura paga (R$ 9,90–10/mês) — o que falta decidir
+
+A equipe quer cobrar uma mensalidade recorrente (Pix, crédito ou débito) pra sustentar a
+missão. Isso é possível, mas com um limite de segurança importante:
+
+- **Eu não posso guardar nem usar dados bancários reais** (conta, agência, cartão) em lugar
+  nenhum do código ou do site — isso é dado sensível demais pra ficar em texto num projeto,
+  e processar cartão/Pix direto é coisa de instituição financeira licenciada, não de um site.
+- O jeito certo: a Missão cria uma conta num **processador de pagamentos** (Mercado Pago é o
+  mais simples no Brasil pra assinatura recorrente — aceita Pix, crédito e débito). A conta
+  bancária de vocês fica **cadastrada dentro do Mercado Pago**, nunca no nosso código.
+- Depois de criada a conta, eu integro o checkout deles no site usando a chave de API que
+  o Mercado Pago fornece — sem tocar em número de cartão ou dado bancário em nenhum momento.
+- Recomendação: **CNPJ/MEI** facilita bastante cobrança recorrente e imposto; pessoa física
+  também dá, com mais limitação.
+- Isso entra junto com o login da Fase 2 (precisa saber quem pagou pra liberar o acesso).
 
 - [x] **Pregações de convidados** (/comunidade/pregadores): 7 pastas com vídeos reais do
       YouTube e crédito ao canal — Moisés Rocha (24), Padre Léo, Charles Vieira (com a
