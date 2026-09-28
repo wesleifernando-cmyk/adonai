@@ -4,7 +4,6 @@ import { ChurchMark } from "../../components/ui/ChurchMark";
 import { LemaFogo } from "../../components/ui/LemaFogo";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
-import { LEMA_PRINCIPAL } from "../../content/lemas";
 import { conjuntoDoDia } from "../../content/rosario/misterios";
 import { pickForToday, todayLong } from "../../lib/dates";
 import styles from "./HojePage.module.css";
@@ -30,9 +29,8 @@ export function HojePage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <BrandLogo width={248} className={styles.logo} />
-        <p className={styles.tagline}>{LEMA_PRINCIPAL}</p>
         <h1 className={styles.saudacao}>
-          A paz esteja <span>contigo</span>
+          Eu tenho para onde <span>voltar.</span>
         </h1>
         <p className={styles.grupo}>
           <ChurchMark size={15} />

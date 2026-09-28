@@ -17,22 +17,15 @@
   margin-bottom: 12px;
 }
 
-.tagline {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ember);
-}
-
 .saudacao {
   margin-top: 10px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--step-4);
-  line-height: 1.02;
+  line-height: 1.05;
   color: var(--text);
-  max-width: 12ch;
+  max-width: 16ch;
+  margin-inline: auto;
 }
 .saudacao span {
   background: var(--grad-fire-h);
