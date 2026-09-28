@@ -14,10 +14,18 @@ export function ComunidadePage() {
         lead="Pregações dos encontros e do retiro Desperta. Fotos e álbuns entram na Fase 2."
       />
 
-      <Link to="/comunidade/moises-rocha" className={`${list.item} ${list.link}`} style={{ marginBottom: 16, alignItems: "center" }}>
+      <Link to="/comunidade/pregadores" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
         <div>
-          <p className={list.itemEyebrow}>Pregador convidado · YouTube</p>
-          <h2 className={list.itemTitle}>Pregações de Moisés Rocha</h2>
+          <p className={list.itemEyebrow}>7 pregadores · YouTube</p>
+          <h2 className={list.itemTitle}>Pregações de convidados</h2>
+        </div>
+        <span className={list.chev} aria-hidden="true">→</span>
+      </Link>
+
+      <Link to="/comunidade/musicas" className={`${list.item} ${list.link}`} style={{ marginBottom: 16, alignItems: "center" }}>
+        <div>
+          <p className={list.itemEyebrow}>Spotify</p>
+          <h2 className={list.itemTitle}>Músicas Adonai</h2>
         </div>
         <span className={list.chev} aria-hidden="true">→</span>
       </Link>

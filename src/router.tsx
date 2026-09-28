@@ -17,7 +17,9 @@ import { EvangelhoPage } from "./features/evangelho/EvangelhoPage";
 import { QuizPage } from "./features/quiz/QuizPage";
 import { CatolicoRespondePage } from "./features/catolico-responde/CatolicoRespondePage";
 import { ComunidadePage } from "./features/comunidade/ComunidadePage";
-import { PregacoesMoisesRochaPage } from "./features/comunidade/PregacoesMoisesRochaPage";
+import { PregadoresPage } from "./features/comunidade/PregadoresPage";
+import { PregadorPage } from "./features/comunidade/PregadorPage";
+import { MusicasPage } from "./features/comunidade/MusicasPage";
 import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
@@ -54,7 +56,9 @@ export const router = createBrowserRouter([
       { path: "quiz", element: <QuizPage /> },
       { path: "catolico-responde", element: <CatolicoRespondePage /> },
       { path: "comunidade", element: <ComunidadePage /> },
-      { path: "comunidade/moises-rocha", element: <PregacoesMoisesRochaPage /> },
+      { path: "comunidade/pregadores", element: <PregadoresPage /> },
+      { path: "comunidade/pregadores/:slug", element: <PregadorPage /> },
+      { path: "comunidade/musicas", element: <MusicasPage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },
