@@ -24,6 +24,10 @@ import { MusicaPage } from "./features/comunidade/MusicaPage";
 import { AudiobooksPage } from "./features/audiobooks/AudiobooksPage";
 import { AudiobookPage } from "./features/audiobooks/AudiobookPage";
 import { LivrosPage } from "./features/livros/LivrosPage";
+import { SagradoCoracaoPage } from "./features/sagrado-coracao/SagradoCoracaoPage";
+import { HistoriaSagradoCoracaoPage } from "./features/sagrado-coracao/HistoriaSagradoCoracaoPage";
+import { PromessasPage } from "./features/sagrado-coracao/PromessasPage";
+import { ConsagracaoPage } from "./features/sagrado-coracao/ConsagracaoPage";
 import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
@@ -67,6 +71,10 @@ export const router = createBrowserRouter([
       { path: "audiobooks", element: <AudiobooksPage /> },
       { path: "audiobooks/:slug", element: <AudiobookPage /> },
       { path: "livros", element: <LivrosPage /> },
+      { path: "sagrado-coracao", element: <SagradoCoracaoPage /> },
+      { path: "sagrado-coracao/historia", element: <HistoriaSagradoCoracaoPage /> },
+      { path: "sagrado-coracao/promessas", element: <PromessasPage /> },
+      { path: "sagrado-coracao/consagracao", element: <ConsagracaoPage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },

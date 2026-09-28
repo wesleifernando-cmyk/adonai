@@ -11,6 +11,7 @@ import styles from "./HojePage.module.css";
 const atalhos = [
   { to: "/biblia", label: "Bíblia", desc: "Ler e estudar" },
   { to: "/rosario", label: "Rosário", desc: "Rezar e meditar" },
+  { to: "/sagrado-coracao", label: "Sagrado Coração", desc: "História, promessas, consagração" },
   { to: "/catecismo", label: "Catecismo", desc: "O que a Igreja crê" },
   { to: "/herois-da-fe", label: "Heróis da Fé", desc: "Santos que inspiram" },
   { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },

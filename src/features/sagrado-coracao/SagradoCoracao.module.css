@@ -1,0 +1,122 @@
+.voltar {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ember);
+  margin-bottom: 12px;
+}
+
+/* ---------- hub ---------- */
+.destaqueCard {
+  display: block;
+  border: 1px solid rgba(255, 90, 44, 0.28);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 120% at 85% 0%, rgba(255, 90, 44, 0.16), transparent 60%),
+    var(--surface);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.destaqueTitulo { font-size: var(--step-2); color: var(--text); margin-top: 8px; }
+.destaqueTexto { margin-top: 8px; font-family: var(--font-read); color: var(--text-dim); line-height: 1.6; }
+.cta { display: inline-block; margin-top: 14px; font-weight: 700; font-size: 0.85rem; color: var(--ember); }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+}
+.tile:hover { border-color: rgba(255, 90, 44, 0.3); background: var(--surface); }
+.tileTitulo { font-family: var(--font-display); font-weight: 600; color: var(--text); font-size: 0.98rem; }
+.tileDesc { font-size: 0.76rem; color: var(--text-mute); }
+
+/* ---------- história ---------- */
+.historia { display: flex; flex-direction: column; gap: 22px; }
+.historiaTitulo { font-size: var(--step-1); color: var(--text); margin-bottom: 8px; }
+.historiaTexto { line-height: 1.72; color: var(--text-dim); }
+
+/* ---------- promessas ---------- */
+.promessasLista { display: flex; flex-direction: column; gap: 14px; }
+.promessaItem { display: flex; gap: 14px; }
+.promessaNum {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grad-fire-h);
+  color: var(--on-fire);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.promessaTexto { font-family: var(--font-read); color: var(--text); line-height: 1.6; padding-top: 4px; }
+
+.grandeCard {
+  margin-top: 22px;
+  border: 1px solid rgba(242, 176, 30, 0.35);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(110% 100% at 12% 0%, rgba(242, 176, 30, 0.12), transparent 60%),
+    var(--surface);
+  padding: 20px;
+}
+.grandeTitulo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.grandeTexto {
+  margin-top: 10px;
+  font-family: var(--font-read);
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ---------- consagração ---------- */
+.passos { display: flex; flex-direction: column; gap: 16px; margin-top: 4px; }
+.passo { display: flex; gap: 14px; }
+.passoNum {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grad-fire-h);
+  color: var(--on-fire);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.passoTitulo { font-size: 1rem; color: var(--text); font-family: var(--font-display); font-weight: 600; }
+.passoTexto { margin-top: 4px; font-family: var(--font-read); color: var(--text-dim); line-height: 1.55; font-size: 0.94rem; }
+
+.oracaoCard {
+  margin-top: 28px;
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--fire);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+}
+.oracaoTitulo { font-size: var(--step-1); color: var(--text); }
+.oracaoAutor { margin-top: 4px; font-size: 0.76rem; color: var(--text-mute); }
+.oracaoTexto {
+  margin-top: 14px;
+  font-family: var(--font-read);
+  color: var(--text-dim);
+  line-height: 1.75;
+  white-space: pre-line;
+}

@@ -32,8 +32,15 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
       (vatican.va) ou domínio público verificável (Internet Archive) — começou com 5
 - [x] **Audiobooks** (/audiobooks): virou seção própria, ao lado de Bíblia e Rosário — não
       fica mais escondido dentro de Comunidade/Pregações
-- [ ] Ampliar Audiobooks e Biblioteca: mais livros sobre Nossa Senhora, vidas de santos e
-      doutrina — pedido explícito da equipe ("não fica com coisinha")
+- [x] Ampliados Audiobooks (17 no total): livros sobre Nossa Senhora, vidas de santos e
+      doutrina. Vários links vindos de pesquisa externa ("Cláudio"/ChatGPT) estavam
+      **quebrados** (domínio bibliotecacatolica.com.br fora do ar) — removidos ou trocados
+      por fonte real verificada (ex.: filhosdemaria.org pro Tratado da Verdadeira Devoção).
+      Sempre conferir link ao vivo antes de publicar, mesmo vindo de pesquisa pronta
+- [x] **Sagrado Coração de Jesus** (/sagrado-coracao): história completa (Santa Margarida
+      Maria Alacoque, Paray-le-Monial, São Cláudio de La Colombière, até o carisma
+      dehoniano do Pe. Léon Dehon), as 12 promessas com a Grande Promessa em destaque, e
+      o método de consagração com o Ato de Consagração de Leão XIII (1899)
 - [ ] Ampliar pregadores já existentes: Padre Léo e Monsenhor Jonas Abib pedidos com "bastante"
       pregação (hoje têm 5 e 6 — a equipe quer bem mais)
 - [ ] Tema claro (leitura de dia)

@@ -29,22 +29,44 @@ export function AudiobookPage() {
         </a>
       )}
 
-      <div className={styles.videoLista}>
-        {livro.faixas.map((f) => (
-          <article key={f.youtubeId} className={styles.videoCard}>
-            <div className={styles.videoWrap}>
-              <iframe
-                src={`https://www.youtube.com/embed/${f.youtubeId}`}
-                title={f.titulo}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <h2 className={styles.videoTitulo}>{f.titulo}</h2>
-          </article>
-        ))}
-      </div>
+      {livro.faixas && (
+        <div className={styles.videoLista}>
+          {livro.faixas.map((f) => (
+            <article key={f.youtubeId} className={styles.videoCard}>
+              <div className={styles.videoWrap}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${f.youtubeId}`}
+                  title={f.titulo}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <h2 className={styles.videoTitulo}>{f.titulo}</h2>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {livro.linkExterno && (
+        <div className={styles.indique}>
+          <p className={styles.indiqueTitulo}>O áudio mora no site de origem</p>
+          <p className={styles.indiqueTexto}>
+            Esse audiolivro é hospedado por {livro.canalNome}. Pra respeitar os direitos de quem
+            publicou, a gente não copia o áudio — é só abrir lá pra ouvir.
+            {livro.requerLogin && " O site pede um cadastro simples e gratuito pra tocar."}
+          </p>
+          <a
+            href={livro.linkExterno}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.canalLink}
+            style={{ marginTop: 12 }}
+          >
+            Ouvir em {livro.canalNome} ↗
+          </a>
+        </div>
+      )}
 
       <p className={styles.creditoFinal}>
         Áudio de {livro.canalNome}. Todo crédito ao autor original, {livro.autor}.

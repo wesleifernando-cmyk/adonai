@@ -10,6 +10,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
       { to: "/evangelho", label: "Evangelho do dia" },
       { to: "/biblia", label: "Bíblia" },
       { to: "/rosario", label: "Rosário" },
+      { to: "/sagrado-coracao", label: "Sagrado Coração de Jesus" },
       { to: "/catecismo", label: "Catecismo da Igreja" },
       { to: "/documentos", label: "Documentos da Igreja", nota: "em construção" },
       { to: "/noticias", label: "Notícias da fé", nota: "em breve" },

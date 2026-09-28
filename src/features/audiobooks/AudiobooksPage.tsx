@@ -22,7 +22,10 @@ export function AudiobooksPage() {
             style={{ alignItems: "center" }}
           >
             <div style={{ minWidth: 0 }}>
-              <p className={list.itemEyebrow}>{a.autor} · {a.faixas.length} {a.faixas.length > 1 ? "faixas" : "faixa"}</p>
+              <p className={list.itemEyebrow}>
+                {a.autor}
+                {a.faixas ? ` · ${a.faixas.length} ${a.faixas.length > 1 ? "faixas" : "faixa"}` : ` · ${a.canalNome}`}
+              </p>
               <h2 className={list.itemTitle}>{a.titulo}</h2>
             </div>
             <span className={list.chev} aria-hidden="true">→</span>
@@ -31,8 +34,8 @@ export function AudiobooksPage() {
       </div>
 
       <p className={styles.creditoFinal}>
-        Conhece outro audiobook católico bom? Manda o título e o link do YouTube pra equipe da
-        Missão Adonai acrescentar.
+        Conhece outro audiobook católico bom? Manda o título e o link (YouTube ou o site onde
+        está) pra equipe da Missão Adonai acrescentar.
       </p>
     </div>
   );
