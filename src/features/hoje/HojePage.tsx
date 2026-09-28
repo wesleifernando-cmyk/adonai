@@ -17,6 +17,7 @@ const atalhos = [
   { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },
   { to: "/audiobooks", label: "Audiobooks", desc: "Livros pra ouvir" },
   { to: "/livros", label: "Livros", desc: "Biblioteca em PDF" },
+  { to: "/lumine", label: "Lumine", desc: "Cinema católico" },
   { to: "/quiz", label: "Quiz católico", desc: "Aprender jogando" },
   { to: "/testemunhos", label: "Testemunhos", desc: "O que Deus fez" },
   { to: "/catolico-responde", label: "Católico Responde", desc: "Tirar dúvidas da fé" },

@@ -28,6 +28,7 @@ import { SagradoCoracaoPage } from "./features/sagrado-coracao/SagradoCoracaoPag
 import { HistoriaSagradoCoracaoPage } from "./features/sagrado-coracao/HistoriaSagradoCoracaoPage";
 import { PromessasPage } from "./features/sagrado-coracao/PromessasPage";
 import { ConsagracaoPage } from "./features/sagrado-coracao/ConsagracaoPage";
+import { LuminePage } from "./features/lumine/LuminePage";
 import { AdminPage } from "./features/admin/AdminPage";
 import { AjudePage } from "./features/ajude/AjudePage";
 import { TestemunhosPage } from "./features/testemunhos/TestemunhosPage";
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
       { path: "sagrado-coracao/historia", element: <HistoriaSagradoCoracaoPage /> },
       { path: "sagrado-coracao/promessas", element: <PromessasPage /> },
       { path: "sagrado-coracao/consagracao", element: <ConsagracaoPage /> },
+      { path: "lumine", element: <LuminePage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },

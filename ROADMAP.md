@@ -37,6 +37,17 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
       **quebrados** (domínio bibliotecacatolica.com.br fora do ar) — removidos ou trocados
       por fonte real verificada (ex.: filhosdemaria.org pro Tratado da Verdadeira Devoção).
       Sempre conferir link ao vivo antes de publicar, mesmo vindo de pesquisa pronta
+- [x] **Lumine — Cinema Católico** (/lumine): vitrine do streaming católico Lumine (lumine.tv),
+      12 filmes em 3 categorias, botão de assinatura em destaque. Lumine não deixa acessar
+      página de filme sem login (redireciona pra /apoie) — por isso todo botão leva pro
+      site geral, não pra uma página específica de cada filme
+- [x] Biblioteca (/livros) ampliada: 5 biografias oficiais de santos (vatican.va,
+      vaticannews.va, franciscanos.org.br, arautos.org) + 3 encíclicas novas (Gaudete et
+      Exsultate, Dilexit Nos, Deus Caritas Est). **3 PDFs oficiais (Laudato Si', Evangelii
+      Gaudium, Código de Direito Canônico) baixados e hospedados em public/livros/** —
+      abrem e baixam direto do site, não é só link externo
+- [x] Corrigido: 1º vídeo do Padre Paulo Ricardo era sobre nulidade de casamento — trocado
+      por "Aprenda a rezar o Terço" e "Exame de consciência" (mais universal)
 - [x] **Sagrado Coração de Jesus** (/sagrado-coracao): história completa (Santa Margarida
       Maria Alacoque, Paray-le-Monial, São Cláudio de La Colombière, até o carisma
       dehoniano do Pe. Léon Dehon), as 12 promessas com a Grande Promessa em destaque, e

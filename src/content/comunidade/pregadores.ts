@@ -140,9 +140,9 @@ export const pregadores: Pregador[] = [
     canalNome: "Padre Paulo Ricardo",
     canalUrl: "https://www.youtube.com/@padrepauloricardo",
     videos: [
-      { titulo: "Escola da Fé — O divórcio e a nulidade do casamento", youtubeId: "SSvLKgumHME", data: "13/06/2013" },
+      { titulo: "Aprenda a rezar o Terço", youtubeId: "fSIr2iftPUo" },
+      { titulo: "Como fazer um bom exame de consciência para se confessar?", youtubeId: "duhmYewFyS4", data: "5 anos" },
       { titulo: "Escola da Fé — Sobre a sanação radical", youtubeId: "gKf4wxaXvNY", data: "13/06/2013" },
-      { titulo: "Escola da Fé — Sobre pedofilia e celibato", youtubeId: "aXIHjxUIfCE", data: "20/05/2011" },
     ],
   },
   {

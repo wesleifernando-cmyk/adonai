@@ -16,6 +16,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
       { to: "/noticias", label: "Notícias da fé", nota: "em breve" },
       { to: "/livros", label: "Livros (PDF)" },
       { to: "/audiobooks", label: "Audiobooks" },
+      { to: "/lumine", label: "Lumine — Cinema Católico" },
     ],
   },
   {
