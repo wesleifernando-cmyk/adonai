@@ -61,6 +61,15 @@ Ideias e pedidos da equipe, na ordem em que foram surgindo. Marcar `[x]` quando 
 - [ ] Notificações ("Evangelho do dia" no celular)
 - [ ] Empacotar como aplicativo (Play Store / App Store)
 
+- [x] **Pregações de convidados** (/comunidade/pregadores): 7 pastas com vídeos reais do
+      YouTube e crédito ao canal — Moisés Rocha (24), Padre Léo, Charles Vieira (com a
+      série completa das 7 Moradas do Castelo Interior), Monsenhor Jonas Abib, PHN,
+      Glória Polo, Padre Paulo Ricardo (Escola da Fé) e Padre Fábio de Melo (Direção
+      Espiritual). "Indique uma pregação" pronto para novas sugestões
+- [x] **Músicas Adonai** (/comunidade/musicas): Spotify do grupo embutido (artista "Go Adonai")
+- [ ] Pregação própria da Missão ("Até Encontrá-la", Retiro Desperta): aguardando áudio
+      comprimido do usuário (arquivo original tem 315 MB, precisa reduzir para MP3)
+
 ## Bíblia — situação da licença (pesquisado em set/2026)
 
 O texto antigo da Bíblia é livre, mas **toda tradução moderna tem direitos autorais**
