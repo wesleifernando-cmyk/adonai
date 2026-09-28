@@ -2,6 +2,9 @@ export type VideoPregacao = {
   titulo: string;
   youtubeId: string;
   data?: string;
+  /** quando o vídeo específico vem de um canal diferente do canalNome do pregador
+   *  (ex.: um canal que reposta a pregação) — dá crédito aos dois. */
+  canalOrigem?: string;
 };
 
 export type Pregador = {
@@ -168,13 +171,29 @@ export const pregadores: Pregador[] = [
     canalUrl: "https://www.youtube.com/channel/UCujutKwW-uS5t1wPattHnfA",
     instagramUrl: "https://www.instagram.com/andersonpregador/",
     videos: [
-      { titulo: "Céu: o maior dom de Deus (tríduo, dia 1)", youtubeId: "i9ZLe9eKXMg" },
-      { titulo: "Inferno (tríduo, dia 2)", youtubeId: "R4XpIO7-lik" },
-      { titulo: "Purgatório: um inferno temporário (tríduo, dia 3)", youtubeId: "M_8-E3Ikf0E" },
+      {
+        titulo: "Tríduo — Céu: Maria, porta do Céu",
+        youtubeId: "MORhl7eU2Vs",
+        canalOrigem: "Alegrai-vos no Senhor",
+      },
+      {
+        titulo: "Tríduo — Inferno: O Inferno Existe",
+        youtubeId: "Oja9uolOuOE",
+        canalOrigem: "Alegrai-vos no Senhor",
+      },
+      {
+        titulo: "Tríduo — Purgatório, última misericórdia de Deus (parte 1)",
+        youtubeId: "1snNJlJe83Q",
+        canalOrigem: "Alegrai-vos no Senhor",
+      },
+      {
+        titulo: "Tríduo — Purgatório, última misericórdia de Deus (parte 2)",
+        youtubeId: "PCOwrvWagy0",
+        canalOrigem: "Alegrai-vos no Senhor",
+      },
       { titulo: "Maria, terror dos demônios", youtubeId: "24IaM4zwBos" },
       { titulo: "Alma Missionária", youtubeId: "CauXpCqO7bM" },
       { titulo: "Combate Espiritual", youtubeId: "R7dp-Q65bX0" },
-      { titulo: "O Inferno existe!", youtubeId: "wJYOXLGI8k0" },
       { titulo: "O amor não é amado", youtubeId: "VI8NzTOhpIw", data: "07/02/2021" },
     ],
   },

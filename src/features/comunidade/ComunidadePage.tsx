@@ -14,6 +14,24 @@ export function ComunidadePage() {
         lead="Pregações dos encontros e do retiro Desperta. Fotos e álbuns entram na Fase 2."
       />
 
+      <a
+        href="https://instagram.com/go.adonai"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.instaCard}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+        </svg>
+        <div>
+          <p className={styles.instaLabel}>@go.adonai</p>
+          <p className={styles.instaSub}>Toque para ver os stories e acompanhar ao vivo</p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </a>
+
       <Link to="/comunidade/pregadores" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
         <div>
           <p className={list.itemEyebrow}>7 pregadores · YouTube</p>

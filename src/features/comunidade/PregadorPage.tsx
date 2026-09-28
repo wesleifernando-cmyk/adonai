@@ -23,11 +23,18 @@ export function PregadorPage() {
       <h1 className={styles.pregadorNome}>{pregador.nome}</h1>
       <p className={styles.pregadorDesc}>{pregador.descricao}</p>
 
-      {pregador.canalUrl && (
-        <a href={pregador.canalUrl} target="_blank" rel="noopener noreferrer" className={styles.canalLink}>
-          Ver o canal completo: {pregador.canalNome} ↗
-        </a>
-      )}
+      <div className={styles.linksFila}>
+        {pregador.canalUrl && (
+          <a href={pregador.canalUrl} target="_blank" rel="noopener noreferrer" className={styles.canalLink}>
+            Ver o canal: {pregador.canalNome} ↗
+          </a>
+        )}
+        {pregador.instagramUrl && (
+          <a href={pregador.instagramUrl} target="_blank" rel="noopener noreferrer" className={styles.canalLink}>
+            Instagram ↗
+          </a>
+        )}
+      </div>
 
       <div className={styles.videoLista}>
         {pregador.videos.map((v) => (
@@ -42,14 +49,20 @@ export function PregadorPage() {
               />
             </div>
             <h2 className={styles.videoTitulo}>{v.titulo}</h2>
-            {v.data && <p className={styles.videoData}>{v.data}</p>}
+            {(v.canalOrigem || v.data) && (
+              <p className={styles.videoData}>
+                {[v.canalOrigem && `Publicado por ${v.canalOrigem}`, v.data].filter(Boolean).join(" · ")}
+              </p>
+            )}
           </article>
         ))}
       </div>
 
       <p className={styles.creditoFinal}>
-        Todos os vídeos pertencem ao canal {pregador.canalNome}. Tem uma pregação que você quer
-        ver aqui? Use "Indique uma pregação" na lista de pregadores.
+        Os vídeos pertencem a {pregador.canalNome}
+        {pregador.videos.some((v) => v.canalOrigem) && " e aos canais indicados em cada pregação"}.
+        A pregação é sempre de {pregador.nome}. Tem uma pregação que você quer ver aqui? Use
+        "Indique uma pregação" na lista de pregadores.
       </p>
     </div>
   );
