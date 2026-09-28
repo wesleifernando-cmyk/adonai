@@ -14,6 +14,8 @@ const atalhos = [
   { to: "/catecismo", label: "Catecismo", desc: "O que a Igreja crê" },
   { to: "/herois-da-fe", label: "Heróis da Fé", desc: "Santos que inspiram" },
   { to: "/herois-biblicos", label: "Heróis Bíblicos", desc: "Gente das Escrituras" },
+  { to: "/audiobooks", label: "Audiobooks", desc: "Livros pra ouvir" },
+  { to: "/livros", label: "Livros", desc: "Biblioteca em PDF" },
   { to: "/quiz", label: "Quiz católico", desc: "Aprender jogando" },
   { to: "/testemunhos", label: "Testemunhos", desc: "O que Deus fez" },
   { to: "/catolico-responde", label: "Católico Responde", desc: "Tirar dúvidas da fé" },

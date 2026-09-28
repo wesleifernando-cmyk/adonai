@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { acharAudiobook } from "../../content/comunidade/audiobooks";
-import styles from "./Comunidade.module.css";
+import { acharAudiobook } from "../../content/audiobooks";
+import styles from "../comunidade/Comunidade.module.css";
 
 export function AudiobookPage() {
   const { slug = "" } = useParams();
@@ -9,7 +9,7 @@ export function AudiobookPage() {
   if (!livro) {
     return (
       <div>
-        <Link to="/comunidade/audiobooks" className={styles.voltar}>← Audiobooks</Link>
+        <Link to="/audiobooks" className={styles.voltar}>← Audiobooks</Link>
         <p>Audiobook não encontrado.</p>
       </div>
     );
@@ -17,7 +17,7 @@ export function AudiobookPage() {
 
   return (
     <div>
-      <Link to="/comunidade/audiobooks" className={styles.voltar}>← Audiobooks</Link>
+      <Link to="/audiobooks" className={styles.voltar}>← Audiobooks</Link>
 
       <p className="eyebrow">{livro.autor}</p>
       <h1 className={styles.pregadorNome}>{livro.titulo}</h1>

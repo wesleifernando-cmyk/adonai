@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
-import { audiobooks } from "../../content/comunidade/audiobooks";
+import { audiobooks } from "../../content/audiobooks";
 import list from "../_shared/List.module.css";
-import styles from "./Comunidade.module.css";
+import styles from "../comunidade/Comunidade.module.css";
+import { Link } from "react-router-dom";
 
 export function AudiobooksPage() {
   return (
     <div>
-      <Link to="/comunidade" className={styles.voltar}>← Comunidade</Link>
-
       <PageHeader
         eyebrow="Audiobooks"
         title="Livros católicos para ouvir"
@@ -19,7 +17,7 @@ export function AudiobooksPage() {
         {audiobooks.map((a) => (
           <Link
             key={a.slug}
-            to={`/comunidade/audiobooks/${a.slug}`}
+            to={`/audiobooks/${a.slug}`}
             className={`${list.item} ${list.link}`}
             style={{ alignItems: "center" }}
           >

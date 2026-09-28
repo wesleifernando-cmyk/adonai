@@ -17,10 +17,26 @@ export function CatecismoPage() {
         lead="A síntese oficial da fé católica, organizada em quatro partes."
       />
 
+      <a
+        href="https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={list.item}
+        style={{ display: "block", marginBottom: 16, borderColor: "rgba(242,176,30,0.3)" }}
+      >
+        <p className={list.itemEyebrow}>Oficial · vatican.va</p>
+        <h2 className={list.itemTitle}>Ler o Compêndio do Catecismo ↗</h2>
+        <p style={{ marginTop: 6, color: "var(--text-dim)", fontFamily: "var(--font-read)" }}>
+          Síntese oficial, em perguntas e respostas, publicada pelo próprio Vaticano — já dá pra
+          ler agora.
+        </p>
+      </a>
+
       <div className={list.nota}>
-        <strong>Em construção.</strong> O texto do Catecismo é © Libreria Editrice Vaticana /
-        Loyola. Estamos verificando a forma correta de disponibilizar (link oficial, citação por
-        parágrafo ou pedido de autorização). A estrutura abaixo já mostra como será navegar.
+        <strong>Texto completo em construção.</strong> O Catecismo integral é © Libreria Editrice
+        Vaticana / Loyola. Estamos verificando a forma correta de disponibilizar o texto inteiro
+        (citação por parágrafo ou pedido de autorização). A estrutura abaixo mostra como vai
+        ficar a navegação.
       </div>
 
       <div className={list.stack}>

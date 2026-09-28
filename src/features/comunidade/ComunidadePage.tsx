@@ -40,18 +40,10 @@ export function ComunidadePage() {
         <span className={list.chev} aria-hidden="true">→</span>
       </Link>
 
-      <Link to="/comunidade/musicas" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
+      <Link to="/comunidade/musicas" className={`${list.item} ${list.link}`} style={{ marginBottom: 16, alignItems: "center" }}>
         <div>
           <p className={list.itemEyebrow}>Spotify</p>
           <h2 className={list.itemTitle}>Louvor católico</h2>
-        </div>
-        <span className={list.chev} aria-hidden="true">→</span>
-      </Link>
-
-      <Link to="/comunidade/audiobooks" className={`${list.item} ${list.link}`} style={{ marginBottom: 16, alignItems: "center" }}>
-        <div>
-          <p className={list.itemEyebrow}>YouTube</p>
-          <h2 className={list.itemTitle}>Audiobooks católicos</h2>
         </div>
         <span className={list.chev} aria-hidden="true">→</span>
       </Link>
