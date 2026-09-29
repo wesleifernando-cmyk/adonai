@@ -31,6 +31,7 @@ async function migrar() {
       pontos INTEGER NOT NULL DEFAULT 0,
       nivel INTEGER NOT NULL DEFAULT 1,
       acertos_seguidos INTEGER NOT NULL DEFAULT 0,
+      perguntas_corretas INTEGER NOT NULL DEFAULT 0,
       atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
 

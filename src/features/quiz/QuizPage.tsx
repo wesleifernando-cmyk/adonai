@@ -4,8 +4,16 @@ import { apiFetch } from "../../lib/api";
 import styles from "./QuizPage.module.css";
 
 type Pergunta = { id: number; pergunta: string; opcoes: string[]; nivel: number };
-type Resultado = { correta: boolean; respostaCorreta: number; explicacao: string; pontosTotais: number; nivel: number };
-type LinhaRanking = { nome: string; pontos: number; nivel: number };
+type Resultado = {
+  correta: boolean;
+  respostaCorreta: number;
+  explicacao: string;
+  pontosTotais: number;
+  nivel: number;
+  perguntasCorretas: number;
+};
+type LinhaRanking = { nome: string; pontos: number; nivel: number; perguntas_corretas: number };
+type MinhaPontuacao = { pontos: number; nivel: number; perguntas_corretas: number };
 
 export function QuizPage() {
   const [pergunta, setPergunta] = useState<Pergunta | null>(null);
@@ -14,13 +22,11 @@ export function QuizPage() {
   const [erro, setErro] = useState<string | null>(null);
   const [carregando, setCarregando] = useState(false);
   const [ranking, setRanking] = useState<LinhaRanking[] | null>(null);
-  const [minhaPontuacao, setMinhaPontuacao] = useState({ pontos: 0, nivel: 1 });
+  const [minhaPontuacao, setMinhaPontuacao] = useState<MinhaPontuacao>({ pontos: 0, nivel: 1, perguntas_corretas: 0 });
 
   async function carregarRanking() {
     try {
-      const dados = await apiFetch<{ ranking: LinhaRanking[]; minhaPontuacao: { pontos: number; nivel: number } }>(
-        "/quiz/ranking"
-      );
+      const dados = await apiFetch<{ ranking: LinhaRanking[]; minhaPontuacao: MinhaPontuacao }>("/quiz/ranking");
       setRanking(dados.ranking);
       setMinhaPontuacao(dados.minhaPontuacao);
     } catch {
@@ -75,12 +81,12 @@ export function QuizPage() {
 
       <div className={styles.placar}>
         <div className={styles.stat}>
-          <p className={styles.statNum}>{minhaPontuacao.pontos}</p>
-          <p className={styles.statLabel}>Pontos</p>
+          <p className={styles.statNum}>{minhaPontuacao.perguntas_corretas + 1}</p>
+          <p className={styles.statLabel}>Sua pergunta</p>
         </div>
         <div className={styles.stat}>
-          <p className={styles.statNum}>{minhaPontuacao.nivel}</p>
-          <p className={styles.statLabel}>Nível</p>
+          <p className={styles.statNum}>{minhaPontuacao.pontos}</p>
+          <p className={styles.statLabel}>Pontos</p>
         </div>
       </div>
 
@@ -133,7 +139,9 @@ export function QuizPage() {
                   <span className={styles.rankingPos}>{i + 1}.</span>
                   {r.nome}
                 </span>
-                <span>{r.pontos} pts</span>
+                <span>
+                  pergunta {r.perguntas_corretas + 1} · {r.pontos} pts
+                </span>
               </div>
             ))}
           </div>

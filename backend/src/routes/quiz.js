@@ -86,23 +86,29 @@ router.post("/responder", exigirLogin, async (req, res) => {
     await query(`UPDATE quiz_perguntas SET respondida = true WHERE id = $1`, [pergunta.id]);
 
     const correta = Number(opcaoEscolhida) === pergunta.resposta_correta;
-    const [pontuacao] = await query(`SELECT pontos, nivel, acertos_seguidos FROM quiz_pontuacoes WHERE usuario_id = $1`, [
-      req.usuario.id,
-    ]);
+    const [pontuacao] = await query(
+      `SELECT pontos, nivel, acertos_seguidos, perguntas_corretas FROM quiz_pontuacoes WHERE usuario_id = $1`,
+      [req.usuario.id]
+    );
 
-    let { pontos, nivel, acertos_seguidos: acertosSeguidos } = pontuacao;
+    let { pontos, nivel, acertos_seguidos: acertosSeguidos, perguntas_corretas: perguntasCorretas } = pontuacao;
     if (correta) {
+      // cada pergunta vale mais pontos quanto mais difícil (nível) ela for
       pontos += 10 * pergunta.nivel;
       acertosSeguidos += 1;
+      perguntasCorretas += 1; // nunca tem teto — é o número que sobe pra sempre no ranking
       if (acertosSeguidos % 3 === 0 && nivel < NIVEL_MAX) nivel += 1;
     } else {
+      // errar não avança: não ganha ponto, não sobe de nível, não sobe no ranking
       acertosSeguidos = 0;
       if (nivel > 1) nivel -= 1;
     }
 
     await query(
-      `UPDATE quiz_pontuacoes SET pontos = $1, nivel = $2, acertos_seguidos = $3, atualizado_em = now() WHERE usuario_id = $4`,
-      [pontos, nivel, acertosSeguidos, req.usuario.id]
+      `UPDATE quiz_pontuacoes
+       SET pontos = $1, nivel = $2, acertos_seguidos = $3, perguntas_corretas = $4, atualizado_em = now()
+       WHERE usuario_id = $5`,
+      [pontos, nivel, acertosSeguidos, perguntasCorretas, req.usuario.id]
     );
 
     res.json({
@@ -111,6 +117,7 @@ router.post("/responder", exigirLogin, async (req, res) => {
       explicacao: pergunta.explicacao,
       pontosTotais: pontos,
       nivel,
+      perguntasCorretas,
     });
   } catch (err) {
     console.error("Erro ao responder pergunta:", err);
@@ -120,18 +127,21 @@ router.post("/responder", exigirLogin, async (req, res) => {
 
 router.get("/ranking", exigirLogin, async (req, res) => {
   try {
+    // Ordenado por quem já respondeu mais perguntas certas — é a "corrida"
+    // que aparece pro usuário (a pergunta que ele está tentando alcançar).
     const ranking = await query(`
-      SELECT u.nome, p.pontos, p.nivel
+      SELECT u.nome, p.pontos, p.nivel, p.perguntas_corretas
       FROM quiz_pontuacoes p
       JOIN usuarios u ON u.id = p.usuario_id
-      WHERE p.pontos > 0
-      ORDER BY p.pontos DESC
+      WHERE p.perguntas_corretas > 0
+      ORDER BY p.perguntas_corretas DESC, p.pontos DESC
       LIMIT 20
     `);
-    const [minhaPontuacao] = await query(`SELECT pontos, nivel FROM quiz_pontuacoes WHERE usuario_id = $1`, [
-      req.usuario.id,
-    ]);
-    res.json({ ranking, minhaPontuacao: minhaPontuacao || { pontos: 0, nivel: 1 } });
+    const [minhaPontuacao] = await query(
+      `SELECT pontos, nivel, perguntas_corretas FROM quiz_pontuacoes WHERE usuario_id = $1`,
+      [req.usuario.id]
+    );
+    res.json({ ranking, minhaPontuacao: minhaPontuacao || { pontos: 0, nivel: 1, perguntas_corretas: 0 } });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao buscar ranking.", detalhe: err.message });
   }
