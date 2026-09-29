@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { query } from "../db/pool.js";
 import { criarPreferencia, buscarPagamento } from "../services/mercadopago.js";
+import { exigirLogin } from "./auth.js";
 
 const router = Router();
 
@@ -12,25 +13,24 @@ const TITULO_PRODUTO = "Acesso Adonai";
 const urlFrontend = () => process.env.FRONTEND_URL || "http://localhost:5173";
 const urlBackend = () => process.env.BACKEND_URL || "http://localhost:3002";
 
-// Cria o link de pagamento. Não exige login (o Adonai ainda não tem
-// sistema de conta) — só pede o e-mail, que é usado depois pra
-// confirmar quem pagou.
-router.post("/checkout", async (req, res) => {
+// Cria o link de pagamento pro usuário JÁ LOGADO (agora que o Adonai
+// tem conta de verdade) — usa o e-mail da própria conta, não deixa a
+// pessoa digitar de novo nem arriscar comprar com e-mail errado.
+// Mesmo padrão do Próspero JB IA: checkout amarrado em quem está logado.
+router.post("/checkout", exigirLogin, async (req, res) => {
   try {
-    const { email } = req.body;
-    if (!email || !email.includes("@")) {
-      return res.status(400).json({ erro: "Informe um e-mail válido." });
-    }
+    const [usuario] = await query(`SELECT email FROM usuarios WHERE id = $1`, [req.usuario.id]);
+    if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });
 
     const [pagamento] = await query(
       `INSERT INTO pagamentos (email, status, valor_centavos) VALUES ($1, 'pendente', $2) RETURNING id`,
-      [email, PRECO_CENTAVOS]
+      [usuario.email, PRECO_CENTAVOS]
     );
 
     const preferencia = await criarPreferencia({
       titulo: TITULO_PRODUTO,
       precoCentavos: PRECO_CENTAVOS,
-      email,
+      email: usuario.email,
       urlFrontend: urlFrontend(),
       urlBackend: urlBackend(),
       referenciaExterna: `PAGAMENTO:${pagamento.id}`,
@@ -76,9 +76,9 @@ router.post("/webhook", async (req, res) => {
   }
 });
 
-// Consulta se um e-mail já tem pagamento aprovado — usado pela tela de
-// "já paguei" pra liberar o acesso sem precisar de login de verdade
-// ainda (isso entra na Fase 2, com conta/senha).
+// Consulta se um e-mail já tem pagamento aprovado. GET /auth/eu já faz
+// essa mesma checagem pra quem está logado (campo assinaturaAtiva) —
+// essa rota fica como apoio pra telas que ainda não tem o token à mão.
 router.get("/status", async (req, res) => {
   try {
     const { email } = req.query;
