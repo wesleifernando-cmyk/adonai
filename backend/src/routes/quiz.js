@@ -127,14 +127,16 @@ router.post("/responder", exigirLogin, async (req, res) => {
 
 router.get("/ranking", exigirLogin, async (req, res) => {
   try {
-    // Ordenado por quem já respondeu mais perguntas certas — é a "corrida"
-    // que aparece pro usuário (a pergunta que ele está tentando alcançar).
+    // Ordenado por pontos — é o critério de verdade, porque pergunta
+    // difícil vale mais ponto. Quem acertou menos perguntas mas mais
+    // difíceis pode (e deve) ficar na frente de quem acertou muita
+    // pergunta fácil. "Pergunta X" continua exibido, só não é o critério.
     const ranking = await query(`
       SELECT u.nome, p.pontos, p.nivel, p.perguntas_corretas
       FROM quiz_pontuacoes p
       JOIN usuarios u ON u.id = p.usuario_id
-      WHERE p.perguntas_corretas > 0
-      ORDER BY p.perguntas_corretas DESC, p.pontos DESC
+      WHERE p.pontos > 0
+      ORDER BY p.pontos DESC, p.perguntas_corretas DESC
       LIMIT 20
     `);
     const [minhaPontuacao] = await query(
