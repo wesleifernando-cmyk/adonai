@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { apiFetch } from "../../lib/api";
+import { useAuth } from "../../lib/auth/AuthContext";
+import { compartilharImagemRank } from "../../lib/compartilharRank";
 import styles from "./QuizPage.module.css";
 
 type Pergunta = { id: number; pergunta: string; opcoes: string[]; nivel: number };
@@ -16,7 +18,9 @@ type LinhaRanking = { nome: string; pontos: number; nivel: number; perguntas_cor
 type MinhaPontuacao = { pontos: number; nivel: number; perguntas_corretas: number };
 
 export function QuizPage() {
+  const { usuario } = useAuth();
   const [pergunta, setPergunta] = useState<Pergunta | null>(null);
+  const [compartilhando, setCompartilhando] = useState(false);
   const [escolha, setEscolha] = useState<number | null>(null);
   const [resultado, setResultado] = useState<Resultado | null>(null);
   const [erro, setErro] = useState<string | null>(null);
@@ -71,6 +75,21 @@ export function QuizPage() {
     }
   }
 
+  async function compartilhar() {
+    setCompartilhando(true);
+    try {
+      await compartilharImagemRank({
+        nome: usuario?.nome || "Alguém da Missão",
+        pontos: minhaPontuacao.pontos,
+        perguntaAtual: minhaPontuacao.perguntas_corretas + 1,
+      });
+    } catch {
+      // usuário cancelou o share ou o navegador não deixou — sem problema
+    } finally {
+      setCompartilhando(false);
+    }
+  }
+
   return (
     <div>
       <PageHeader
@@ -89,6 +108,10 @@ export function QuizPage() {
           <p className={styles.statLabel}>Pontos</p>
         </div>
       </div>
+
+      <button className={styles.compartilhar} onClick={compartilhar} disabled={compartilhando}>
+        {compartilhando ? "Gerando imagem…" : "📤 Compartilhar meu resultado"}
+      </button>
 
       {erro && <p className={styles.erro}>{erro}</p>}
 

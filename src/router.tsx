@@ -49,6 +49,7 @@ import { EntrarPage } from "./features/auth/EntrarPage";
 import { CadastroPage } from "./features/auth/CadastroPage";
 import { AssinarPage } from "./features/assinar/AssinarPage";
 import { FacebookCallbackPage } from "./features/auth/FacebookCallbackPage";
+import { PerfilPage } from "./features/perfil/PerfilPage";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,7 @@ export const router = createBrowserRouter([
       { path: "entrar", element: <EntrarPage /> },
       { path: "cadastro", element: <CadastroPage /> },
       { path: "assinar", element: <AssinarPage /> },
+      { path: "perfil", element: <PerfilPage /> },
       { path: "auth/instagram/callback", element: <FacebookCallbackPage /> },
       {
         element: <RequireAdmin />,

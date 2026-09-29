@@ -1,0 +1,95 @@
+.foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.fotoPreview {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--hairline);
+  background: var(--surface-2);
+}
+
+.fotoIniciais {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  color: var(--ember);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  border: 2px solid var(--hairline);
+}
+
+.trocarFoto {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  cursor: pointer;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.campo label {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.campo input {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+}
+
+.salvar {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--grad-fire);
+  color: var(--on-fire);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  cursor: pointer;
+}
+.salvar:disabled { opacity: 0.6; cursor: default; }
+
+.ok {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(75, 191, 123, 0.15);
+  color: var(--ok);
+  font-size: var(--step--1);
+}
+
+.erro {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(229, 83, 61, 0.15);
+  color: var(--err);
+  font-size: var(--step--1);
+}

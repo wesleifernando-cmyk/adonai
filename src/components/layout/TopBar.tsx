@@ -21,7 +21,7 @@ function ContaIndicador() {
   const inicial = usuario.nome.trim().charAt(0).toUpperCase();
 
   return (
-    <Link to="/mais" className={styles.conta} aria-label={`Logado como ${usuario.nome}`}>
+    <Link to="/perfil" className={styles.conta} aria-label={`Logado como ${usuario.nome}`}>
       {usuario.foto_url ? (
         <img src={usuario.foto_url} alt="" className={styles.foto} />
       ) : (

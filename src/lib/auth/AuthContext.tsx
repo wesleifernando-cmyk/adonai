@@ -1,7 +1,14 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { apiFetch, guardarToken, limparToken, pegarToken } from "../api";
 
-type Usuario = { id: number; nome: string; email: string; admin?: boolean; foto_url?: string | null };
+type Usuario = {
+  id: number;
+  nome: string;
+  email: string;
+  admin?: boolean;
+  foto_url?: string | null;
+  idade?: number | null;
+};
 
 type AuthState = {
   usuario: Usuario | null;

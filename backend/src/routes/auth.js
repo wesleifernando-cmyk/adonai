@@ -105,7 +105,7 @@ router.post("/login", async (req, res) => {
 router.get("/eu", exigirLogin, async (req, res) => {
   try {
     const [usuario] = await query(
-      `SELECT id, nome, email, admin, bloqueado, foto_url FROM usuarios WHERE id = $1`,
+      `SELECT id, nome, email, admin, bloqueado, foto_url, idade FROM usuarios WHERE id = $1`,
       [req.usuario.id]
     );
     if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });
@@ -116,6 +116,43 @@ router.get("/eu", exigirLogin, async (req, res) => {
     res.json({ usuario, assinaturaAtiva: await assinaturaAtivaPara(usuario.email) });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao buscar usuário.", detalhe: err.message });
+  }
+});
+
+// Atualiza nome, idade e/ou foto do próprio perfil. A foto vem como
+// data URL (base64) já redimensionada pequena no navegador — não
+// precisamos de um serviço de armazenamento de arquivos separado.
+router.patch("/perfil", exigirLogin, async (req, res) => {
+  try {
+    const { nome, idade, fotoBase64 } = req.body;
+
+    if (idade !== undefined && idade !== null) {
+      const idadeNum = Number(idade);
+      if (!Number.isInteger(idadeNum) || idadeNum < 1 || idadeNum > 120) {
+        return res.status(400).json({ erro: "Idade inválida." });
+      }
+    }
+    if (fotoBase64 && (!fotoBase64.startsWith("data:image/") || fotoBase64.length > 700_000)) {
+      return res.status(400).json({ erro: "Foto inválida ou grande demais." });
+    }
+    if (nome !== undefined && !nome.trim()) {
+      return res.status(400).json({ erro: "Nome não pode ficar vazio." });
+    }
+
+    const [usuario] = await query(
+      `UPDATE usuarios SET
+         nome = COALESCE(NULLIF($1, ''), nome),
+         idade = COALESCE($2, idade),
+         foto_url = COALESCE($3, foto_url)
+       WHERE id = $4
+       RETURNING id, nome, email, admin, bloqueado, foto_url, idade`,
+      [nome?.trim(), idade ?? null, fotoBase64 ?? null, req.usuario.id]
+    );
+
+    res.json({ usuario });
+  } catch (err) {
+    console.error("Erro ao atualizar perfil:", err);
+    res.status(500).json({ erro: "Erro ao atualizar perfil.", detalhe: err.message });
   }
 });
 

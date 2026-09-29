@@ -64,6 +64,12 @@ export function MaisPage() {
                   </span>
                 </div>
               </li>
+              <li>
+                <Link to="/perfil" className={styles.row}>
+                  <span>Meu perfil</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </li>
               {!assinaturaAtiva && (
                 <li>
                   <Link to="/assinar" className={styles.row}>

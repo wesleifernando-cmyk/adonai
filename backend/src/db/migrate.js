@@ -25,6 +25,7 @@ async function migrar() {
       bloqueado BOOLEAN NOT NULL DEFAULT false,
       facebook_id VARCHAR(64) UNIQUE,
       foto_url TEXT,
+      idade INTEGER,
       criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
 
