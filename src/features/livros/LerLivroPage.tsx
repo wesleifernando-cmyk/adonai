@@ -14,7 +14,7 @@ type Marcacao = { id: number; pagina: number; trecho: string; criado_em: string 
 
 export function LerLivroPage() {
   const { slug = "" } = useParams();
-  const livro = livros.find((l) => l.slug === slug && l.local);
+  const livro = livros.find((l) => l.slug === slug);
 
   const [numPaginas, setNumPaginas] = useState(0);
   const [pagina, setPagina] = useState(1);
