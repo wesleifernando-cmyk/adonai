@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import pagamentosRoutes from "./routes/pagamentos.js";
 import authRoutes from "./routes/auth.js";
+import adminRoutes from "./routes/admin.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/pagamentos", pagamentosRoutes);
 app.use("/auth", authRoutes);
+app.use("/admin", adminRoutes);
 
 const PORTA = process.env.PORT || 3002;
 app.listen(PORTA, () => {

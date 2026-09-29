@@ -43,6 +43,7 @@ import { AparicoesPage } from "./features/rosario/AparicoesPage";
 import { AparicaoPage } from "./features/rosario/AparicaoPage";
 import { MaisPage } from "./features/mais/MaisPage";
 import { RequireAcesso } from "./components/auth/RequireAcesso";
+import { RequireAdmin } from "./components/auth/RequireAdmin";
 import { EntrarPage } from "./features/auth/EntrarPage";
 import { CadastroPage } from "./features/auth/CadastroPage";
 import { AssinarPage } from "./features/assinar/AssinarPage";
@@ -62,11 +63,14 @@ export const router = createBrowserRouter([
       { path: "devocionais", element: <DevocionaisPage /> },
       { path: "ajude", element: <AjudePage /> },
       { path: "noticias", element: <NoticiasPage /> },
-      { path: "admin", element: <AdminPage /> },
       { path: "mais", element: <MaisPage /> },
       { path: "entrar", element: <EntrarPage /> },
       { path: "cadastro", element: <CadastroPage /> },
       { path: "assinar", element: <AssinarPage /> },
+      {
+        element: <RequireAdmin />,
+        children: [{ path: "admin", element: <AdminPage /> }],
+      },
       {
         // Tudo de "Explorar a fé" pra baixo: precisa de login + assinatura ativa.
         element: <RequireAcesso />,

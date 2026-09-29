@@ -21,6 +21,8 @@ async function migrar() {
       nome VARCHAR(120) NOT NULL,
       email VARCHAR(255) UNIQUE NOT NULL,
       senha_hash VARCHAR(255) NOT NULL,
+      admin BOOLEAN NOT NULL DEFAULT false,
+      bloqueado BOOLEAN NOT NULL DEFAULT false,
       criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
 

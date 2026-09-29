@@ -40,13 +40,12 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
       { to: "/comunidade/musicas", label: "Louvor católico" },
       { to: "/comunidade/pregadores", label: "Pregações de convidados" },
       { to: "/ajude", label: "Ajude-nos" },
-      { to: "/admin", label: "Administração", nota: "restrito" },
     ],
   },
 ];
 
 export function MaisPage() {
-  const { usuario, assinaturaAtiva, sair } = useAuth();
+  const { usuario, assinaturaAtiva, isAdmin, sair } = useAuth();
 
   return (
     <div>
@@ -69,6 +68,14 @@ export function MaisPage() {
                 <li>
                   <Link to="/assinar" className={styles.row}>
                     <span>Assinar agora</span>
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              )}
+              {isAdmin && (
+                <li>
+                  <Link to="/admin" className={styles.row}>
+                    <span>Administração</span>
                     <span aria-hidden="true">→</span>
                   </Link>
                 </li>

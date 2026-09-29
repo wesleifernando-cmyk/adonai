@@ -38,6 +38,14 @@ export function exigirLogin(req, res, next) {
   });
 }
 
+export function exigirAdmin(req, res, next) {
+  exigirLogin(req, res, async () => {
+    const [usuario] = await query(`SELECT admin FROM usuarios WHERE id = $1`, [req.usuario.id]);
+    if (!usuario?.admin) return res.status(403).json({ erro: "Só administradores acessam isso." });
+    next();
+  });
+}
+
 router.post("/cadastro", async (req, res) => {
   try {
     const { nome, email, senha } = req.body;
@@ -72,14 +80,18 @@ router.post("/login", async (req, res) => {
     }
 
     const [usuario] = await query(
-      `SELECT id, nome, email, senha_hash FROM usuarios WHERE email = $1`,
+      `SELECT id, nome, email, senha_hash, bloqueado FROM usuarios WHERE email = $1`,
       [email]
     );
     if (!usuario || !(await bcrypt.compare(senha, usuario.senha_hash))) {
       return res.status(401).json({ erro: "E-mail ou senha incorretos." });
     }
+    if (usuario.bloqueado) {
+      return res.status(403).json({ erro: "Esta conta foi bloqueada. Fale com a administração." });
+    }
 
     delete usuario.senha_hash;
+    delete usuario.bloqueado;
     res.json({ token: gerarToken(usuario), usuario });
   } catch (err) {
     console.error("Erro no login:", err);
@@ -91,8 +103,14 @@ router.post("/login", async (req, res) => {
 // tabela de pagamentos já usada pelo checkout, casando pelo e-mail).
 router.get("/eu", exigirLogin, async (req, res) => {
   try {
-    const [usuario] = await query(`SELECT id, nome, email FROM usuarios WHERE id = $1`, [req.usuario.id]);
+    const [usuario] = await query(
+      `SELECT id, nome, email, admin, bloqueado FROM usuarios WHERE id = $1`,
+      [req.usuario.id]
+    );
     if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });
+    if (usuario.bloqueado) {
+      return res.status(403).json({ erro: "Esta conta foi bloqueada. Fale com a administração." });
+    }
 
     const [pago] = await query(
       `SELECT id FROM pagamentos WHERE email = $1 AND status = 'aprovado' LIMIT 1`,

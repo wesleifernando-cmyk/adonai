@@ -71,6 +71,11 @@ export const pregadores: Pregador[] = [
       { titulo: "É preciso dizer não a este mundo", youtubeId: "gdgLatsI3ds" },
       { titulo: "Pregação com Padre Léo — Obra de Maria", youtubeId: "W40hHmZpjmU" },
       { titulo: "A história do Padre Léo", youtubeId: "DyAwpsFZHvc" },
+      { titulo: "Canalize seus desejos para Deus — o segredo para vencer o pecado", youtubeId: "DBFg9pq5G1Y" },
+      { titulo: "Rezando a vida", youtubeId: "HUgXxs_ldV8" },
+      { titulo: "Deus nos chama à vida", youtubeId: "9HeWywIR15k" },
+      { titulo: "Apóstolos para as famílias", youtubeId: "JrLmEBvlUNQ" },
+      { titulo: "Ministrar a alegria", youtubeId: "OKrlulhzBPE" },
     ],
   },
   {

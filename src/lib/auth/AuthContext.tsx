@@ -1,11 +1,12 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { apiFetch, guardarToken, limparToken, pegarToken } from "../api";
 
-type Usuario = { id: number; nome: string; email: string };
+type Usuario = { id: number; nome: string; email: string; admin?: boolean };
 
 type AuthState = {
   usuario: Usuario | null;
   assinaturaAtiva: boolean;
+  isAdmin: boolean;
   carregando: boolean;
   entrar: (email: string, senha: string) => Promise<void>;
   cadastrar: (nome: string, email: string, senha: string) => Promise<void>;
@@ -72,7 +73,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ usuario, assinaturaAtiva, carregando, entrar, cadastrar, sair, recarregar }}>
+    <AuthContext.Provider
+      value={{ usuario, assinaturaAtiva, isAdmin: Boolean(usuario?.admin), carregando, entrar, cadastrar, sair, recarregar }}
+    >
       {children}
     </AuthContext.Provider>
   );
