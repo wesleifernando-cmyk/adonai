@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BrandLogo } from "../../components/ui/Brand";
 import { ChurchMark } from "../../components/ui/ChurchMark";
 import { LemaFogo } from "../../components/ui/LemaFogo";
+import { IntroMusica } from "../../components/ui/IntroMusica";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
 import { conjuntoDoDia } from "../../content/rosario/misterios";
@@ -31,6 +32,7 @@ export function HojePage() {
 
   return (
     <div className={styles.page}>
+      <IntroMusica />
       <section className={styles.hero}>
         <BrandLogo width={248} className={styles.logo} />
         <h1 className={styles.saudacao}>

@@ -1,0 +1,47 @@
+.banner {
+  position: relative;
+  margin: var(--gutter) var(--gutter) 0;
+  padding: 20px 18px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--grad-fire);
+  box-shadow: var(--shadow);
+  text-align: center;
+  color: var(--on-fire);
+}
+
+.fechar {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--on-fire);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.frase {
+  margin: 6px 28px 4px;
+  font-family: var(--font-read);
+  font-style: italic;
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+
+.credito {
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.player {
+  border-radius: var(--radius-sm);
+  display: block;
+}
