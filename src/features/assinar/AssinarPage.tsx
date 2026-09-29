@@ -27,7 +27,6 @@ export function AssinarPage() {
     try {
       const dados = await apiFetch<{ initPoint: string }>("/pagamentos/checkout", {
         method: "POST",
-        body: JSON.stringify({ email: usuario!.email }),
       });
       window.location.href = dados.initPoint;
     } catch (err) {
