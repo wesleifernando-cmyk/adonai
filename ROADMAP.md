@@ -185,3 +185,14 @@ Figueiredo rotulado como tradução antiga e/ou link para uma Bíblia oficial on
       livro de verdade), bonito no celular e no tablet. Manter um botão separado de "baixar
       PDF" pra quem quiser o arquivo. Viável com uma lib de PDF (pdf.js) + efeito de
       passar página (ex. StPageFlip / react-pageflip).
+
+## Regra de acesso definida pelo usuário (executar na Fase 2 — login)
+
+- **Livre, sem login**: hero da Hoje até o card de Evangelho/devocional (a parte de cima da
+  tela Hoje) — inclui "Pequenas coisas com grande amor" e o que vem antes dele.
+- **Precisa de login + assinatura paga**: a seção "Explorar a fé" inteira pra baixo — Bíblia,
+  Catecismo, Heróis da Fé, Heróis Bíblicos, Audiobooks, Livros, Quiz, Testemunhos, Católico
+  Responde, Lumine, Sagrado Coração, Rosário, tudo de Comunidade/Pregações — e mais pra baixo.
+  Clicar em qualquer um desses sem login pede pra entrar e assinar.
+- **Quiz com perguntas geradas por IA**: pedido reforçado de novo — entra depois que o quiz
+  básico (banco fixo de perguntas) estiver funcionando.
