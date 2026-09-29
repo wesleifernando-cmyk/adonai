@@ -47,6 +47,7 @@ import { RequireAdmin } from "./components/auth/RequireAdmin";
 import { EntrarPage } from "./features/auth/EntrarPage";
 import { CadastroPage } from "./features/auth/CadastroPage";
 import { AssinarPage } from "./features/assinar/AssinarPage";
+import { FacebookCallbackPage } from "./features/auth/FacebookCallbackPage";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,7 @@ export const router = createBrowserRouter([
       { path: "entrar", element: <EntrarPage /> },
       { path: "cadastro", element: <CadastroPage /> },
       { path: "assinar", element: <AssinarPage /> },
+      { path: "auth/instagram/callback", element: <FacebookCallbackPage /> },
       {
         element: <RequireAdmin />,
         children: [{ path: "admin", element: <AdminPage /> }],

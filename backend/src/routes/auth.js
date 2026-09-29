@@ -12,7 +12,7 @@ function segredoJwt() {
   return process.env.JWT_SECRET;
 }
 
-function gerarToken(usuario) {
+export function gerarToken(usuario) {
   return jwt.sign({ id: usuario.id, email: usuario.email }, segredoJwt(), { expiresIn: "30d" });
 }
 
@@ -104,7 +104,7 @@ router.post("/login", async (req, res) => {
 router.get("/eu", exigirLogin, async (req, res) => {
   try {
     const [usuario] = await query(
-      `SELECT id, nome, email, admin, bloqueado FROM usuarios WHERE id = $1`,
+      `SELECT id, nome, email, admin, bloqueado, foto_url FROM usuarios WHERE id = $1`,
       [req.usuario.id]
     );
     if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });

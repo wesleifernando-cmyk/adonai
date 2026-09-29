@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { apiFetch, guardarToken, limparToken, pegarToken } from "../api";
 
-type Usuario = { id: number; nome: string; email: string; admin?: boolean };
+type Usuario = { id: number; nome: string; email: string; admin?: boolean; foto_url?: string | null };
 
 type AuthState = {
   usuario: Usuario | null;
@@ -10,6 +10,7 @@ type AuthState = {
   carregando: boolean;
   entrar: (email: string, senha: string) => Promise<void>;
   cadastrar: (nome: string, email: string, senha: string) => Promise<void>;
+  entrarComFacebook: (code: string) => Promise<void>;
   sair: () => void;
   recarregar: () => Promise<void>;
 };
@@ -66,6 +67,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await recarregar();
   }
 
+  async function entrarComFacebook(code: string) {
+    const dados = await apiFetch<{ token: string; usuario: Usuario }>("/auth/facebook/callback", {
+      method: "POST",
+      body: JSON.stringify({ code }),
+    });
+    guardarToken(dados.token);
+    setUsuario(dados.usuario);
+    await recarregar();
+  }
+
   function sair() {
     limparToken();
     setUsuario(null);
@@ -74,7 +85,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ usuario, assinaturaAtiva, isAdmin: Boolean(usuario?.admin), carregando, entrar, cadastrar, sair, recarregar }}
+      value={{
+        usuario,
+        assinaturaAtiva,
+        isAdmin: Boolean(usuario?.admin),
+        carregando,
+        entrar,
+        cadastrar,
+        entrarComFacebook,
+        sair,
+        recarregar,
+      }}
     >
       {children}
     </AuthContext.Provider>

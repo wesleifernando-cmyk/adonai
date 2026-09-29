@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { useAuth } from "../../lib/auth/AuthContext";
+import { urlLoginFacebook } from "../../lib/auth/facebook";
 import styles from "./AuthForm.module.css";
 
 export function EntrarPage() {
@@ -46,6 +47,12 @@ export function EntrarPage() {
           {enviando ? "Entrando…" : "Entrar"}
         </button>
       </form>
+
+      <p className={styles.ou}>ou</p>
+      <a className={styles.facebook} href={urlLoginFacebook()}>
+        Entrar com Facebook
+      </a>
+
       <p className={styles.rodape}>
         Ainda não tem conta? <Link to="/cadastro" state={{ de: destino }}>Criar conta</Link>
       </p>

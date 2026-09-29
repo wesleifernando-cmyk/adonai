@@ -23,6 +23,8 @@ async function migrar() {
       senha_hash VARCHAR(255) NOT NULL,
       admin BOOLEAN NOT NULL DEFAULT false,
       bloqueado BOOLEAN NOT NULL DEFAULT false,
+      facebook_id VARCHAR(64) UNIQUE,
+      foto_url TEXT,
       criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
 
