@@ -209,6 +209,20 @@ export const pregadores: Pregador[] = [
       { titulo: "O amor não é amado", youtubeId: "VI8NzTOhpIw", data: "07/02/2021" },
     ],
   },
+  {
+    slug: "gil-mota",
+    nome: "Gil Mota",
+    descricao:
+      "Pregador católico ligado a comunidades de renovação carismática — não tem canal próprio, as pregações dele ficam nos canais das comunidades que o recebem.",
+    canalNome: "Comunidade Gerados pela Imaculada",
+    canalUrl: "https://www.youtube.com/@ComGeradospelaImaculada",
+    videos: [
+      { titulo: "Que o seu sim seja sempre sim! (CJGPI26)", youtubeId: "gOEIHTdz1A4" },
+      { titulo: "Quem ganhou fui eu (CJGPI'25)", youtubeId: "J2_MfIFDu7c" },
+      { titulo: "Travessia", youtubeId: "W37eh1c0CY8", canalOrigem: "Comunidade Metanoia" },
+      { titulo: "Pregação — Kairós 2", youtubeId: "AOrcFVcMdMk", canalOrigem: "Chagas Eternas" },
+    ],
+  },
 ];
 
 export function acharPregador(slug: string): Pregador | undefined {
