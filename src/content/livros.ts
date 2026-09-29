@@ -1,11 +1,12 @@
 export type Livro = {
+  slug?: string;
   titulo: string;
   autor: string;
   descricao: string;
   url: string;
   fonte: string;
   formato: "PDF" | "Ler online";
-  /** true = o PDF está baixado e hospedado aqui mesmo (public/livros); abre/baixa direto do site */
+  /** true = o PDF está baixado e hospedado aqui mesmo (public/livros); abre num leitor dentro do site */
   local?: boolean;
 };
 
@@ -18,6 +19,7 @@ export type Livro = {
  */
 export const livros: Livro[] = [
   {
+    slug: "laudato-si",
     titulo: "Laudato Si'",
     autor: "Papa Francisco",
     descricao: "Carta encíclica sobre o cuidado da casa comum.",
@@ -27,6 +29,7 @@ export const livros: Livro[] = [
     local: true,
   },
   {
+    slug: "evangelii-gaudium",
     titulo: "Evangelii Gaudium",
     autor: "Papa Francisco",
     descricao: "Exortação apostólica sobre o anúncio do Evangelho no mundo atual.",
@@ -44,6 +47,7 @@ export const livros: Livro[] = [
     formato: "Ler online",
   },
   {
+    slug: "codigo-direito-canonico",
     titulo: "Código de Direito Canônico",
     autor: "Igreja Católica",
     descricao: "O texto oficial completo da lei da Igreja, em português.",

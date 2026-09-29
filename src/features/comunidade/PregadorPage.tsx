@@ -36,6 +36,33 @@ export function PregadorPage() {
         )}
       </div>
 
+      {pregador.series?.map((serie) => (
+        <div key={serie.titulo} className={styles.serie}>
+          <h2 className={styles.serieTitulo}>{serie.titulo}</h2>
+          <div className={styles.videoLista}>
+            {serie.videos.map((v) => (
+              <article key={v.youtubeId} className={styles.videoCard}>
+                <div className={styles.videoWrap}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${v.youtubeId}`}
+                    title={v.titulo}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <h3 className={styles.videoTitulo}>{v.titulo}</h3>
+                {(v.canalOrigem || v.data) && (
+                  <p className={styles.videoData}>
+                    {[v.canalOrigem && `Publicado por ${v.canalOrigem}`, v.data].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+
       <div className={styles.videoLista}>
         {pregador.videos.map((v) => (
           <article key={v.youtubeId} className={styles.videoCard}>

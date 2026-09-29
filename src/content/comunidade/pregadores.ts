@@ -7,6 +7,11 @@ export type VideoPregacao = {
   canalOrigem?: string;
 };
 
+export type SeriePregacoes = {
+  titulo: string;
+  videos: VideoPregacao[];
+};
+
 export type Pregador = {
   slug: string;
   nome: string;
@@ -14,6 +19,9 @@ export type Pregador = {
   canalNome: string;
   canalUrl?: string;
   instagramUrl?: string;
+  /** conjuntos de vídeos que formam uma série/tríduo — aparecem em bloco
+   *  separado, antes da lista solta de vídeos avulsos. */
+  series?: SeriePregacoes[];
   videos: VideoPregacao[];
 };
 
@@ -175,27 +183,26 @@ export const pregadores: Pregador[] = [
     canalNome: "Anderson Reis Oficial",
     canalUrl: "https://www.youtube.com/channel/UCujutKwW-uS5t1wPattHnfA",
     instagramUrl: "https://www.instagram.com/andersonpregador/",
+    series: [
+      {
+        titulo: "Tríduo Anderson Reis — Novíssimos: Céu, Inferno e Purgatório",
+        videos: [
+          { titulo: "Céu: Maria, porta do Céu", youtubeId: "MORhl7eU2Vs", canalOrigem: "Alegrai-vos no Senhor" },
+          { titulo: "Inferno: O Inferno Existe", youtubeId: "Oja9uolOuOE", canalOrigem: "Alegrai-vos no Senhor" },
+          {
+            titulo: "Purgatório, última misericórdia de Deus (parte 1)",
+            youtubeId: "1snNJlJe83Q",
+            canalOrigem: "Alegrai-vos no Senhor",
+          },
+          {
+            titulo: "Purgatório, última misericórdia de Deus (parte 2)",
+            youtubeId: "PCOwrvWagy0",
+            canalOrigem: "Alegrai-vos no Senhor",
+          },
+        ],
+      },
+    ],
     videos: [
-      {
-        titulo: "Tríduo — Céu: Maria, porta do Céu",
-        youtubeId: "MORhl7eU2Vs",
-        canalOrigem: "Alegrai-vos no Senhor",
-      },
-      {
-        titulo: "Tríduo — Inferno: O Inferno Existe",
-        youtubeId: "Oja9uolOuOE",
-        canalOrigem: "Alegrai-vos no Senhor",
-      },
-      {
-        titulo: "Tríduo — Purgatório, última misericórdia de Deus (parte 1)",
-        youtubeId: "1snNJlJe83Q",
-        canalOrigem: "Alegrai-vos no Senhor",
-      },
-      {
-        titulo: "Tríduo — Purgatório, última misericórdia de Deus (parte 2)",
-        youtubeId: "PCOwrvWagy0",
-        canalOrigem: "Alegrai-vos no Senhor",
-      },
       { titulo: "Maria, terror dos demônios", youtubeId: "24IaM4zwBos" },
       { titulo: "Alma Missionária", youtubeId: "CauXpCqO7bM" },
       { titulo: "Combate Espiritual", youtubeId: "R7dp-Q65bX0" },
