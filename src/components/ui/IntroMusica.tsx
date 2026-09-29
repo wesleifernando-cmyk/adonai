@@ -27,18 +27,6 @@ type Opcao = {
 
 const OPCOES: Opcao[] = [
   {
-    spotifyId: "26D5QxEKbXWNkdSYdBTWqb",
-    titulo: "Até o Fim",
-    artista: "Cristo Alegria",
-    frase: [
-      "“Cumpriremos a promessa",
-      "que fizemos um ao outro,",
-      "um tempo atrás.",
-      "Não desistir, jamais.",
-      "Eu não arredo o pé.”",
-    ],
-  },
-  {
     spotifyId: "5dfd0pFIdFZdsel5bR8kpg",
     titulo: "Farol",
     artista: "Herrison Pontes, Colo de Deus e Clayra Coutinho",
@@ -47,6 +35,11 @@ const OPCOES: Opcao[] = [
     spotifyId: "65ZIZYNgPIfyilwjc6Wl0q",
     titulo: "Príncipe da Paz",
     artista: "Flavio Vitor Jr. e Fraternidade São João Paulo II",
+  },
+  {
+    spotifyId: "4ZgTPzhYjp2Yn1MNrvzfwf",
+    titulo: "Queima de Novo",
+    artista: "Flavio Vitor Jr. e Tony Allysson",
   },
 ];
 
