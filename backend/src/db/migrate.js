@@ -30,10 +30,35 @@ async function migrar() {
       usuario_id INTEGER PRIMARY KEY REFERENCES usuarios (id) ON DELETE CASCADE,
       pontos INTEGER NOT NULL DEFAULT 0,
       nivel INTEGER NOT NULL DEFAULT 1,
+      acertos_seguidos INTEGER NOT NULL DEFAULT 0,
       atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
+
+    CREATE TABLE IF NOT EXISTS quiz_perguntas (
+      id SERIAL PRIMARY KEY,
+      usuario_id INTEGER NOT NULL REFERENCES usuarios (id) ON DELETE CASCADE,
+      pergunta TEXT NOT NULL,
+      opcoes JSONB NOT NULL,
+      resposta_correta INTEGER NOT NULL,
+      explicacao TEXT,
+      nivel INTEGER NOT NULL,
+      respondida BOOLEAN NOT NULL DEFAULT false,
+      criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+    CREATE INDEX IF NOT EXISTS idx_quiz_perguntas_usuario ON quiz_perguntas (usuario_id);
+
+    CREATE TABLE IF NOT EXISTS catolico_responde_historico (
+      id SERIAL PRIMARY KEY,
+      usuario_id INTEGER NOT NULL REFERENCES usuarios (id) ON DELETE CASCADE,
+      pergunta TEXT NOT NULL,
+      resposta TEXT NOT NULL,
+      criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+    CREATE INDEX IF NOT EXISTS idx_catolico_responde_usuario ON catolico_responde_historico (usuario_id);
   `);
-  console.log("Migração concluída: tabelas 'pagamentos', 'usuarios' e 'quiz_pontuacoes' prontas.");
+  console.log(
+    "Migração concluída: tabelas 'pagamentos', 'usuarios', 'quiz_pontuacoes', 'quiz_perguntas' e 'catolico_responde_historico' prontas."
+  );
   await pool.end();
 }
 

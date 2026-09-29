@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import pagamentosRoutes from "./routes/pagamentos.js";
 import authRoutes from "./routes/auth.js";
 import adminRoutes from "./routes/admin.js";
+import quizRoutes from "./routes/quiz.js";
+import catolicoRespondeRoutes from "./routes/catolico-responde.js";
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ app.get("/", (req, res) => {
 app.use("/pagamentos", pagamentosRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
+app.use("/quiz", quizRoutes);
+app.use("/catolico-responde", catolicoRespondeRoutes);
 
 const PORTA = process.env.PORT || 3002;
 app.listen(PORTA, () => {
