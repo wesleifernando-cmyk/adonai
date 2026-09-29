@@ -30,6 +30,11 @@ const OPCOES: Opcao[] = [
     spotifyId: "5dfd0pFIdFZdsel5bR8kpg",
     titulo: "Farol",
     artista: "Herrison Pontes, Colo de Deus e Clayra Coutinho",
+    frase: [
+      "“Eu serei o teu farol",
+      "em honra dos que se foram,",
+      "em favor dos que virão.”",
+    ],
   },
   {
     spotifyId: "65ZIZYNgPIfyilwjc6Wl0q",
