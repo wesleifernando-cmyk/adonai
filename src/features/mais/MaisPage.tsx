@@ -33,9 +33,9 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
   {
     titulo: "Missão e interação",
     itens: [
-      { to: "/quiz", label: "Quiz católico", nota: "fase 2" },
+      { to: "/quiz", label: "Quiz católico" },
       { to: "/testemunhos", label: "Testemunhos", nota: "fase 2" },
-      { to: "/catolico-responde", label: "Católico Responde", nota: "fase 3" },
+      { to: "/catolico-responde", label: "Católico Responde" },
       { to: "/comunidade", label: "Missão Adonai" },
       { to: "/comunidade/musicas", label: "Louvor católico" },
       { to: "/comunidade/pregadores", label: "Pregações de convidados" },
