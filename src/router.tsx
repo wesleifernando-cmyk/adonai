@@ -42,6 +42,10 @@ import { ConjuntoPage } from "./features/rosario/ConjuntoPage";
 import { AparicoesPage } from "./features/rosario/AparicoesPage";
 import { AparicaoPage } from "./features/rosario/AparicaoPage";
 import { MaisPage } from "./features/mais/MaisPage";
+import { RequireAcesso } from "./components/auth/RequireAcesso";
+import { EntrarPage } from "./features/auth/EntrarPage";
+import { CadastroPage } from "./features/auth/CadastroPage";
+import { AssinarPage } from "./features/assinar/AssinarPage";
 
 export const router = createBrowserRouter([
   {
@@ -51,45 +55,54 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HojePage /> },
       { path: "evangelho", element: <EvangelhoPage /> },
-      { path: "biblia", element: <BibliaPage /> },
-      { path: "biblia/:livro", element: <LivroPage /> },
-      { path: "biblia/:livro/:capitulo", element: <CapituloPage /> },
-      { path: "catecismo", element: <CatecismoPage /> },
       { path: "santos", element: <SantosPage /> },
       { path: "santos/:slug", element: <SantoPage /> },
-      { path: "herois-da-fe", element: <HeroisFePage /> },
-      { path: "herois-biblicos", element: <HeroisBiblicosPage /> },
       { path: "doutores", element: <DoutoresPage /> },
       { path: "documentos", element: <DocumentosPage /> },
       { path: "devocionais", element: <DevocionaisPage /> },
-      { path: "quiz", element: <QuizPage /> },
-      { path: "catolico-responde", element: <CatolicoRespondePage /> },
-      { path: "comunidade", element: <ComunidadePage /> },
-      { path: "comunidade/pregadores", element: <PregadoresPage /> },
-      { path: "comunidade/pregadores/:slug", element: <PregadorPage /> },
-      { path: "comunidade/musicas", element: <MusicasPage /> },
-      { path: "comunidade/musicas/:slug", element: <MusicaPage /> },
-      { path: "audiobooks", element: <AudiobooksPage /> },
-      { path: "audiobooks/:slug", element: <AudiobookPage /> },
-      { path: "livros", element: <LivrosPage /> },
-      { path: "sagrado-coracao", element: <SagradoCoracaoPage /> },
-      { path: "sagrado-coracao/historia", element: <HistoriaSagradoCoracaoPage /> },
-      { path: "sagrado-coracao/promessas", element: <PromessasPage /> },
-      { path: "sagrado-coracao/consagracao", element: <ConsagracaoPage /> },
-      { path: "lumine", element: <LuminePage /> },
       { path: "ajude", element: <AjudePage /> },
-      { path: "testemunhos", element: <TestemunhosPage /> },
       { path: "noticias", element: <NoticiasPage /> },
-      { path: "rosario", element: <RosarioPage /> },
-      { path: "rosario/rezar", element: <RezarPage /> },
-      { path: "rosario/aprenda", element: <AprendaPage /> },
-      { path: "rosario/historia", element: <HistoriaRosarioPage /> },
-      { path: "rosario/misterios", element: <MisteriosPage /> },
-      { path: "rosario/misterios/:slug", element: <ConjuntoPage /> },
-      { path: "rosario/aparicoes", element: <AparicoesPage /> },
-      { path: "rosario/aparicoes/:slug", element: <AparicaoPage /> },
       { path: "admin", element: <AdminPage /> },
-      { path: "mais", element: <MaisPage /> }
+      { path: "mais", element: <MaisPage /> },
+      { path: "entrar", element: <EntrarPage /> },
+      { path: "cadastro", element: <CadastroPage /> },
+      { path: "assinar", element: <AssinarPage /> },
+      {
+        // Tudo de "Explorar a fé" pra baixo: precisa de login + assinatura ativa.
+        element: <RequireAcesso />,
+        children: [
+          { path: "biblia", element: <BibliaPage /> },
+          { path: "biblia/:livro", element: <LivroPage /> },
+          { path: "biblia/:livro/:capitulo", element: <CapituloPage /> },
+          { path: "catecismo", element: <CatecismoPage /> },
+          { path: "herois-da-fe", element: <HeroisFePage /> },
+          { path: "herois-biblicos", element: <HeroisBiblicosPage /> },
+          { path: "quiz", element: <QuizPage /> },
+          { path: "catolico-responde", element: <CatolicoRespondePage /> },
+          { path: "comunidade", element: <ComunidadePage /> },
+          { path: "comunidade/pregadores", element: <PregadoresPage /> },
+          { path: "comunidade/pregadores/:slug", element: <PregadorPage /> },
+          { path: "comunidade/musicas", element: <MusicasPage /> },
+          { path: "comunidade/musicas/:slug", element: <MusicaPage /> },
+          { path: "audiobooks", element: <AudiobooksPage /> },
+          { path: "audiobooks/:slug", element: <AudiobookPage /> },
+          { path: "livros", element: <LivrosPage /> },
+          { path: "sagrado-coracao", element: <SagradoCoracaoPage /> },
+          { path: "sagrado-coracao/historia", element: <HistoriaSagradoCoracaoPage /> },
+          { path: "sagrado-coracao/promessas", element: <PromessasPage /> },
+          { path: "sagrado-coracao/consagracao", element: <ConsagracaoPage /> },
+          { path: "lumine", element: <LuminePage /> },
+          { path: "testemunhos", element: <TestemunhosPage /> },
+          { path: "rosario", element: <RosarioPage /> },
+          { path: "rosario/rezar", element: <RezarPage /> },
+          { path: "rosario/aprenda", element: <AprendaPage /> },
+          { path: "rosario/historia", element: <HistoriaRosarioPage /> },
+          { path: "rosario/misterios", element: <MisteriosPage /> },
+          { path: "rosario/misterios/:slug", element: <ConjuntoPage /> },
+          { path: "rosario/aparicoes", element: <AparicoesPage /> },
+          { path: "rosario/aparicoes/:slug", element: <AparicaoPage /> },
+        ],
+      },
     ]
   }
 ]);

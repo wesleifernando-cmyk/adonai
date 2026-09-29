@@ -15,8 +15,23 @@ async function migrar() {
       aprovado_em TIMESTAMPTZ
     );
     CREATE INDEX IF NOT EXISTS idx_pagamentos_email ON pagamentos (email);
+
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id SERIAL PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      senha_hash VARCHAR(255) NOT NULL,
+      criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+
+    CREATE TABLE IF NOT EXISTS quiz_pontuacoes (
+      usuario_id INTEGER PRIMARY KEY REFERENCES usuarios (id) ON DELETE CASCADE,
+      pontos INTEGER NOT NULL DEFAULT 0,
+      nivel INTEGER NOT NULL DEFAULT 1,
+      atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
   `);
-  console.log("Migração concluída: tabela 'pagamentos' pronta.");
+  console.log("Migração concluída: tabelas 'pagamentos', 'usuarios' e 'quiz_pontuacoes' prontas.");
   await pool.end();
 }
 

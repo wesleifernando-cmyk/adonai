@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { LEMA_PRINCIPAL, LEMA_FOGO } from "../../content/lemas";
+import { useAuth } from "../../lib/auth/AuthContext";
 import styles from "./MaisPage.module.css";
 
 const grupos: { titulo: string; itens: { to: string; label: string; nota?: string }[] }[] = [
@@ -45,9 +46,49 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
 ];
 
 export function MaisPage() {
+  const { usuario, assinaturaAtiva, sair } = useAuth();
+
   return (
     <div>
       <PageHeader eyebrow="Menu" title="Tudo no Adonai" />
+
+      <section className={styles.grupo}>
+        <h2 className={styles.grupoTitulo}>Sua conta</h2>
+        <ul className={styles.lista}>
+          {usuario ? (
+            <>
+              <li>
+                <div className={styles.row}>
+                  <span>{usuario.nome}</span>
+                  <span className={styles.right}>
+                    <em className={styles.nota}>{assinaturaAtiva ? "assinante" : "sem assinatura"}</em>
+                  </span>
+                </div>
+              </li>
+              {!assinaturaAtiva && (
+                <li>
+                  <Link to="/assinar" className={styles.row}>
+                    <span>Assinar agora</span>
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              )}
+              <li>
+                <button className={styles.row} onClick={sair} style={{ width: "100%", textAlign: "left", border: "none", cursor: "pointer" }}>
+                  <span>Sair</span>
+                </button>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/entrar" className={styles.row}>
+                <span>Entrar ou criar conta</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </section>
 
       {grupos.map((g) => (
         <section key={g.titulo} className={styles.grupo}>

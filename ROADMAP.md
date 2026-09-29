@@ -196,3 +196,25 @@ Figueiredo rotulado como tradução antiga e/ou link para uma Bíblia oficial on
   Clicar em qualquer um desses sem login pede pra entrar e assinar.
 - **Quiz com perguntas geradas por IA**: pedido reforçado de novo — entra depois que o quiz
   básico (banco fixo de perguntas) estiver funcionando.
+
+## Pedido novo (anotado, executar depois do login+pagamento)
+
+- **Sugestões dos usuários com armazenamento persistente**: em Livros, Audiobooks e Músicas,
+  cada usuário logado pode indicar/sugerir conteúdo novo — por ex. subir o link de uma
+  playlist católica que ele goste, ou pedir um livro específico. Fica guardado num banco
+  (não é local do navegador dele) numa fila de sugestões.
+- **Puxar automaticamente no deploy**: toda vez que o Weslei subir uma atualização do site
+  (como está fazendo agora), o processo deve primeiro checar essa fila/histórico de
+  sugestões pendentes e trazer pro conteúdo oficial o que já foi aprovado, sem ele ter que
+  copiar/colar um por um.
+- Encaixa com o design de moderação já combinado antes: sugestão entra → triagem automática
+  → fila de aprovação humana (Weslei, Sandro, Bárbara) → só depois de aprovada é que entra
+  no conteúdo de verdade do site.
+
+## Pedido novo (anotado, executar depois do login por e-mail/senha)
+
+- **Login com Instagram**: opção extra de cadastro/login (além de e-mail+senha), puxando
+  automaticamente o nome e a fotinho de perfil do Instagram da pessoa. Precisa que o Weslei
+  crie uma conta de desenvolvedor no Meta/Facebook e registre um "app" pra gerar as chaves
+  (App ID e App Secret) — isso só ele consegue fazer, depois cola as chaves direto no
+  Railway. O código de integração (OAuth) quem monta é o Claude.

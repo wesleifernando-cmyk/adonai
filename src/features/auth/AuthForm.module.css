@@ -1,0 +1,66 @@
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.campo label {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.campo input {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+}
+
+.campo input:focus {
+  outline: 2px solid var(--fire);
+  outline-offset: 1px;
+}
+
+.erro {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(229, 83, 61, 0.15);
+  color: var(--err);
+  font-size: var(--step--1);
+}
+
+.enviar {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--grad-fire);
+  color: var(--on-fire);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--step-0);
+  cursor: pointer;
+}
+
+.enviar:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.rodape {
+  margin-top: 18px;
+  text-align: center;
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.rodape a {
+  color: var(--fire-bright);
+  font-weight: 600;
+}
