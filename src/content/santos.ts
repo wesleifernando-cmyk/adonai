@@ -25,7 +25,7 @@ export type Santo = {
 export const santos: Santo[] = [
   {
     slug: "carlo-acutis",
-    nome: "Bem-aventurado Carlo Acutis",
+    nome: "São Carlo Acutis",
     titulo: "O jovem da Eucaristia",
     festa: "10-12",
     periodo: "1991 – 2006",
@@ -36,7 +36,7 @@ export const santos: Santo[] = [
       "Adolescente italiano que usou a informática para catalogar milagres eucarísticos pelo mundo. Morreu aos 15 anos de leucemia, oferecendo o sofrimento pela Igreja e pelo Papa.",
     historia: [
       "Carlo nasceu em Londres em 1991 e cresceu em Milão. Desde a Primeira Comunhão, aos 7 anos, fazia questão de ir à missa todos os dias e passar um tempo diante do Santíssimo, que chamava de \"minha autoestrada para o Céu\".",
-      "Habilidoso com computadores, montou sozinho um site reunindo os milagres eucarísticos reconhecidos pela Igreja. Ajudava colegas, defendia quem sofria bullying e cuidava de pessoas em situação de rua. Ao ser diagnosticado com leucemia, ofereceu tudo pelo Papa e pela Igreja. Foi beatificado em Assis em 2020.",
+      "Habilidoso com computadores, montou sozinho um site reunindo os milagres eucarísticos reconhecidos pela Igreja. Ajudava colegas, defendia quem sofria bullying e cuidava de pessoas em situação de rua. Ao ser diagnosticado com leucemia, ofereceu tudo pelo Papa e pela Igreja. Foi beatificado em Assis em 2020 e canonizado pelo Papa Leão XIV em 7 de setembro de 2025, na Praça de São Pedro, ao lado de São Pier Giorgio Frassati — os dois apresentados pelo Papa como exemplos de santidade para os jovens.",
     ],
     frase: "Todos nascem como originais, mas muitos morrem como fotocópias.",
     fonteFrase: "Carlo Acutis",

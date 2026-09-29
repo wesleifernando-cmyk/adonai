@@ -218,3 +218,37 @@ Figueiredo rotulado como tradução antiga e/ou link para uma Bíblia oficial on
   crie uma conta de desenvolvedor no Meta/Facebook e registre um "app" pra gerar as chaves
   (App ID e App Secret) — isso só ele consegue fazer, depois cola as chaves direto no
   Railway. O código de integração (OAuth) quem monta é o Claude.
+
+## Biblioteca católica pra jovens (lista do Weslei, pesquisar PDF de cada um)
+
+Dividir em duas coisas diferentes — não confundir:
+
+1. **Santos pra conhecer** (biografia, sem PDF de livro escrito por eles) → entram/atualizam
+   **Heróis da Fé / Santos**, não em "Livros":
+   - São Carlo Acutis (✅ já atualizado pra canonizado, 07/09/2025) e São Pier Giorgio
+     Frassati (canonizados juntos — falta criar o santo do Frassati ainda)
+   - São João Bosco, Santa Gemma Galgani, São Padre Pio, São Francisco de Assis, Santa Clara
+     de Assis, Santo Antônio de Pádua, São João Maria Vianney (Cura d'Ars), São Luís
+     Gonzaga, São Domingos Sávio, Santa Maria Goretti, São José de Anchieta, Santa Dulce dos
+     Pobres — conferir quais já existem em santos.ts antes de duplicar.
+
+2. **Livros de verdade que eles escreveram** (aí sim é conteúdo de "Livros", com PDF pra
+   baixar/ler) — pesquisar PDF gratuito e legal, de preferência em português, um por um:
+   - Santo Agostinho — Confissões
+   - Santa Teresa d'Ávila — Castelo Interior, Livro da Vida
+   - São João da Cruz — Noite Escura, Subida do Monte Carmelo
+   - Santa Teresinha do Menino Jesus — História de uma Alma (cuidado: tradução moderna pode
+     ter direito autoral, igual aconteceu com a Bíblia — procurar tradução antiga/livre)
+   - São Francisco de Sales — Introdução à Vida Devota
+   - Santo Afonso Maria de Ligório — obras sobre oração e vida moral
+   - Santa Catarina de Sena — Diálogo (ou cartas)
+   - Santa Hildegarda de Bingen
+   - São Tomás de Aquino — Suma Teológica (extensa; talvez só trechos/edição resumida)
+   - Tratado da Verdadeira Devoção à Santíssima Virgem (Montfort) — já pesquisado uma vez
+     (29/09/2026): só achei edições pagas (Cléofas/Vozes) ou Scribd com login. Continuar
+     procurando uma tradução antiga realmente livre antes de desistir.
+
+Progresso desta pesquisa (29/09/2026): baixados e confirmados de verdade — Gaudete et
+Exsultate, Dilexit Nos e A Imitação de Cristo (Tomás de Kempis, Internet Archive, 428 pág.).
+Deus Caritas Est veio quebrado na fonte oficial (1 página em branco) — mantido como link
+"Ler online" em vez de PDF falso.

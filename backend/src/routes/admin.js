@@ -4,9 +4,9 @@ import { exigirAdmin } from "./auth.js";
 
 const router = Router();
 
-// Lista todos os usuários com nome, e-mail, se é admin/bloqueado e se
-// a assinatura está ativa (casando com a tabela de pagamentos pelo
-// e-mail, igual o resto do sistema já faz).
+// Lista todos os usuários com nome, e-mail, se é admin/bloqueado e o
+// status de acesso (liberado/pago antigo, assinatura recorrente, ou
+// nenhum) — pra ver quem está pagando de verdade e quem não está.
 router.get("/usuarios", exigirAdmin, async (req, res) => {
   try {
     const usuarios = await query(`
@@ -14,11 +14,20 @@ router.get("/usuarios", exigirAdmin, async (req, res) => {
         u.id, u.nome, u.email, u.admin, u.bloqueado, u.criado_em,
         EXISTS (
           SELECT 1 FROM pagamentos p WHERE p.email = u.email AND p.status = 'aprovado'
-        ) AS assinatura_ativa
+        ) AS liberado_ou_pago_antigo,
+        (
+          SELECT a.status FROM assinaturas a
+          WHERE a.email = u.email
+          ORDER BY a.criado_em DESC LIMIT 1
+        ) AS assinatura_status
       FROM usuarios u
       ORDER BY u.criado_em DESC
     `);
-    res.json({ usuarios });
+    const comAcesso = usuarios.map((u) => ({
+      ...u,
+      assinatura_ativa: u.liberado_ou_pago_antigo || u.assinatura_status === "authorized",
+    }));
+    res.json({ usuarios: comAcesso });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao listar usuários.", detalhe: err.message });
   }

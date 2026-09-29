@@ -7,6 +7,7 @@ import adminRoutes from "./routes/admin.js";
 import quizRoutes from "./routes/quiz.js";
 import catolicoRespondeRoutes from "./routes/catolico-responde.js";
 import authFacebookRoutes from "./routes/auth-facebook.js";
+import leituraRoutes from "./routes/leitura.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use("/admin", adminRoutes);
 app.use("/quiz", quizRoutes);
 app.use("/catolico-responde", catolicoRespondeRoutes);
 app.use("/auth/facebook", authFacebookRoutes);
+app.use("/leitura", leituraRoutes);
 
 const PORTA = process.env.PORT || 3002;
 app.listen(PORTA, () => {

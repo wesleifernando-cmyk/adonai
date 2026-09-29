@@ -11,7 +11,15 @@ type UsuarioAdmin = {
   admin: boolean;
   bloqueado: boolean;
   assinatura_ativa: boolean;
+  assinatura_status: "pending" | "authorized" | "paused" | "cancelled" | null;
   criado_em: string;
+};
+
+const ROTULO_STATUS: Record<string, string> = {
+  authorized: "assinatura ativa",
+  pending: "aguardando pagamento",
+  paused: "assinatura pausada",
+  cancelled: "assinatura cancelada",
 };
 
 export function AdminPage() {
@@ -103,6 +111,9 @@ export function AdminPage() {
                 <span className={`${styles.selo} ${u.assinatura_ativa ? styles.seloOk : styles.seloNao}`}>
                   {u.assinatura_ativa ? "pagando" : "sem pagar"}
                 </span>
+                {u.assinatura_status && u.assinatura_status !== "authorized" && (
+                  <span className={`${styles.selo} ${styles.seloNao}`}>{ROTULO_STATUS[u.assinatura_status]}</span>
+                )}
               </div>
             </div>
 

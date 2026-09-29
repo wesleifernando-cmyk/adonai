@@ -2,6 +2,7 @@ import { Router } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { query } from "../db/pool.js";
+import { assinaturaAtivaPara } from "../services/assinatura.js";
 
 const router = Router();
 
@@ -112,12 +113,7 @@ router.get("/eu", exigirLogin, async (req, res) => {
       return res.status(403).json({ erro: "Esta conta foi bloqueada. Fale com a administração." });
     }
 
-    const [pago] = await query(
-      `SELECT id FROM pagamentos WHERE email = $1 AND status = 'aprovado' LIMIT 1`,
-      [usuario.email]
-    );
-
-    res.json({ usuario, assinaturaAtiva: Boolean(pago) });
+    res.json({ usuario, assinaturaAtiva: await assinaturaAtivaPara(usuario.email) });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao buscar usuário.", detalhe: err.message });
   }

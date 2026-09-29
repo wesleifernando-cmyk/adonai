@@ -55,3 +55,42 @@ export async function buscarPagamento(paymentId) {
   });
   return resposta.json();
 }
+
+// Cria uma assinatura de verdade (cobrança recorrente automática todo
+// mês, via cartão de crédito — o Mercado Pago não recorre PIX/débito
+// sozinho). Devolve um link (init_point) pra pessoa autorizar a
+// cobrança mensal.
+export async function criarAssinatura({ precoCentavos, email, urlFrontend, referenciaExterna }) {
+  const resposta = await fetch(`${MP_API}/preapproval`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token()}`,
+    },
+    body: JSON.stringify({
+      reason: "Assinatura Adonai",
+      external_reference: referenciaExterna,
+      payer_email: email,
+      back_url: `${urlFrontend}/assinar`,
+      auto_recurring: {
+        frequency: 1,
+        frequency_type: "months",
+        transaction_amount: precoCentavos / 100,
+        currency_id: "BRL",
+      },
+      status: "pending",
+    }),
+  });
+  const dados = await resposta.json();
+  if (dados.error) throw new Error(dados.message || "Erro ao criar assinatura no Mercado Pago.");
+  return dados;
+}
+
+// Busca uma assinatura (preapproval) pra saber o status atual dela
+// (authorized, paused, cancelled).
+export async function buscarAssinatura(preapprovalId) {
+  const resposta = await fetch(`${MP_API}/preapproval/${preapprovalId}`, {
+    headers: { Authorization: `Bearer ${token()}` },
+  });
+  return resposta.json();
+}

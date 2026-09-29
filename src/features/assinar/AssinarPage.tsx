@@ -37,6 +37,11 @@ export function AssinarPage() {
 
   async function jaPaguei() {
     setVerificando(true);
+    try {
+      await apiFetch("/pagamentos/verificar", { method: "POST" });
+    } catch {
+      // se falhar a consulta ativa, ainda tenta recarregar com o que já tiver salvo
+    }
     await recarregar();
     setVerificando(false);
   }
@@ -50,7 +55,7 @@ export function AssinarPage() {
       />
       <div className={styles.card}>
         {erro && <p className={styles.erro}>{erro}</p>}
-        <p className={styles.preco}>R$ 9,90</p>
+        <p className={styles.preco}>R$ 5,99<span className={styles.precoPeriodo}>/mês</span></p>
         <button className={styles.botao} onClick={assinar} disabled={carregando}>
           {carregando ? "Abrindo pagamento…" : "Assinar agora"}
         </button>
@@ -58,6 +63,10 @@ export function AssinarPage() {
           {verificando ? "Verificando…" : "Já paguei, verificar"}
         </button>
       </div>
+      <p className={styles.nota}>
+        Cobrança mensal recorrente no cartão de crédito, renovada automaticamente todo mês.
+        Cancele quando quiser direto no Mercado Pago.
+      </p>
     </div>
   );
 }
