@@ -38,7 +38,12 @@ router.get("/pergunta", exigirLogin, async (req, res) => {
           '{"pergunta": string, "opcoes": [4 strings], "resposta_correta": 0-3, "explicacao": string}. ' +
           "A explicação deve ser curta (1-2 frases) e citar a fonte quando possível (livro/capítulo, " +
           "parágrafo do Catecismo, etc). As 4 opções devem ser plausíveis, só uma correta. Nunca invente " +
-          "doutrina — se não tiver certeza, prefira um fato mais básico e seguro.",
+          "doutrina — se não tiver certeza, prefira um fato mais básico e seguro. Cuidado redobrado com " +
+          "fatos históricos verificáveis: fundador de ordem/congregação, datas, autoria de livros e " +
+          "títulos (santo, beato, venerável, servo de Deus) — não confunda pessoas parecidas (ex.: um " +
+          "santo conhecido por devoção a algo não é necessariamente o fundador da congregação daquele " +
+          "nome). Na dúvida sobre um desses fatos específicos, troque de pergunta pra algo que você tenha " +
+          "certeza absoluta.",
       },
       {
         role: "user",
