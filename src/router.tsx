@@ -50,6 +50,7 @@ import { CadastroPage } from "./features/auth/CadastroPage";
 import { AssinarPage } from "./features/assinar/AssinarPage";
 import { FacebookCallbackPage } from "./features/auth/FacebookCallbackPage";
 import { PerfilPage } from "./features/perfil/PerfilPage";
+import { GaleriaPage } from "./features/comunidade/GaleriaPage";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,7 @@ export const router = createBrowserRouter([
           { path: "quiz", element: <QuizPage /> },
           { path: "catolico-responde", element: <CatolicoRespondePage /> },
           { path: "comunidade", element: <ComunidadePage /> },
+          { path: "comunidade/desperta", element: <GaleriaPage /> },
           { path: "comunidade/pregadores", element: <PregadoresPage /> },
           { path: "comunidade/pregadores/:slug", element: <PregadorPage /> },
           { path: "comunidade/musicas", element: <MusicasPage /> },

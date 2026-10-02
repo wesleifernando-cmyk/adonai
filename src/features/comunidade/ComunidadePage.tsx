@@ -11,7 +11,7 @@ export function ComunidadePage() {
       <PageHeader
         eyebrow="Missão Adonai"
         title="Pregações e vida da missão"
-        lead="Pregações dos encontros e do retiro Desperta. Fotos e álbuns entram na Fase 2."
+        lead="Pregações dos encontros e do retiro Desperta, e as fotos do retiro."
       />
 
       <a
@@ -31,6 +31,14 @@ export function ComunidadePage() {
         </div>
         <span aria-hidden="true">↗</span>
       </a>
+
+      <Link to="/comunidade/desperta" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
+        <div>
+          <p className={list.itemEyebrow}>68 fotos</p>
+          <h2 className={list.itemTitle}>Retiro Desperta</h2>
+        </div>
+        <span className={list.chev} aria-hidden="true">→</span>
+      </Link>
 
       <Link to="/comunidade/pregadores" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
         <div>
@@ -79,9 +87,8 @@ export function ComunidadePage() {
       </div>
 
       <div className={list.nota}>
-        <strong>Em construção.</strong> Álbuns de fotos (retiro Desperta, encontros, missões,
-        eventos), a página "quem somos" e a área ADM para publicar tudo isso sem mim entram na
-        Fase 2, com login da equipe.
+        <strong>Em construção.</strong> Mais álbuns (encontros, missões, eventos) e a página
+        "quem somos" entram aos poucos.
       </div>
     </div>
   );

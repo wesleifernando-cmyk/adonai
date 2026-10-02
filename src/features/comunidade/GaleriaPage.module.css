@@ -1,0 +1,79 @@
+.grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.miniatura {
+  padding: 0;
+  border: none;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+.miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.visor {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.94);
+}
+
+.foto {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.fechar {
+  position: absolute;
+  top: calc(12px + var(--safe-t));
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 64px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 2;
+}
+.setaEsq { left: 0; border-radius: 0 12px 12px 0; }
+.setaDir { right: 0; border-radius: 12px 0 0 12px; }
+
+.contador {
+  position: absolute;
+  bottom: calc(14px + var(--safe-b));
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--step--1);
+}
