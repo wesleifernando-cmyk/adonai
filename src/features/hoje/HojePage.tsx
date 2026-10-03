@@ -6,6 +6,7 @@ import { IntroMusica } from "../../components/ui/IntroMusica";
 import { santoDoDia, santoJovemDoDia } from "../../content/santos";
 import { devocionais } from "../../content/devocionais";
 import { conjuntoDoDia } from "../../content/rosario/misterios";
+import { capaDesperta, fotosDesperta } from "../../content/galerias";
 import { pickForToday, todayLong } from "../../lib/dates";
 import styles from "./HojePage.module.css";
 
@@ -102,6 +103,23 @@ export function HojePage() {
         <p className={styles.miniText}>
           Acompanhe o que a missão vive: encontros, missões e eventos.
         </p>
+      </Link>
+
+      <Link
+        to="/comunidade/desperta"
+        className={styles.card}
+        style={{ display: "flex", alignItems: "center", gap: 14 }}
+      >
+        <img
+          src={capaDesperta.thumb}
+          alt=""
+          style={{ width: 64, height: 80, objectFit: "cover", borderRadius: 8, flex: "none" }}
+        />
+        <div>
+          <p className="eyebrow">Desperta</p>
+          <h3 className={styles.miniTitle}>Fotos do Desperta</h3>
+          <p className={styles.miniText}>{fotosDesperta.length} fotos do retiro · ver o álbum →</p>
+        </div>
       </Link>
 
       <Link to="/ajude" className={`${styles.card} ${styles.cardHelp}`}>
