@@ -1,6 +1,6 @@
 export type Foto = { src: string; thumb: string };
 
-const NUM_FOTOS_DESPERTA = 68;
+const NUM_FOTOS_DESPERTA = 137;
 
 export const capaDesperta = { src: "/desperta/capa.jpg", thumb: "/desperta/capa-thumb.jpg" };
 
