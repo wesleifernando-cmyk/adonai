@@ -175,3 +175,22 @@
   font-size: 0.76rem;
   color: var(--text-mute);
 }
+
+.destaque {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(242, 176, 30, 0.35);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.destaqueImg { display: block; width: 100%; }
+.destaqueTexto { padding: 16px 18px 18px; }
+.destaqueTitulo {
+  margin: 4px 0 6px;
+  font-family: var(--font-display, inherit);
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+.cardGrande { padding: 22px 20px; }

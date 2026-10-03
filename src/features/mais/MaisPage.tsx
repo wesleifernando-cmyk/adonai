@@ -36,7 +36,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
       { to: "/quiz", label: "Quiz católico" },
       { to: "/testemunhos", label: "Testemunhos", nota: "fase 2" },
       { to: "/catolico-responde", label: "Católico Responde" },
-      { to: "/comunidade", label: "Missão Adonai" },
+      { to: "/comunidade", label: "Pregações da missão" },
       { to: "/comunidade/desperta", label: "Fotos do Retiro Desperta" },
       { to: "/comunidade/musicas", label: "Louvor católico" },
       { to: "/comunidade/pregadores", label: "Pregações de convidados" },

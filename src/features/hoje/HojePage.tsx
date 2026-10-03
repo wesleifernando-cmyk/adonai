@@ -97,30 +97,32 @@ export function HojePage() {
         </div>
       </section>
 
-      <Link to="/comunidade" className={`${styles.card} ${styles.cardGroup}`}>
-        <p className="eyebrow">Missão Adonai</p>
-        <h3 className={styles.miniTitle}>Pregações, retiro Desperta e fotos</h3>
-        <p className={styles.miniText}>
-          Acompanhe o que a missão vive: encontros, missões e eventos.
-        </p>
-      </Link>
-
-      <Link
-        to="/comunidade/desperta"
-        className={styles.card}
-        style={{ display: "flex", alignItems: "center", gap: 14 }}
-      >
-        <img
-          src={capaDesperta.thumb}
-          alt=""
-          style={{ width: 64, height: 80, objectFit: "cover", borderRadius: 8, flex: "none" }}
-        />
-        <div>
-          <p className="eyebrow">Desperta</p>
-          <h3 className={styles.miniTitle}>Fotos do Desperta</h3>
-          <p className={styles.miniText}>{fotosDesperta.length} fotos do retiro · ver o álbum →</p>
+      <Link to="/comunidade/desperta" className={styles.destaque}>
+        <img src={capaDesperta.src} alt="Desperta, 8ª edição" className={styles.destaqueImg} />
+        <div className={styles.destaqueTexto}>
+          <p className="eyebrow">Missão Adonai · Desperta</p>
+          <h3 className={styles.destaqueTitulo}>Fotos do Desperta</h3>
+          <p className={styles.miniText}>{fotosDesperta.length} fotos do retiro. Toque para ver o álbum →</p>
         </div>
       </Link>
+
+      <Link to="/comunidade" className={`${styles.card} ${styles.cardGroup} ${styles.cardGrande}`}>
+        <p className="eyebrow">Missão Adonai</p>
+        <h3 className={styles.destaqueTitulo}>Pregações</h3>
+        <p className={styles.miniText}>As pregações dos encontros e dos pregadores convidados.</p>
+        <span className={styles.cta}>Ouvir pregações →</span>
+      </Link>
+
+      <div className={styles.pair}>
+        <a href="https://instagram.com/go.adonai" target="_blank" rel="noopener noreferrer" className={styles.card}>
+          <p className="eyebrow">Instagram</p>
+          <h3 className={styles.miniTitle}>@go.adonai</h3>
+        </a>
+        <Link to="/comunidade/musicas" className={styles.card}>
+          <p className="eyebrow">Spotify</p>
+          <h3 className={styles.miniTitle}>Louvor católico</h3>
+        </Link>
+      </div>
 
       <Link to="/ajude" className={`${styles.card} ${styles.cardHelp}`}>
         <p className="eyebrow">Ajude-nos</p>
