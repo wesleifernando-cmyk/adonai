@@ -1,3 +1,12 @@
+.capa {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow);
+}
+
 .grade {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

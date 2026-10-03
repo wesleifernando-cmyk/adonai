@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
-import { fotosDesperta } from "../../content/galerias";
+import { capaDesperta, fotosDesperta } from "../../content/galerias";
 import styles from "./GaleriaPage.module.css";
 
 export function GaleriaPage() {
@@ -25,7 +25,8 @@ export function GaleriaPage() {
   return (
     <div>
       <Link to="/comunidade">← Comunidade</Link>
-      <div style={{ marginTop: 12 }}>
+      <img src={capaDesperta.src} alt="Desperta, 8ª edição" className={styles.capa} />
+      <div style={{ marginTop: 16 }}>
         <PageHeader eyebrow="Álbum" title="Retiro Desperta" lead={`${total} fotos. Toque numa foto pra ver em tela cheia.`} />
       </div>
 

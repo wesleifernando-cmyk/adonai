@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { ChurchMark } from "../../components/ui/ChurchMark";
 import { pregacoes } from "../../content/comunidade/pregacoes";
+import { capaDesperta } from "../../content/galerias";
 import list from "../_shared/List.module.css";
 import styles from "./Comunidade.module.css";
 
@@ -32,8 +33,13 @@ export function ComunidadePage() {
         <span aria-hidden="true">↗</span>
       </a>
 
-      <Link to="/comunidade/desperta" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center" }}>
-        <div>
+      <Link to="/comunidade/desperta" className={`${list.item} ${list.link}`} style={{ marginBottom: 12, alignItems: "center", gap: 14 }}>
+        <img
+          src={capaDesperta.thumb}
+          alt=""
+          style={{ width: 56, height: 70, objectFit: "cover", borderRadius: 8, flex: "none" }}
+        />
+        <div style={{ flex: 1 }}>
           <p className={list.itemEyebrow}>68 fotos</p>
           <h2 className={list.itemTitle}>Retiro Desperta</h2>
         </div>
