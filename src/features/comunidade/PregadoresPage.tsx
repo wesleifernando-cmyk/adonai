@@ -25,7 +25,7 @@ export function PregadoresPage() {
             style={{ alignItems: "center" }}
           >
             <div style={{ minWidth: 0 }}>
-              <p className={list.itemEyebrow}>{p.videos.length} pregações</p>
+              <p className={list.itemEyebrow}>{p.videos.length + (p.series?.reduce((n, sr) => n + sr.videos.length, 0) ?? 0)} pregações</p>
               <h2 className={list.itemTitle}>{p.nome}</h2>
             </div>
             <span className={list.chev} aria-hidden="true">→</span>

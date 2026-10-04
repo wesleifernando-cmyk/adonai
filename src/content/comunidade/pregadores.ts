@@ -179,7 +179,7 @@ export const pregadores: Pregador[] = [
     slug: "anderson-reis",
     nome: "Anderson Reis",
     descricao:
-      "Pregador e missionário católico há mais de 20 anos. Começa aqui pelo tríduo sobre Céu, Inferno e Purgatório.",
+      "Pregador e missionário católico há mais de 20 anos. Pregações sobre Maria, Eucaristia, confissão, combate espiritual e o tríduo sobre Céu, Inferno e Purgatório.",
     canalNome: "Anderson Reis Oficial",
     canalUrl: "https://www.youtube.com/channel/UCujutKwW-uS5t1wPattHnfA",
     instagramUrl: "https://www.instagram.com/andersonpregador/",
@@ -201,12 +201,46 @@ export const pregadores: Pregador[] = [
           },
         ],
       },
+      {
+        titulo: "Maria Santíssima",
+        videos: [
+          { titulo: "Maria, terror dos demônios", youtubeId: "24IaM4zwBos" },
+          { titulo: "Ano Mariano", youtubeId: "BAANbDECgZY", canalOrigem: "Jennifer Nascimento" },
+          {
+            titulo: "É preciso imitar Maria Santíssima / Retornai ao Sacrário",
+            youtubeId: "lrzFETHoiqk",
+            canalOrigem: "Ilana Fernandes",
+          },
+        ],
+      },
+      {
+        titulo: "Eucaristia e Confissão",
+        videos: [
+          { titulo: "Eucaristia, fonte de Santidade", youtubeId: "ORMK87rbI8s", canalOrigem: "Alegrai-vos no Senhor" },
+          {
+            titulo: "Como amar a Jesus no Santíssimo Sacramento",
+            youtubeId: "rVaWj5YRHsY",
+            canalOrigem: "WebTV Novos Anjos",
+          },
+          { titulo: "Confissão, o sacramento da misericórdia divina", youtubeId: "UI1d_kaVM0w" },
+        ],
+      },
+      {
+        titulo: "Testemunhos",
+        videos: [
+          { titulo: "Testemunho no PHN (completo)", youtubeId: "4Lj17pWN7i4", canalOrigem: "Klaus Bento" },
+          { titulo: "Conversão é uma graça de Deus", youtubeId: "E3sOzc4Aa44", canalOrigem: "Robson Fernando" },
+        ],
+      },
     ],
     videos: [
-      { titulo: "Maria, terror dos demônios", youtubeId: "24IaM4zwBos" },
-      { titulo: "Alma Missionária", youtubeId: "CauXpCqO7bM" },
-      { titulo: "Combate Espiritual", youtubeId: "R7dp-Q65bX0" },
+      { titulo: "Alma Missionária", youtubeId: "CauXpCqO7bM", canalOrigem: "Peter Novassat" },
+      { titulo: "Combate Espiritual", youtubeId: "R7dp-Q65bX0", canalOrigem: "Alegrai-vos no Senhor" },
+      { titulo: "4 sinais do final dos tempos", youtubeId: "0XRvDL4nzyE", canalOrigem: "Alegrai-vos no Senhor" },
+      { titulo: "Amor de Deus", youtubeId: "Ehc3UwZ8Lec", canalOrigem: "ASousuke Ad" },
       { titulo: "O amor não é amado", youtubeId: "VI8NzTOhpIw", data: "07/02/2021" },
+      { titulo: "Louvemos o Senhor — pregação, bloco 1", youtubeId: "FY8prixc9OU", canalOrigem: "RedeSeculo21", data: "02/07/2017" },
+      { titulo: "Louvemos o Senhor — pregação, bloco 2", youtubeId: "QPO9FclfjT4", canalOrigem: "RedeSeculo21", data: "02/07/2017" },
     ],
   },
   {
