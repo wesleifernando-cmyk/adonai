@@ -1,3 +1,5 @@
+import { calendarioSantos, type TipoCelebracao } from "./calendario-santos";
+
 export type Santo = {
   slug: string;
   nome: string;
@@ -290,9 +292,42 @@ export const santos: Santo[] = [
   },
 ];
 
-export function santoDoDia(d = new Date()): Santo {
+export type SantoDoDia = {
+  nome: string;
+  /** Texto curto do grau da celebração (ex.: "Memória", "Festa") */
+  grau: string;
+  /** Presente quando o santo tem página completa no acervo */
+  santo?: Santo;
+  /** Outras celebrações do mesmo dia */
+  tambem: string[];
+};
+
+const GRAU: Record<TipoCelebracao, string> = {
+  solenidade: "Solenidade",
+  festa: "Festa",
+  memoria: "Memória",
+  facultativa: "Memória facultativa",
+  martirologio: "Lembrado hoje"
+};
+
+const semAcento = (t: string) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const PALAVRAS_COMUNS = new Set(["santa", "santo", "sao", "nossa", "senhora", "beato", "beata", "papa", "martir", "virgem", "bispo"]);
+
+function mesmoSanto(nomeCalendario: string, s: Santo): boolean {
+  const cal = new Set(semAcento(nomeCalendario).match(/[a-z]{4,}/g) ?? []);
+  return (semAcento(s.nome).match(/[a-z]{4,}/g) ?? []).some((w) => !PALAVRAS_COMUNS.has(w) && cal.has(w));
+}
+
+/** O santo (ou celebração) do dia, a partir do calendário litúrgico — não mais um sorteio. */
+export function santoDoDia(d = new Date()): SantoDoDia {
   const mmdd = `${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  return santos.find((s) => s.festa === mmdd) ?? santos[dayIndex(d, santos.length)];
+  const [principal, ...resto] = calendarioSantos[mmdd] ?? [{ nome: "Todos os santos e santas de Deus", tipo: "martirologio" as const }];
+  return {
+    nome: principal.nome,
+    grau: GRAU[principal.tipo],
+    santo: santos.find((s) => s.festa === mmdd && mesmoSanto(principal.nome, s)),
+    tambem: resto.map((r) => r.nome)
+  };
 }
 
 export function santoJovemDoDia(d = new Date()): Santo {

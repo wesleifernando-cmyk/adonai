@@ -65,10 +65,10 @@ export function HojePage() {
       </Link>
 
       <div className={styles.pair}>
-        <Link to={`/santos/${santo.slug}`} className={styles.card}>
+        <Link to={santo.santo ? `/santos/${santo.santo.slug}` : "/santos"} className={styles.card}>
           <p className="eyebrow">Santo do dia</p>
           <h3 className={styles.miniTitle}>{santo.nome}</h3>
-          <p className={styles.miniText}>{santo.titulo}</p>
+          <p className={styles.miniText}>{santo.grau}</p>
         </Link>
 
         <Link to={`/santos/${jovem.slug}`} className={styles.card}>

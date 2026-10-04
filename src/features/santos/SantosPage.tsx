@@ -6,7 +6,7 @@ import styles from "./Santos.module.css";
 
 export function SantosPage() {
   const doDia = santoDoDia();
-  const outros = santos.filter((s) => s.slug !== doDia.slug);
+  const outros = santos.filter((s) => s.slug !== doDia.santo?.slug);
 
   return (
     <div>
@@ -16,13 +16,23 @@ export function SantosPage() {
         lead="Um santo por dia para conhecer, mais o acervo completo para estudar quando quiser."
       />
 
-      <Link to={`/santos/${doDia.slug}`} className={styles.featured}>
-        <p className="eyebrow">Santo de hoje</p>
-        <h2 className={styles.featuredName}>{doDia.nome}</h2>
-        <p className={styles.featuredTitle}>{doDia.titulo}</p>
-        <p className={styles.featuredResumo}>{doDia.resumo}</p>
-        <span className={styles.cta}>Ler a história →</span>
-      </Link>
+      {doDia.santo ? (
+        <Link to={`/santos/${doDia.santo.slug}`} className={styles.featured}>
+          <p className="eyebrow">Santo de hoje · {doDia.grau}</p>
+          <h2 className={styles.featuredName}>{doDia.nome}</h2>
+          <p className={styles.featuredTitle}>{doDia.santo.titulo}</p>
+          <p className={styles.featuredResumo}>{doDia.santo.resumo}</p>
+          <span className={styles.cta}>Ler a história →</span>
+        </Link>
+      ) : (
+        <div className={styles.featured}>
+          <p className="eyebrow">Santo de hoje · {doDia.grau}</p>
+          <h2 className={styles.featuredName}>{doDia.nome}</h2>
+          {doDia.tambem.length > 0 && (
+            <p className={styles.featuredResumo}>Também hoje: {doDia.tambem.join("; ")}.</p>
+          )}
+        </div>
+      )}
 
       <h3 className={styles.listHead}>Acervo</h3>
       <ul className={styles.list}>
