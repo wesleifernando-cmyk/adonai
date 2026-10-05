@@ -10,9 +10,20 @@ type Usuario = {
   idade?: number | null;
 };
 
+export type Acesso = {
+  ativo: boolean;
+  tipo: "cartao" | "avulso" | "sem_vencimento" | null;
+  /** vencimento do acesso avulso (ISO) */
+  ate: string | null;
+  diasRestantes: number | null;
+  /** quando o último acesso avulso venceu, se já venceu */
+  venceuEm: string | null;
+};
+
 type AuthState = {
   usuario: Usuario | null;
   assinaturaAtiva: boolean;
+  acesso: Acesso | null;
   isAdmin: boolean;
   carregando: boolean;
   entrar: (email: string, senha: string) => Promise<void>;
@@ -27,23 +38,27 @@ const AuthContext = createContext<AuthState | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [assinaturaAtiva, setAssinaturaAtiva] = useState(false);
+  const [acesso, setAcesso] = useState<Acesso | null>(null);
   const [carregando, setCarregando] = useState(true);
 
   async function recarregar() {
     if (!pegarToken()) {
       setUsuario(null);
       setAssinaturaAtiva(false);
+      setAcesso(null);
       setCarregando(false);
       return;
     }
     try {
-      const dados = await apiFetch<{ usuario: Usuario; assinaturaAtiva: boolean }>("/auth/eu");
+      const dados = await apiFetch<{ usuario: Usuario; assinaturaAtiva: boolean; acesso?: Acesso }>("/auth/eu");
       setUsuario(dados.usuario);
       setAssinaturaAtiva(dados.assinaturaAtiva);
+      setAcesso(dados.acesso ?? null);
     } catch {
       limparToken();
       setUsuario(null);
       setAssinaturaAtiva(false);
+      setAcesso(null);
     } finally {
       setCarregando(false);
     }
@@ -88,6 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     limparToken();
     setUsuario(null);
     setAssinaturaAtiva(false);
+    setAcesso(null);
   }
 
   return (
@@ -95,6 +111,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       value={{
         usuario,
         assinaturaAtiva,
+        acesso,
         isAdmin: Boolean(usuario?.admin),
         carregando,
         entrar,

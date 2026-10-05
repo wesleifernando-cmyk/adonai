@@ -13,7 +13,7 @@ function token() {
 
 // Cria uma "preferência" de pagamento — o Mercado Pago devolve um link
 // (init_point) pra onde a pessoa é redirecionada pra pagar.
-export async function criarPreferencia({ titulo, precoCentavos, email, urlFrontend, urlBackend, referenciaExterna }) {
+export async function criarPreferencia({ titulo, precoCentavos, email, urlFrontend, urlBackend, referenciaExterna, retorno }) {
   const resposta = await fetch(`${MP_API}/checkout/preferences`, {
     method: "POST",
     headers: {
@@ -33,7 +33,7 @@ export async function criarPreferencia({ titulo, precoCentavos, email, urlFronte
       // depois que o pagamento for aprovado.
       external_reference: referenciaExterna,
       payer: email ? { email } : undefined,
-      back_urls: {
+      back_urls: retorno || {
         success: `${urlFrontend}/pagamento-confirmado`,
         failure: `${urlFrontend}/ajude?pagamento=falhou`,
         pending: `${urlFrontend}/ajude?pagamento=pendente`,
@@ -93,4 +93,15 @@ export async function buscarAssinatura(preapprovalId) {
     headers: { Authorization: `Bearer ${token()}` },
   });
   return resposta.json();
+}
+
+// Pagamentos de uma referência externa (ex.: "AVULSO:12"), do mais novo
+// pro mais velho — usado pra conferir na hora se o Pix já caiu.
+export async function buscarPagamentosPorReferencia(referencia) {
+  const resposta = await fetch(
+    `${MP_API}/v1/payments/search?sort=date_created&criteria=desc&limit=20&external_reference=${encodeURIComponent(referencia)}`,
+    { headers: { Authorization: `Bearer ${token()}` } }
+  );
+  const dados = await resposta.json();
+  return dados.results || [];
 }

@@ -8,6 +8,7 @@ import quizRoutes from "./routes/quiz.js";
 import catolicoRespondeRoutes from "./routes/catolico-responde.js";
 import authFacebookRoutes from "./routes/auth-facebook.js";
 import leituraRoutes from "./routes/leitura.js";
+import { garantirSchema } from "./db/schema.js";
 
 dotenv.config();
 
@@ -26,6 +27,8 @@ app.use("/quiz", quizRoutes);
 app.use("/catolico-responde", catolicoRespondeRoutes);
 app.use("/auth/facebook", authFacebookRoutes);
 app.use("/leitura", leituraRoutes);
+
+garantirSchema().catch((err) => console.error("Erro ao ajustar o banco:", err.message));
 
 const PORTA = process.env.PORT || 3002;
 app.listen(PORTA, () => {

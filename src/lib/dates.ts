@@ -34,3 +34,16 @@ export function dayOfYear(d = new Date()): number {
 export function pickForToday<T>(list: readonly T[], d = new Date()): T {
   return list[dayOfYear(d) % list.length];
 }
+
+/** "25/10/2026" a partir de uma data ISO */
+export function dataCurta(iso: string): string {
+  const d = new Date(iso);
+  return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()}`;
+}
+
+/** "faltam 12 dias" / "vence hoje" */
+export function textoDiasRestantes(dias: number): string {
+  if (dias <= 0) return "vence hoje";
+  if (dias === 1) return "falta 1 dia";
+  return `faltam ${dias} dias`;
+}

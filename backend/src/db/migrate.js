@@ -89,6 +89,9 @@ async function migrar() {
       atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
     );
     CREATE INDEX IF NOT EXISTS idx_assinaturas_usuario ON assinaturas (usuario_id);
+
+    ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS valido_ate TIMESTAMPTZ;
+    ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS origem VARCHAR(20);
   `);
   console.log(
     "Migração concluída: tabelas 'pagamentos', 'usuarios', 'quiz_pontuacoes', 'quiz_perguntas', " +

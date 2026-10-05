@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { LEMA_PRINCIPAL, LEMA_FOGO } from "../../content/lemas";
+import { dataCurta } from "../../lib/dates";
 import { useAuth } from "../../lib/auth/AuthContext";
 import styles from "./MaisPage.module.css";
 
@@ -46,7 +47,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
 ];
 
 export function MaisPage() {
-  const { usuario, assinaturaAtiva, isAdmin, sair } = useAuth();
+  const { usuario, assinaturaAtiva, acesso, isAdmin, sair } = useAuth();
 
   return (
     <div>
@@ -61,7 +62,11 @@ export function MaisPage() {
                 <div className={styles.row}>
                   <span>{usuario.nome}</span>
                   <span className={styles.right}>
-                    <em className={styles.nota}>{assinaturaAtiva ? "assinante" : "sem assinatura"}</em>
+                    <em className={styles.nota}>{!assinaturaAtiva
+                        ? "sem assinatura"
+                        : acesso?.tipo === "avulso" && acesso.ate
+                          ? `acesso até ${dataCurta(acesso.ate)}`
+                          : "assinante"}</em>
                   </span>
                 </div>
               </li>
