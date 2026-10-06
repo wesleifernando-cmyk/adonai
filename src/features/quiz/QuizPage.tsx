@@ -118,11 +118,24 @@ export function QuizPage() {
 
   return (
     <div>
-      <PageHeader
-        eyebrow="Quiz católico"
-        title="Aprender jogando"
-        lead="Perguntas geradas na hora, começando fácil e ficando mais difíceis conforme você acerta."
-      />
+      <div className={styles.cabecalho}>
+        <PageHeader
+          eyebrow="Quiz católico"
+          title="Aprender jogando"
+          lead="Perguntas geradas na hora, começando fácil e ficando mais difíceis conforme você acerta."
+        />
+        {isAdmin && (
+          <button
+            type="button"
+            className={styles.ticket}
+            onClick={alternarRespostas}
+            aria-pressed={mostrarRespostas}
+            aria-label="Mostrar respostas (admin)"
+          >
+            {mostrarRespostas ? "✓" : ""}
+          </button>
+        )}
+      </div>
 
       <div className={styles.placar}>
         <div className={styles.stat}>
@@ -140,12 +153,6 @@ export function QuizPage() {
       </button>
 
       {erro && <p className={styles.erro}>{erro}</p>}
-
-      {isAdmin && (
-        <button type="button" className={styles.dicaAdmin} onClick={alternarRespostas} aria-pressed={mostrarRespostas}>
-          {mostrarRespostas ? "esconder resposta" : "mostrar resposta"}
-        </button>
-      )}
 
       <div className={styles.cartao}>
         {carregando && !pergunta && <p>Preparando sua pergunta…</p>}

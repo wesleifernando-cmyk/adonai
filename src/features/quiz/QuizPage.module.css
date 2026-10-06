@@ -134,16 +134,23 @@
 .rankingLinha + .rankingLinha { border-top: 1px solid var(--hairline-soft); }
 .rankingPos { color: var(--text-mute); margin-right: 8px; }
 
-.dicaAdmin {
-  display: block;
-  margin: 0 0 6px auto;
-  padding: 4px 6px;
-  border: none;
+.cabecalho { position: relative; }
+
+/* ticket escondido do admin: quadradinho quase invisível acima do título */
+.ticket {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--text-mute);
+  border-radius: 4px;
   background: transparent;
-  color: var(--text-mute);
-  font-family: var(--font-ui);
+  color: var(--ember);
   font-size: 0.7rem;
-  opacity: 0.55;
+  line-height: 1;
+  opacity: 0.3;
   cursor: pointer;
 }
-.dicaAdmin[aria-pressed="true"] { color: var(--ember); opacity: 0.9; }
+.ticket[aria-pressed="true"] { opacity: 0.85; border-color: var(--ember); }
