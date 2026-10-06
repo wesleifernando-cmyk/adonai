@@ -63,6 +63,7 @@ export function AdminPage() {
   const [usuarios, setUsuarios] = useState<UsuarioAdmin[] | null>(null);
   const [erro, setErro] = useState<string | null>(null);
   const [emAcao, setEmAcao] = useState<number | null>(null);
+  const [senhaGerada, setSenhaGerada] = useState<{ nome: string; email: string; senha: string; telefone: string | null } | null>(null);
   const [busca, setBusca] = useState("");
   const [filtro, setFiltro] = useState<"todos" | "vencendo" | "sem" | "semtel">("todos");
 
@@ -78,6 +79,34 @@ export function AdminPage() {
   useEffect(() => {
     carregar();
   }, []);
+
+  async function excluir(u: UsuarioAdmin) {
+    if (!window.confirm(`Excluir a conta de ${u.nome} (${u.email})?\n\nIsso apaga a pontuação do quiz e o progresso dela. Não dá para desfazer. A pessoa poderá se cadastrar de novo com o mesmo e-mail.`)) return;
+    setErro(null);
+    setEmAcao(u.id);
+    try {
+      await apiFetch(`/admin/usuarios/${u.id}`, { method: "DELETE" });
+      await carregar();
+    } catch (err) {
+      setErro(err instanceof Error ? err.message : "Erro ao excluir usuário.");
+    } finally {
+      setEmAcao(null);
+    }
+  }
+
+  async function redefinirSenha(u: UsuarioAdmin) {
+    if (!window.confirm(`Criar uma senha provisória para ${u.nome}? A senha atual deixa de valer.`)) return;
+    setErro(null);
+    setEmAcao(u.id);
+    try {
+      const r = await apiFetch<{ senhaProvisoria: string }>(`/admin/usuarios/${u.id}/redefinir-senha`, { method: "POST" });
+      setSenhaGerada({ nome: u.nome, email: u.email, senha: r.senhaProvisoria, telefone: u.telefone });
+    } catch (err) {
+      setErro(err instanceof Error ? err.message : "Erro ao redefinir a senha.");
+    } finally {
+      setEmAcao(null);
+    }
+  }
 
   async function executar(id: number, acao: string, corpo?: Record<string, unknown>) {
     setErro(null);
@@ -140,6 +169,34 @@ export function AdminPage() {
       <PageHeader eyebrow="Administração" title="Controle de usuários" />
 
       {erro && <p className={styles.erro}>{erro}</p>}
+
+      {senhaGerada && (
+        <div className={styles.senhaCaixa} role="alert">
+          <p>
+            <strong>Senha provisória de {senhaGerada.nome}</strong> (aparece só agora, anote ou mande para a pessoa):
+          </p>
+          <p className={styles.senhaTexto}>{senhaGerada.senha}</p>
+          <p className={styles.email}>Login: {senhaGerada.email}</p>
+          <div className={styles.acoes}>
+            {senhaGerada.telefone && (
+              <a
+                className={`${styles.botao} ${styles.botaoFogo}`}
+                href={linkWhatsApp(
+                  senhaGerada.telefone,
+                  `Oi, ${senhaGerada.nome.trim().split(/\s+/)[0]}! Aqui é da Missão Adonai 🙏 Criei uma senha provisória para você entrar no app: ${senhaGerada.senha}\nEntre com o e-mail ${senhaGerada.email} em https://adonai-site.vercel.app/entrar e depois, se quiser, troque a senha.`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Enviar no WhatsApp
+              </a>
+            )}
+            <button className={styles.botao} onClick={() => setSenhaGerada(null)}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className={styles.resumo}>
         <div className={styles.stat}>
@@ -290,6 +347,18 @@ export function AdminPage() {
               ) : (
                 <button className={styles.botao} disabled={emAcao === u.id} onClick={() => executar(u.id, "tornar-admin")}>
                   Tornar admin
+                </button>
+              )}
+              <button className={styles.botao} disabled={emAcao === u.id} onClick={() => redefinirSenha(u)}>
+                Redefinir senha
+              </button>
+              {u.id !== euMesmo?.id && !u.admin && (
+                <button
+                  className={`${styles.botao} ${styles.botaoPerigo}`}
+                  disabled={emAcao === u.id}
+                  onClick={() => excluir(u)}
+                >
+                  Excluir usuário
                 </button>
               )}
             </div>

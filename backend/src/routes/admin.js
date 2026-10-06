@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { query } from "../db/pool.js";
 import { exigirAdmin } from "./auth.js";
+import bcrypt from "bcryptjs";
+import crypto from "node:crypto";
 import { registrarAcessoComPrazo } from "../services/assinatura.js";
 
 const PRECO_CENTAVOS = 599;
@@ -129,6 +131,54 @@ router.post("/usuarios/:id/remover-admin", exigirAdmin, async (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao remover administrador.", detalhe: err.message });
+  }
+});
+
+// Exclui a conta de um usuário (e tudo que é dele: pontuação do quiz,
+// leitura, histórico). Não deixa excluir a si mesmo nem outro administrador,
+// e barra quem tem assinatura no cartão ativa — nesse caso o Mercado Pago
+// continuaria cobrando, então cancele lá antes. Os registros de pagamento
+// ficam guardados (histórico financeiro, casados pelo e-mail).
+router.delete("/usuarios/:id", exigirAdmin, async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (id === req.usuario.id) {
+      return res.status(400).json({ erro: "Você não pode excluir a sua própria conta." });
+    }
+    const [alvo] = await query(`SELECT id, email, admin FROM usuarios WHERE id = $1`, [id]);
+    if (!alvo) return res.status(404).json({ erro: "Usuário não encontrado." });
+    if (alvo.admin) {
+      return res.status(400).json({ erro: "Remova o acesso de administrador antes de excluir essa conta." });
+    }
+    const [cartao] = await query(
+      `SELECT id FROM assinaturas WHERE usuario_id = $1 AND status = 'authorized' LIMIT 1`,
+      [id]
+    );
+    if (cartao) {
+      return res.status(409).json({
+        erro: "Essa pessoa tem assinatura ativa no cartão. Cancele a assinatura no Mercado Pago antes de excluir, senão a cobrança continua.",
+      });
+    }
+    await query(`DELETE FROM usuarios WHERE id = $1`, [id]);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao excluir usuário.", detalhe: err.message });
+  }
+});
+
+// Cria uma senha provisória pra quem esqueceu a senha. Devolve a senha
+// UMA vez, pra você mandar pra pessoa; ela entra e depois pode trocar.
+// Mantém pontuação, progresso e acesso da conta (diferente de excluir).
+router.post("/usuarios/:id/redefinir-senha", exigirAdmin, async (req, res) => {
+  try {
+    const [alvo] = await query(`SELECT id FROM usuarios WHERE id = $1`, [req.params.id]);
+    if (!alvo) return res.status(404).json({ erro: "Usuário não encontrado." });
+    const alfabeto = "abcdefghjkmnpqrstuvwxyz23456789"; // sem letras/números que se confundem
+    const senhaNova = Array.from(crypto.randomBytes(8), (b) => alfabeto[b % alfabeto.length]).join("");
+    await query(`UPDATE usuarios SET senha_hash = $1 WHERE id = $2`, [await bcrypt.hash(senhaNova, 10), alvo.id]);
+    res.json({ ok: true, senhaProvisoria: senhaNova });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao redefinir a senha.", detalhe: err.message });
   }
 });
 

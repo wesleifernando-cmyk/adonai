@@ -171,3 +171,22 @@
   font-size: var(--step--1);
   color: var(--text-mute);
 }
+
+.senhaCaixa {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--ember);
+  border-radius: var(--radius);
+  background: rgba(242, 176, 30, 0.1);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+.senhaTexto {
+  margin: 8px 0;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  color: var(--ember);
+  user-select: all;
+}
+a.botao { display: inline-block; text-decoration: none; text-align: center; }
