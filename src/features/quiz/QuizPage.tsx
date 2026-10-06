@@ -5,7 +5,15 @@ import { useAuth } from "../../lib/auth/AuthContext";
 import { compartilharImagemRank } from "../../lib/compartilharRank";
 import styles from "./QuizPage.module.css";
 
-type Pergunta = { id: number; pergunta: string; opcoes: string[]; nivel: number };
+type Pergunta = {
+  id: number;
+  pergunta: string;
+  opcoes: string[];
+  nivel: number;
+  /** só vem para administradores */
+  respostaCorreta?: number;
+  explicacao?: string;
+};
 type Resultado = {
   correta: boolean;
   respostaCorreta: number;
@@ -18,7 +26,25 @@ type LinhaRanking = { nome: string; pontos: number; nivel: number; perguntas_cor
 type MinhaPontuacao = { pontos: number; nivel: number; perguntas_corretas: number };
 
 export function QuizPage() {
-  const { usuario } = useAuth();
+  const { usuario, isAdmin } = useAuth();
+  const [mostrarRespostas, setMostrarRespostas] = useState(() => {
+    try {
+      return localStorage.getItem("adonai_quiz_respostas") === "1";
+    } catch {
+      return false;
+    }
+  });
+
+  function alternarRespostas() {
+    setMostrarRespostas((v) => {
+      try {
+        localStorage.setItem("adonai_quiz_respostas", v ? "0" : "1");
+      } catch {
+        /* sem armazenamento: vale só nesta visita */
+      }
+      return !v;
+    });
+  }
   const [pergunta, setPergunta] = useState<Pergunta | null>(null);
   const [compartilhando, setCompartilhando] = useState(false);
   const [escolha, setEscolha] = useState<number | null>(null);
@@ -98,6 +124,15 @@ export function QuizPage() {
         lead="Perguntas geradas na hora, começando fácil e ficando mais difíceis conforme você acerta."
       />
 
+      {isAdmin && (
+        <label className={styles.adminRespostas}>
+          <input type="checkbox" checked={mostrarRespostas} onChange={alternarRespostas} />
+          <span>
+            <strong>Modo admin:</strong> mostrar as respostas certas
+          </span>
+        </label>
+      )}
+
       <div className={styles.placar}>
         <div className={styles.stat}>
           <p className={styles.statNum}>{minhaPontuacao.perguntas_corretas + 1}</p>
@@ -124,12 +159,16 @@ export function QuizPage() {
             <div className={styles.opcoes}>
               {pergunta.opcoes.map((opcao, i) => {
                 let classe = styles.opcao;
+                const dica = isAdmin && mostrarRespostas && !resultado && i === pergunta.respostaCorreta;
                 if (resultado) {
                   if (i === resultado.respostaCorreta) classe = `${styles.opcao} ${styles.opcaoCorreta}`;
                   else if (i === escolha) classe = `${styles.opcao} ${styles.opcaoErrada}`;
+                } else if (dica) {
+                  classe = `${styles.opcao} ${styles.opcaoCorreta}`;
                 }
                 return (
                   <button key={i} className={classe} disabled={Boolean(resultado)} onClick={() => responder(i)}>
+                    {dica && <span aria-label="resposta certa">✓ </span>}
                     {opcao}
                   </button>
                 );

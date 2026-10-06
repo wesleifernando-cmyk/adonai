@@ -67,7 +67,16 @@ router.get("/pergunta", exigirLogin, async (req, res) => {
       [req.usuario.id, dados.pergunta, JSON.stringify(dados.opcoes), dados.resposta_correta, dados.explicacao, pontuacao.nivel]
     );
 
-    res.json({ id: salva.id, pergunta: dados.pergunta, opcoes: dados.opcoes, nivel: pontuacao.nivel });
+    const resposta = { id: salva.id, pergunta: dados.pergunta, opcoes: dados.opcoes, nivel: pontuacao.nivel };
+    // Só administradores recebem a resposta certa junto da pergunta (botão
+    // "mostrar respostas" do quiz). Pra qualquer outra pessoa ela só aparece
+    // depois de responder.
+    const [quem] = await query(`SELECT admin FROM usuarios WHERE id = $1`, [req.usuario.id]);
+    if (quem?.admin) {
+      resposta.respostaCorreta = dados.resposta_correta;
+      resposta.explicacao = dados.explicacao;
+    }
+    res.json(resposta);
   } catch (err) {
     console.error("Erro ao gerar pergunta:", err);
     res.status(500).json({ erro: "Erro ao gerar pergunta.", detalhe: err.message });
