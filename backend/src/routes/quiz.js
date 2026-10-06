@@ -2,20 +2,105 @@ import { Router } from "express";
 import { query } from "../db/pool.js";
 import { exigirLogin } from "./auth.js";
 import { perguntarJson } from "../services/openai.js";
+import { bancoBiblia, sortearOpcoes } from "../services/quiz-banco.js";
 
 const router = Router();
 
 const NIVEL_MAX = 15;
 
-function descreverNivel(nivel) {
-  if (nivel <= 3) return "fácil — fatos bíblicos bem conhecidos, orações do dia a dia, personagens e histórias populares";
-  if (nivel <= 6) return "médio — Catecismo da Igreja, sacramentos, tempos litúrgicos, vidas de santos conhecidos";
-  if (nivel <= 10) return "difícil — teologia mais fina, história da Igreja, concílios, heresias, distinções doutrinárias";
-  return "muito difícil — documentos pontifícios, Padres da Igreja, latim litúrgico, teologia dogmática avançada";
+// Temas sorteados a cada pergunta. A Bíblia é a maioria (peso alto) pra
+// variar e ser acessível aos jovens; concílios e história da Igreja
+// entram raramente.
+const TEMAS = [
+  // Bíblia (≈ 65%)
+  { peso: 5, tema: "Gênesis e os patriarcas (Adão, Noé, Abraão, Isaac, Jacó, José do Egito)" },
+  { peso: 5, tema: "Êxodo, Moisés e a caminhada pelo deserto (pragas, Mar Vermelho, Dez Mandamentos, maná)" },
+  { peso: 4, tema: "Josué e o livro dos Juízes (Gedeão, Sansão, Débora, Jefté)" },
+  { peso: 4, tema: "Rute, Samuel, Saul e o rei Davi" },
+  { peso: 3, tema: "Salomão, os livros dos Reis e a história dos reis de Israel e Judá" },
+  { peso: 6, tema: "Os profetas (Isaías, Jeremias, Ezequiel, Daniel, Jonas, Elias, Eliseu, Amós, Oseias…)" },
+  { peso: 3, tema: "Livros sapienciais e poéticos (Salmos, Provérbios, Jó, Eclesiastes, Sabedoria, Eclesiástico, Cântico dos Cânticos)" },
+  { peso: 4, tema: "Quantos e quais livros tem a Bíblia: Antigo e Novo Testamento, Pentateuco, cânon católico e diferenças para a Bíblia protestante, deuterocanônicos" },
+  { peso: 6, tema: "O Evangelho segundo Mateus (Sermão da Montanha, Bem-aventuranças, parábolas, Pai-Nosso)" },
+  { peso: 4, tema: "O Evangelho segundo Marcos" },
+  { peso: 5, tema: "O Evangelho segundo Lucas (Anunciação, Visitação, Natal, Bom Samaritano, Filho Pródigo)" },
+  { peso: 5, tema: "O Evangelho segundo João (Bodas de Caná, Nicodemos, samaritana, Lázaro, 'Eu sou')" },
+  { peso: 4, tema: "Milagres e parábolas de Jesus" },
+  { peso: 4, tema: "Os doze apóstolos e os discípulos de Jesus" },
+  { peso: 3, tema: "Paixão, morte e ressurreição de Jesus" },
+  { peso: 4, tema: "Atos dos Apóstolos (Pentecostes, Estêvão, conversão de Paulo, viagens missionárias)" },
+  { peso: 5, tema: "As cartas do Novo Testamento (Romanos, 1 e 2 Coríntios, Gálatas, Efésios, Filipenses, Tiago, Pedro, João, Hebreus…)" },
+  { peso: 2, tema: "Apocalipse" },
+  { peso: 3, tema: "Mulheres da Bíblia (Eva, Sara, Rute, Ester, Judite, Maria, Isabel, Maria Madalena…)" },
+  // Fé católica no dia a dia (≈ 35%)
+  { peso: 5, tema: "Os sete sacramentos" },
+  { peso: 4, tema: "A Santa Missa e a liturgia (partes da Missa, tempos litúrgicos, cores, Quaresma, Advento)" },
+  { peso: 4, tema: "Orações católicas (Pai-Nosso, Ave-Maria, Credo, Salve Rainha) e o Santo Rosário" },
+  { peso: 5, tema: "Santos e santas conhecidos pelos jovens (vida e padroados)" },
+  { peso: 3, tema: "Nossa Senhora e as devoções marianas (Aparecida, Lourdes, Fátima, Guadalupe)" },
+  { peso: 3, tema: "Os Dez Mandamentos, as virtudes e os pecados capitais" },
+  { peso: 2, tema: "Anjos e arcanjos, Espírito Santo, Santíssima Trindade" },
+  { peso: 2, tema: "Papas e a vida da Igreja (de forma simples e conhecida)" },
+  { peso: 1, tema: "Um concílio ou documento famoso da Igreja, explicado de forma simples" },
+];
+
+function sortearTema() {
+  const total = TEMAS.reduce((n, t) => n + t.peso, 0);
+  let r = Math.random() * total;
+  for (const t of TEMAS) {
+    r -= t.peso;
+    if (r <= 0) return t.tema;
+  }
+  return TEMAS[0].tema;
 }
 
-// Gera uma pergunta nova pro nível atual do usuário, evitando repetir
-// as últimas perguntas feitas a ele.
+// A dificuldade varia entre fácil e médio — nada de pergunta que ninguém
+// sabe responder. O nível do jogador só empurra um pouco a proporção.
+function sortearDificuldade(nivel) {
+  const sobe = Math.min(nivel, NIVEL_MAX) / NIVEL_MAX; // 0..1
+  const r = Math.random();
+  const pFacil = 0.7 - 0.25 * sobe;
+  const pMedio = pFacil + 0.27 + 0.1 * sobe;
+  if (r < pFacil) return "FÁCIL: algo que um católico jovem, que vai à Missa e à catequese, sabe responder de bate-pronto";
+  if (r < pMedio) return "MÉDIA: exige ter lido ou estudado um pouco, mas é conhecimento comum de quem frequenta a Igreja";
+  return "UM POUCO MAIS DIFÍCIL: ainda assim, sobre assunto conhecido — nada obscuro nem de especialista";
+}
+
+const INSTRUCOES =
+  "Você cria perguntas de múltipla escolha sobre a fé católica para jovens, em um app devocional, em português do Brasil. " +
+  'Responda SEMPRE em JSON no formato {"pergunta": string, "opcoes": [4 strings], "resposta_correta": 0-3, "explicacao": string}. ' +
+  "Regras: (1) pergunta curta, direta e clara, sem enrolação e sem introdução; (2) 4 opções curtas, só uma correta e as outras erradas de forma inequívoca, " +
+  "sem pegadinha; (3) use os nomes que o povo católico usa: 'Bodas de Caná' (e não só 'Caná da Galileia'), 'Evangelho segundo Mateus', 'Sermão da Montanha', " +
+  "'Pai-Nosso', 'Antigo e Novo Testamento'; (4) a Bíblia católica tem 73 livros (46 no Antigo Testamento e 27 no Novo); a protestante tem 66 (39 e 27); " +
+  "(5) explicação curta (1-2 frases) com a referência bíblica (livro e capítulo) ou do Catecismo quando souber com certeza; " +
+  "(6) NUNCA invente: use apenas fatos que você tem certeza absoluta. Cuidado redobrado com datas, números, autoria, fundadores e títulos de santos — " +
+  "se não tiver certeza, troque por uma pergunta mais básica e segura sobre o mesmo tema.";
+
+// Confere de forma independente se a resposta marcada como certa é mesmo
+// a certa — se o modelo discordar de si mesmo, a pergunta é descartada.
+async function respostaConfere(dados) {
+  const v = await perguntarJson(
+    [
+      {
+        role: "system",
+        content:
+          "Você é um revisor de teologia católica e de Bíblia. Receba uma pergunta com 4 opções e diga qual é a única correta. " +
+          'Responda em JSON: {"resposta": 0-3, "tem_certeza": true|false, "problema": string}. ' +
+          "Marque tem_certeza=false se a pergunta for ambígua, se mais de uma opção puder estar certa, se nenhuma estiver certa ou se você não tiver certeza do fato.",
+      },
+      {
+        role: "user",
+        content: `Pergunta: ${dados.pergunta}\n${dados.opcoes.map((o, i) => `${i}) ${o}`).join("\n")}`,
+      },
+    ],
+    { temperatura: 0 }
+  );
+  return v.tem_certeza === true && Number(v.resposta) === dados.resposta_correta;
+}
+
+// Gera uma pergunta nova pro nível atual do usuário: sorteia o tema (Bíblia
+// em maioria), às vezes usa o banco de perguntas feitas à mão, e evita
+// repetir o que a pessoa já respondeu.
 router.get("/pergunta", exigirLogin, async (req, res) => {
   try {
     let [pontuacao] = await query(`SELECT nivel FROM quiz_pontuacoes WHERE usuario_id = $1`, [req.usuario.id]);
@@ -24,38 +109,53 @@ router.get("/pergunta", exigirLogin, async (req, res) => {
       pontuacao = { nivel: 1 };
     }
 
-    const recentes = await query(
-      `SELECT pergunta FROM quiz_perguntas WHERE usuario_id = $1 ORDER BY criado_em DESC LIMIT 12`,
+    const historico = await query(
+      `SELECT pergunta FROM quiz_perguntas WHERE usuario_id = $1 ORDER BY criado_em DESC LIMIT 400`,
       [req.usuario.id]
     );
+    const jaFeitas = new Set(historico.map((h) => h.pergunta));
+    const recentes = historico.slice(0, 40);
 
-    const dados = await perguntarJson([
-      {
-        role: "system",
-        content:
-          "Você cria perguntas de múltipla escolha sobre fé católica (Bíblia, Catecismo, santos, " +
-          "liturgia, história da Igreja) para um app devocional. Responda SEMPRE em JSON no formato " +
-          '{"pergunta": string, "opcoes": [4 strings], "resposta_correta": 0-3, "explicacao": string}. ' +
-          "A explicação deve ser curta (1-2 frases) e citar a fonte quando possível (livro/capítulo, " +
-          "parágrafo do Catecismo, etc). As 4 opções devem ser plausíveis, só uma correta. Nunca invente " +
-          "doutrina — se não tiver certeza, prefira um fato mais básico e seguro. Cuidado redobrado com " +
-          "fatos históricos verificáveis: fundador de ordem/congregação, datas, autoria de livros e " +
-          "títulos (santo, beato, venerável, servo de Deus) — não confunda pessoas parecidas (ex.: um " +
-          "santo conhecido por devoção a algo não é necessariamente o fundador da congregação daquele " +
-          "nome). Na dúvida sobre um desses fatos específicos, troque de pergunta pra algo que você tenha " +
-          "certeza absoluta.",
-      },
-      {
-        role: "user",
-        content:
-          `Crie 1 pergunta de nível ${descreverNivel(pontuacao.nivel)}. ` +
-          (recentes.length
-            ? `Não repita (nem de forma parecida) estas perguntas já feitas: ${recentes
-                .map((r) => `"${r.pergunta}"`)
-                .join("; ")}.`
-            : ""),
-      },
-    ]);
+    let dados = null;
+
+    // ~40% das vezes tenta o banco de perguntas de Bíblia feitas à mão.
+    if (Math.random() < 0.4) {
+      const disponiveis = bancoBiblia.filter((q) => !jaFeitas.has(q.pergunta));
+      if (disponiveis.length) {
+        dados = sortearOpcoes(disponiveis[Math.floor(Math.random() * disponiveis.length)]);
+      }
+    }
+
+    // Senão (ou se o banco acabou pra essa pessoa), gera com a IA.
+    for (let tentativa = 0; !dados && tentativa < 3; tentativa++) {
+      const candidato = await perguntarJson(
+        [
+          { role: "system", content: INSTRUCOES },
+          {
+            role: "user",
+            content:
+              `Crie 1 pergunta sobre este tema: ${sortearTema()}. ` +
+              `Dificuldade ${sortearDificuldade(pontuacao.nivel)}. ` +
+              (recentes.length
+                ? `Não repita nem faça variação destas perguntas já feitas a esta pessoa: ${recentes
+                    .map((r) => `"${r.pergunta}"`)
+                    .join("; ")}.`
+                : ""),
+          },
+        ],
+        { temperatura: 0.8 }
+      );
+      const ok =
+        Array.isArray(candidato.opcoes) &&
+        candidato.opcoes.length === 4 &&
+        typeof candidato.resposta_correta === "number" &&
+        candidato.resposta_correta >= 0 &&
+        candidato.resposta_correta <= 3 &&
+        typeof candidato.pergunta === "string" &&
+        !jaFeitas.has(candidato.pergunta);
+      if (ok && (await respostaConfere(candidato))) dados = candidato;
+    }
+    if (!dados) throw new Error("Não consegui gerar uma pergunta confiável agora. Tente de novo.");
 
     if (!Array.isArray(dados.opcoes) || dados.opcoes.length !== 4 || typeof dados.resposta_correta !== "number") {
       throw new Error("Formato inesperado da IA.");
