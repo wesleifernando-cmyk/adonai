@@ -124,15 +124,6 @@ export function QuizPage() {
         lead="Perguntas geradas na hora, começando fácil e ficando mais difíceis conforme você acerta."
       />
 
-      {isAdmin && (
-        <label className={styles.adminRespostas}>
-          <input type="checkbox" checked={mostrarRespostas} onChange={alternarRespostas} />
-          <span>
-            <strong>Modo admin:</strong> mostrar as respostas certas
-          </span>
-        </label>
-      )}
-
       <div className={styles.placar}>
         <div className={styles.stat}>
           <p className={styles.statNum}>{minhaPontuacao.perguntas_corretas + 1}</p>
@@ -149,6 +140,12 @@ export function QuizPage() {
       </button>
 
       {erro && <p className={styles.erro}>{erro}</p>}
+
+      {isAdmin && (
+        <button type="button" className={styles.dicaAdmin} onClick={alternarRespostas} aria-pressed={mostrarRespostas}>
+          {mostrarRespostas ? "esconder resposta" : "mostrar resposta"}
+        </button>
+      )}
 
       <div className={styles.cartao}>
         {carregando && !pergunta && <p>Preparando sua pergunta…</p>}
