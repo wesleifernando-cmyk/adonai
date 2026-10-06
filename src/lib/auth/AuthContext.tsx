@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { apiFetch, guardarToken, limparToken, pegarToken } from "../api";
+import { ApiError, apiFetch, guardarToken, limparToken, pegarToken } from "../api";
 
 type Usuario = {
   id: number;
@@ -8,6 +8,7 @@ type Usuario = {
   admin?: boolean;
   foto_url?: string | null;
   idade?: number | null;
+  telefone?: string | null;
 };
 
 export type Acesso = {
@@ -27,7 +28,7 @@ type AuthState = {
   isAdmin: boolean;
   carregando: boolean;
   entrar: (email: string, senha: string) => Promise<void>;
-  cadastrar: (nome: string, email: string, senha: string) => Promise<void>;
+  cadastrar: (nome: string, email: string, senha: string, telefone: string) => Promise<void>;
   entrarComFacebook: (code: string) => Promise<void>;
   sair: () => void;
   recarregar: () => Promise<void>;
@@ -50,12 +51,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
     try {
-      const dados = await apiFetch<{ usuario: Usuario; assinaturaAtiva: boolean; acesso?: Acesso }>("/auth/eu");
+      let dados: { usuario: Usuario; assinaturaAtiva: boolean; acesso?: Acesso };
+      try {
+        dados = await apiFetch("/auth/eu");
+      } catch (err) {
+        // Servidor fora do ar por um instante (rede ou erro 5xx): tenta mais uma vez
+        // antes de desistir, pra não deslogar ninguém à toa.
+        if (err instanceof ApiError && err.status >= 400 && err.status < 500) throw err;
+        await new Promise((r) => setTimeout(r, 2000));
+        dados = await apiFetch("/auth/eu");
+      }
       setUsuario(dados.usuario);
       setAssinaturaAtiva(dados.assinaturaAtiva);
       setAcesso(dados.acesso ?? null);
-    } catch {
-      limparToken();
+    } catch (err) {
+      // Só apaga a sessão quando o servidor realmente recusa (token inválido,
+      // conta bloqueada). Falha de rede/servidor mantém o login guardado.
+      if (err instanceof ApiError && err.status >= 400 && err.status < 500) limparToken();
       setUsuario(null);
       setAssinaturaAtiva(false);
       setAcesso(null);
@@ -79,10 +91,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await recarregar();
   }
 
-  async function cadastrar(nome: string, email: string, senha: string) {
+  async function cadastrar(nome: string, email: string, senha: string, telefone: string) {
     const dados = await apiFetch<{ token: string; usuario: Usuario }>("/auth/cadastro", {
       method: "POST",
-      body: JSON.stringify({ nome, email, senha }),
+      body: JSON.stringify({ nome, email, senha, telefone }),
     });
     guardarToken(dados.token);
     setUsuario(dados.usuario);

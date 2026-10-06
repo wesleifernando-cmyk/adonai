@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { urlLoginFacebook } from "../../lib/auth/facebook";
+import { mascaraTelefone, telefoneValido } from "../../lib/telefone";
 import styles from "./AuthForm.module.css";
 
 export function CadastroPage() {
@@ -13,6 +14,7 @@ export function CadastroPage() {
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
@@ -20,9 +22,13 @@ export function CadastroPage() {
   async function aoEnviar(e: React.FormEvent) {
     e.preventDefault();
     setErro(null);
+    if (!telefoneValido(telefone)) {
+      setErro("Informe seu telefone com DDD, por exemplo: (11) 91234-5678.");
+      return;
+    }
     setEnviando(true);
     try {
-      await cadastrar(nome, email, senha);
+      await cadastrar(nome, email, senha, telefone);
       navigate("/assinar", { state: { de: destino }, replace: true });
     } catch (err) {
       setErro(err instanceof Error ? err.message : "Erro ao criar conta.");
@@ -43,6 +49,19 @@ export function CadastroPage() {
         <div className={styles.campo}>
           <label htmlFor="email">E-mail</label>
           <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+        <div className={styles.campo}>
+          <label htmlFor="telefone">Telefone (WhatsApp)</label>
+          <input
+            id="telefone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            placeholder="(11) 91234-5678"
+            value={telefone}
+            onChange={(e) => setTelefone(mascaraTelefone(e.target.value))}
+          />
         </div>
         <div className={styles.campo}>
           <label htmlFor="senha">Senha</label>

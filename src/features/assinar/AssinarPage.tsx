@@ -5,6 +5,7 @@ import { PageHeader } from "../../components/ui/PageHeader";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { apiFetch } from "../../lib/api";
 import { dataCurta } from "../../lib/dates";
+import { mascaraTelefone, telefoneValido } from "../../lib/telefone";
 import styles from "./AssinarPage.module.css";
 
 export function AssinarPage() {
@@ -16,6 +17,27 @@ export function AssinarPage() {
   const [carregando, setCarregando] = useState(false);
   const [verificando, setVerificando] = useState(false);
   const retorno = new URLSearchParams(location.search).get("retorno");
+  const [telefone, setTelefone] = useState("");
+  const [salvandoTelefone, setSalvandoTelefone] = useState(false);
+  const faltaTelefone = Boolean(usuario) && !usuario?.telefone;
+
+  async function salvarTelefone(e: React.FormEvent) {
+    e.preventDefault();
+    setErro(null);
+    if (!telefoneValido(telefone)) {
+      setErro("Informe seu telefone com DDD, por exemplo: (11) 91234-5678.");
+      return;
+    }
+    setSalvandoTelefone(true);
+    try {
+      await apiFetch("/auth/perfil", { method: "PATCH", body: JSON.stringify({ telefone }) });
+      await recarregar();
+    } catch (err) {
+      setErro(err instanceof Error ? err.message : "Erro ao salvar o telefone.");
+    } finally {
+      setSalvandoTelefone(false);
+    }
+  }
 
   // Voltou do Mercado Pago: confere na hora se o pagamento já caiu.
   useEffect(() => {
@@ -96,10 +118,34 @@ export function AssinarPage() {
       )}
       {retorno === "falhou" && <p className={styles.erro}>O pagamento não foi concluído. Tente de novo.</p>}
 
-      <p className={styles.preco}>
+      {faltaTelefone && (
+        <form className={styles.card} style={{ marginBottom: 16 }} onSubmit={salvarTelefone}>
+          {erro && <p className={styles.erro}>{erro}</p>}
+          <p className={styles.opcaoTitulo}>Falta só o seu WhatsApp</p>
+          <p className={styles.opcaoTexto}>
+            Usamos para avisar do acesso e tirar dúvidas. Não enviamos spam.
+          </p>
+          <input
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            placeholder="(11) 91234-5678"
+            value={telefone}
+            onChange={(e) => setTelefone(mascaraTelefone(e.target.value))}
+            className={styles.campoTelefone}
+          />
+          <button className={styles.botao} type="submit" disabled={salvandoTelefone}>
+            {salvandoTelefone ? "Salvando…" : "Continuar"}
+          </button>
+        </form>
+      )}
+
+      <p className={styles.preco} style={faltaTelefone ? { display: "none" } : undefined}>
         R$ 5,99<span className={styles.precoPeriodo}>/mês</span>
       </p>
 
+      {!faltaTelefone && (<>
       <div className={styles.card}>
         {erro && <p className={styles.erro}>{erro}</p>}
         <p className={styles.opcaoTitulo}>Pix, crédito ou débito</p>
@@ -120,6 +166,7 @@ export function AssinarPage() {
       <button className={styles.secundario} onClick={jaPaguei} disabled={verificando} style={{ marginTop: 16 }}>
         {verificando ? "Verificando…" : "Já paguei, verificar"}
       </button>
+      </>)}
       <p className={styles.nota}>
         Pagou o Pix direto para a administração? Mande o comprovante com o seu e-mail de cadastro que o acesso é liberado.
       </p>

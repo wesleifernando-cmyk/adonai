@@ -158,3 +158,16 @@
   line-height: 1.5;
 }
 .prazoAlerta { color: var(--err); font-weight: 700; }
+
+.whats {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: var(--step--1);
+  font-weight: 700;
+  color: #4bbf7b;
+}
+.semTel {
+  margin-top: 4px;
+  font-size: var(--step--1);
+  color: var(--text-mute);
+}

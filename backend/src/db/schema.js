@@ -8,4 +8,6 @@ import { query } from "./pool.js";
 export async function garantirSchema() {
   await query(`ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS valido_ate TIMESTAMPTZ`);
   await query(`ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS origem VARCHAR(20)`);
+  // Telefone (WhatsApp) do usuário, só números com 55 na frente — pra contato/remarketing.
+  await query(`ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS telefone VARCHAR(20)`);
 }

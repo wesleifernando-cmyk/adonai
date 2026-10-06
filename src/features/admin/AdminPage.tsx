@@ -3,12 +3,14 @@ import { PageHeader } from "../../components/ui/PageHeader";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { dataCurta, textoDiasRestantes } from "../../lib/dates";
+import { linkWhatsApp, telefoneBonito } from "../../lib/telefone";
 import styles from "./AdminPage.module.css";
 
 type UsuarioAdmin = {
   id: number;
   nome: string;
   email: string;
+  telefone: string | null;
   admin: boolean;
   bloqueado: boolean;
   assinatura_ativa: boolean;
@@ -20,6 +22,34 @@ type UsuarioAdmin = {
   ultimo_pagamento_em: string | null;
   criado_em: string;
 };
+
+const SITE = "https://adonai-site.vercel.app/assinar";
+
+/** Mensagem de WhatsApp pronta, de acordo com a situação da pessoa. */
+function mensagemWhatsApp(u: UsuarioAdmin): string {
+  const nome = u.nome.trim().split(/\s+/)[0];
+  if (u.acesso_tipo === "avulso" && (u.dias_restantes ?? 99) <= 5) {
+    return (
+      `Oi, ${nome}! Aqui é da Missão Adonai 🙏 Seu acesso ao app vence ${
+        (u.dias_restantes ?? 0) <= 0 ? "hoje" : `em ${u.dias_restantes} dia${u.dias_restantes === 1 ? "" : "s"}`
+      }. Para continuar com a Bíblia, o Rosário, o quiz e as pregações é só renovar, são R$ 5,99 por mais 30 dias (Pix, crédito ou débito): ${SITE}`
+    );
+  }
+  if (!u.acesso_tipo && u.venceu_em) {
+    return (
+      `Oi, ${nome}! Aqui é da Missão Adonai 🙏 Seu acesso ao app venceu em ${dataCurta(u.venceu_em)}. ` +
+      `Quer renovar? São R$ 5,99 por mais 30 dias, no Pix, crédito ou débito, e você volta a ter tudo: Bíblia, Catecismo, Rosário, livros, quiz com ranking e as pregações. ${SITE}`
+    );
+  }
+  if (!u.acesso_tipo) {
+    return (
+      `Oi, ${nome}! Aqui é da Missão Adonai 🙏 Vi que você criou sua conta no app, mas seu acesso ainda não foi liberado. ` +
+      `O que falta para a gente fechar? São só R$ 5,99 por mês (Pix, crédito ou débito) e você libera Bíblia, Catecismo, Rosário, livros em PDF, pregações, o Católico Responde e o quiz com ranking, que já tem gente disputando 👀. ` +
+      `Se tiver qualquer dúvida, é só responder aqui. Para liberar: ${SITE}`
+    );
+  }
+  return `Oi, ${nome}! Aqui é da Missão Adonai 🙏`;
+}
 
 const ROTULO_STATUS: Record<string, string> = {
   authorized: "assinatura ativa",
@@ -34,7 +64,7 @@ export function AdminPage() {
   const [erro, setErro] = useState<string | null>(null);
   const [emAcao, setEmAcao] = useState<number | null>(null);
   const [busca, setBusca] = useState("");
-  const [filtro, setFiltro] = useState<"todos" | "vencendo" | "sem">("todos");
+  const [filtro, setFiltro] = useState<"todos" | "vencendo" | "sem" | "semtel">("todos");
 
   async function carregar() {
     try {
@@ -86,11 +116,20 @@ export function AdminPage() {
   const total = usuarios.length;
   const pagando = usuarios.filter((u) => u.assinatura_ativa).length;
   const semPagar = total - pagando;
+  const semTelefone = usuarios.filter((u) => !u.telefone).length;
   const vencendo = usuarios.filter((u) => u.acesso_tipo === "avulso" && (u.dias_restantes ?? 99) <= 5).length;
 
   const termo = busca.trim().toLowerCase();
   const visiveis = usuarios.filter((u) => {
-    if (termo && !u.nome.toLowerCase().includes(termo) && !u.email.toLowerCase().includes(termo)) return false;
+    const digitos = termo.replace(/\D/g, "");
+    if (
+      termo &&
+      !u.nome.toLowerCase().includes(termo) &&
+      !u.email.toLowerCase().includes(termo) &&
+      !(digitos.length >= 3 && (u.telefone ?? "").includes(digitos))
+    )
+      return false;
+    if (filtro === "semtel") return !u.telefone;
     if (filtro === "vencendo") return u.acesso_tipo === "avulso" && (u.dias_restantes ?? 99) <= 5;
     if (filtro === "sem") return !u.assinatura_ativa;
     return true;
@@ -120,7 +159,7 @@ export function AdminPage() {
       <input
         type="search"
         className={styles.busca}
-        placeholder="Buscar por e-mail ou nome…"
+        placeholder="Buscar por e-mail, nome ou telefone…"
         value={busca}
         onChange={(e) => setBusca(e.target.value)}
         autoCapitalize="none"
@@ -131,6 +170,7 @@ export function AdminPage() {
           ["todos", `Todos (${total})`],
           ["sem", `Sem acesso (${semPagar})`],
           ["vencendo", `Vencendo em 5 dias (${vencendo})`],
+          ["semtel", `Sem telefone (${semTelefone})`],
         ] as const).map(([chave, rotulo]) => (
           <button
             key={chave}
@@ -150,6 +190,18 @@ export function AdminPage() {
               <div>
                 <p className={styles.nome}>{u.nome}</p>
                 <p className={styles.email}>{u.email}</p>
+                {u.telefone ? (
+                  <a
+                    className={styles.whats}
+                    href={linkWhatsApp(u.telefone, mensagemWhatsApp(u))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    💬 {telefoneBonito(u.telefone)} · chamar no WhatsApp
+                  </a>
+                ) : (
+                  <p className={styles.semTel}>sem telefone</p>
+                )}
               </div>
               <div className={styles.selos}>
                 {u.admin && <span className={`${styles.selo} ${styles.seloAdmin}`}>admin</span>}

@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { query } from "../db/pool.js";
 import { acessoDe } from "../services/assinatura.js";
+import { normalizarTelefone } from "../services/telefone.js";
 
 const router = Router();
 
@@ -53,6 +54,10 @@ router.post("/cadastro", async (req, res) => {
     if (!nome || !email || !email.includes("@") || !senha || senha.length < 6) {
       return res.status(400).json({ erro: "Preencha nome, e-mail válido e senha com 6+ caracteres." });
     }
+    const telefone = normalizarTelefone(req.body.telefone);
+    if (!telefone) {
+      return res.status(400).json({ erro: "Informe seu telefone com DDD (ex.: 11 91234-5678)." });
+    }
 
     const [existente] = await query(`SELECT id FROM usuarios WHERE email = $1`, [email]);
     if (existente) {
@@ -61,8 +66,8 @@ router.post("/cadastro", async (req, res) => {
 
     const senhaHash = await bcrypt.hash(senha, 10);
     const [usuario] = await query(
-      `INSERT INTO usuarios (nome, email, senha_hash) VALUES ($1, $2, $3) RETURNING id, nome, email`,
-      [nome, email, senhaHash]
+      `INSERT INTO usuarios (nome, email, senha_hash, telefone) VALUES ($1, $2, $3, $4) RETURNING id, nome, email, telefone`,
+      [nome, email, senhaHash, telefone]
     );
     await query(`INSERT INTO quiz_pontuacoes (usuario_id) VALUES ($1)`, [usuario.id]);
 
@@ -105,7 +110,7 @@ router.post("/login", async (req, res) => {
 router.get("/eu", exigirLogin, async (req, res) => {
   try {
     const [usuario] = await query(
-      `SELECT id, nome, email, admin, bloqueado, foto_url, idade FROM usuarios WHERE id = $1`,
+      `SELECT id, nome, email, admin, bloqueado, foto_url, idade, telefone FROM usuarios WHERE id = $1`,
       [req.usuario.id]
     );
     if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });
@@ -126,6 +131,11 @@ router.get("/eu", exigirLogin, async (req, res) => {
 router.patch("/perfil", exigirLogin, async (req, res) => {
   try {
     const { nome, idade, fotoBase64 } = req.body;
+    let telefone = null;
+    if (req.body.telefone !== undefined && req.body.telefone !== "") {
+      telefone = normalizarTelefone(req.body.telefone);
+      if (!telefone) return res.status(400).json({ erro: "Telefone inválido. Use DDD + número (ex.: 11 91234-5678)." });
+    }
 
     if (idade !== undefined && idade !== null) {
       const idadeNum = Number(idade);
@@ -144,10 +154,11 @@ router.patch("/perfil", exigirLogin, async (req, res) => {
       `UPDATE usuarios SET
          nome = COALESCE(NULLIF($1, ''), nome),
          idade = COALESCE($2, idade),
-         foto_url = COALESCE($3, foto_url)
+         foto_url = COALESCE($3, foto_url),
+         telefone = COALESCE($5, telefone)
        WHERE id = $4
-       RETURNING id, nome, email, admin, bloqueado, foto_url, idade`,
-      [nome?.trim(), idade ?? null, fotoBase64 ?? null, req.usuario.id]
+       RETURNING id, nome, email, admin, bloqueado, foto_url, idade, telefone`,
+      [nome?.trim(), idade ?? null, fotoBase64 ?? null, req.usuario.id, telefone]
     );
 
     res.json({ usuario });

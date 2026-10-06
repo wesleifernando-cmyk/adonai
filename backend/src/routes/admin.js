@@ -16,7 +16,7 @@ router.get("/usuarios", exigirAdmin, async (req, res) => {
   try {
     const usuarios = await query(`
       SELECT
-        u.id, u.nome, u.email, u.admin, u.bloqueado, u.criado_em,
+        u.id, u.nome, u.email, u.telefone, u.admin, u.bloqueado, u.criado_em,
         EXISTS (
           SELECT 1 FROM pagamentos p
           WHERE p.email = u.email AND p.status = 'aprovado' AND p.valido_ate IS NULL

@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { apiFetch } from "../../lib/api";
+import { mascaraTelefone, telefoneBonito, telefoneValido } from "../../lib/telefone";
 import styles from "./PerfilPage.module.css";
 
 const TAMANHO_MAX = 256;
@@ -36,6 +37,7 @@ export function PerfilPage() {
 
   const [nome, setNome] = useState(usuario?.nome || "");
   const [idade, setIdade] = useState(usuario?.idade ? String(usuario.idade) : "");
+  const [telefone, setTelefone] = useState(usuario?.telefone ? telefoneBonito(usuario.telefone) : "");
   const [fotoBase64, setFotoBase64] = useState<string | null>(null);
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
@@ -57,6 +59,10 @@ export function PerfilPage() {
     e.preventDefault();
     setErro(null);
     setOk(false);
+    if (!telefoneValido(telefone)) {
+      setErro("Informe seu telefone com DDD, por exemplo: (11) 91234-5678.");
+      return;
+    }
     setSalvando(true);
     try {
       await apiFetch("/auth/perfil", {
@@ -64,6 +70,7 @@ export function PerfilPage() {
         body: JSON.stringify({
           nome,
           idade: idade ? Number(idade) : null,
+          telefone,
           fotoBase64,
         }),
       });
@@ -108,6 +115,19 @@ export function PerfilPage() {
         <div className={styles.campo}>
           <label htmlFor="nome">Nome</label>
           <input id="nome" type="text" required value={nome} onChange={(e) => setNome(e.target.value)} />
+        </div>
+        <div className={styles.campo}>
+          <label htmlFor="telefone">Telefone (WhatsApp)</label>
+          <input
+            id="telefone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            placeholder="(11) 91234-5678"
+            value={telefone}
+            onChange={(e) => setTelefone(mascaraTelefone(e.target.value))}
+          />
         </div>
         <div className={styles.campo}>
           <label htmlFor="idade">Idade</label>

@@ -92,6 +92,7 @@ async function migrar() {
 
     ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS valido_ate TIMESTAMPTZ;
     ALTER TABLE pagamentos ADD COLUMN IF NOT EXISTS origem VARCHAR(20);
+    ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS telefone VARCHAR(20);
   `);
   console.log(
     "Migração concluída: tabelas 'pagamentos', 'usuarios', 'quiz_pontuacoes', 'quiz_perguntas', " +
