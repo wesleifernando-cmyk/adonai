@@ -252,3 +252,8 @@ Progresso desta pesquisa (29/09/2026): baixados e confirmados de verdade — Gau
 Exsultate, Dilexit Nos e A Imitação de Cristo (Tomás de Kempis, Internet Archive, 428 pág.).
 Deus Caritas Est veio quebrado na fonte oficial (1 página em branco) — mantido como link
 "Ler online" em vez de PDF falso.
+
+## Apps nas lojas (Google Play + App Store) — adiado pelo Weslei em 2026-10-21 ("por enquanto, deixa quieto")
+- Plano: embalar o site com Capacitor (Android + iOS); contas Google Play (~US$ 25) e Apple Developer (~US$ 99/ano) abertas pelo Weslei.
+- Decisão pendente: cobrança dentro do app (assinatura pela loja vs. só pelo site) e qual loja primeiro (recomendado: Google Play).
+- Lojas exigem política de privacidade e exclusão de conta pelo próprio usuário.
