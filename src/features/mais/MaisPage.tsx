@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
+import { ShareButton } from "../../components/ui/ShareButton";
 import { LEMA_PRINCIPAL, LEMA_FOGO } from "../../content/lemas";
 import { dataCurta } from "../../lib/dates";
 import { useAuth } from "../../lib/auth/AuthContext";
@@ -133,6 +134,17 @@ export function MaisPage() {
             </li>
           )}
         </ul>
+      </section>
+
+      <section className={styles.grupo}>
+        <h2 className={styles.grupoTitulo}>Compartilhar</h2>
+        <ShareButton
+          variante="fogo"
+          titulo="Missão Adonai"
+          texto="Conheça o app da Missão Adonai: Evangelho do dia, Rosário, Bíblia, santos e muito mais. Eu tenho para onde voltar."
+        >
+          Compartilhar o app
+        </ShareButton>
       </section>
 
       {grupos.map((g) => (

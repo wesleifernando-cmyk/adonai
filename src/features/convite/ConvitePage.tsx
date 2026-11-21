@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/ui/PageHeader";
+import { ShareButton } from "../../components/ui/ShareButton";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { mascaraTelefone, telefoneValido } from "../../lib/telefone";
@@ -89,6 +90,16 @@ export function ConvitePage() {
         alt="Que Nasça em Nós, Luau Especial de Natal. Save the date: 20 de dezembro."
         className={styles.arte}
       />
+
+      <div style={{ marginBottom: 16 }}>
+        <ShareButton
+          url={`${window.location.origin}/convite`}
+          titulo="Que Nasça em Nós · Luau Especial de Natal"
+          texto="Que Nasça em Nós, Luau Especial de Natal da Missão Adonai, 20 de dezembro. Último grupo do ano, fim da novena de Natal, com participação especial do Sacrário. Compre seu convite:"
+        >
+          Compartilhar este convite
+        </ShareButton>
+      </div>
 
       {info && (
         <div className={styles.evento}>

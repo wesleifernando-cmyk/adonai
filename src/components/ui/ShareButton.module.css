@@ -1,0 +1,22 @@
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid rgba(242, 176, 30, 0.35);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.fogo {
+  color: #fff;
+  border: none;
+  background: linear-gradient(180deg, #e8481c, #b8300f);
+}
+.aviso { margin: 8px 0 0; text-align: center; color: var(--ember); font-size: 0.9rem; }

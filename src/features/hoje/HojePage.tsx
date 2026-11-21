@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BrandLogo } from "../../components/ui/Brand";
+import { ShareButton } from "../../components/ui/ShareButton";
 import { ChurchMark } from "../../components/ui/ChurchMark";
 import { LemaFogo } from "../../components/ui/LemaFogo";
 import { IntroMusica } from "../../components/ui/IntroMusica";
@@ -142,6 +143,14 @@ export function HojePage() {
           <h3 className={styles.miniTitle}>Louvor católico</h3>
         </Link>
       </div>
+
+      <ShareButton
+        variante="fogo"
+        titulo="Missão Adonai"
+        texto="Conheça o app da Missão Adonai: Evangelho do dia, Rosário, Bíblia, santos e muito mais. Eu tenho para onde voltar."
+      >
+        Compartilhar o app com a galera
+      </ShareButton>
 
       <Link to="/ajude" className={`${styles.card} ${styles.cardHelp}`}>
         <p className="eyebrow">Ajude-nos</p>
