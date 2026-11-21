@@ -59,7 +59,8 @@ export function exigirPortaria(req, res, next) {
 
 router.post("/cadastro", async (req, res) => {
   try {
-    const { nome, email, senha } = req.body;
+    const { nome, senha } = req.body;
+    const email = String(req.body.email ?? "").trim();
     if (!nome || !email || !email.includes("@") || !senha || senha.length < 6) {
       return res.status(400).json({ erro: "Preencha nome, e-mail válido e senha com 6+ caracteres." });
     }
@@ -68,7 +69,7 @@ router.post("/cadastro", async (req, res) => {
       return res.status(400).json({ erro: "Informe seu telefone com DDD (ex.: 11 91234-5678)." });
     }
 
-    const [existente] = await query(`SELECT id FROM usuarios WHERE email = $1`, [email]);
+    const [existente] = await query(`SELECT id FROM usuarios WHERE lower(email) = lower($1)`, [String(email).trim()]);
     if (existente) {
       return res.status(409).json({ erro: "Já existe uma conta com esse e-mail." });
     }
@@ -95,8 +96,8 @@ router.post("/login", async (req, res) => {
     }
 
     const [usuario] = await query(
-      `SELECT id, nome, email, senha_hash, bloqueado FROM usuarios WHERE email = $1`,
-      [email]
+      `SELECT id, nome, email, senha_hash, bloqueado FROM usuarios WHERE lower(email) = lower($1) ORDER BY id LIMIT 1`,
+      [String(email).trim()]
     );
     if (!usuario || !(await bcrypt.compare(senha, usuario.senha_hash))) {
       return res.status(401).json({ erro: "E-mail ou senha incorretos." });
