@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BrandLogo, BrandMark } from "../../components/ui/Brand";
+import { BrandLogo } from "../../components/ui/Brand";
 import { ChurchMark } from "../../components/ui/ChurchMark";
 import { LemaFogo } from "../../components/ui/LemaFogo";
 import { IntroMusica } from "../../components/ui/IntroMusica";
@@ -98,19 +98,21 @@ export function HojePage() {
       </section>
 
       <Link to="/convite" className={styles.destaque}>
+        <div className={styles.eventoLogo}>
+          <BrandLogo width={230} />
+        </div>
         <img
           src="/evento/que-nasca-em-nos.jpg"
           alt="Que Nasça em Nós, Luau Especial de Natal. 20 de dezembro."
           className={styles.destaqueImg}
         />
         <div className={styles.destaqueTexto}>
-          <div className={styles.eventoTopo}>
-            <BrandMark size={34} />
-            <p className="eyebrow">Missão Adonai · 20 de dezembro</p>
-          </div>
+          <p className="eyebrow">Evento · 20 de dezembro</p>
           <h3 className={styles.destaqueTitulo}>Que Nasça em Nós</h3>
-          <p className={styles.miniText}>Luau especial de Natal. Garanta o seu lugar.</p>
-          <span className={styles.botaoIngresso}>Comprar ingresso</span>
+          <p className={styles.miniText}>
+            Último grupo do ano, fim da novena de Natal, com participação especial do Sacrário.
+          </p>
+          <span className={styles.botaoIngresso}>Comprar convite · R$ 15</span>
         </div>
       </Link>
 

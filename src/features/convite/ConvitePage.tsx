@@ -72,7 +72,11 @@ export function ConvitePage() {
 
   return (
     <div>
-      <PageHeader eyebrow="Convite" title="Garanta o seu lugar" lead="Pague e receba o QR Code do convite no e-mail e na tela." />
+      <PageHeader
+        eyebrow="Convite"
+        title="Comprar convite"
+        lead={`${reais(info?.precoCentavos ?? 1500)} por convite. Escolha quantos quiser, pague e receba os QR Codes no seu e-mail.`}
+      />
 
       {podeConferir && (
         <Link to="/convite/conferir" className={styles.conferir}>
@@ -138,12 +142,24 @@ export function ConvitePage() {
           </div>
 
           <div className={styles.campo}>
-            <label>Quantos convites?</label>
+            <label>Quantos convites você quer? (até {max})</label>
             <div className={styles.qtd}>
               <button type="button" className={styles.qtdBotao} disabled={quantidade <= 1} onClick={() => setQuantidade(quantidade - 1)} aria-label="Menos um">
                 −
               </button>
-              <span className={styles.qtdNum}>{quantidade}</span>
+              <input
+                className={styles.qtdNum}
+                type="number"
+                inputMode="numeric"
+                min={1}
+                max={max}
+                aria-label="Quantidade de convites"
+                value={quantidade}
+                onChange={(e) => {
+                  const n = Math.floor(Number(e.target.value));
+                  if (Number.isFinite(n)) setQuantidade(Math.min(max, Math.max(1, n)));
+                }}
+              />
               <button type="button" className={styles.qtdBotao} disabled={quantidade >= max} onClick={() => setQuantidade(quantidade + 1)} aria-label="Mais um">
                 +
               </button>

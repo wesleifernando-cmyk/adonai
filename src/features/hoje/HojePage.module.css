@@ -209,3 +209,5 @@
   background: linear-gradient(180deg, #e8481c, #b8300f);
   border-radius: var(--radius);
 }
+
+.eventoLogo { display: flex; justify-content: center; padding: 22px 16px 14px; background: #000; }

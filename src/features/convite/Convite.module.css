@@ -136,3 +136,13 @@
   border-radius: var(--radius);
   text-decoration: none;
 }
+input.qtdNum {
+  width: 4.5ch;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+input.qtdNum::-webkit-outer-spin-button, input.qtdNum::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
