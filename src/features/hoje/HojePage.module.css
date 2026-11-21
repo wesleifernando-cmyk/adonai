@@ -211,3 +211,6 @@
 }
 
 .eventoLogo { display: flex; justify-content: center; padding: 22px 16px 14px; background: #000; }
+
+.eventoLink { display: block; color: inherit; text-decoration: none; }
+.eventoCompartilhar { display: flex; justify-content: center; padding: 0 18px 16px; }

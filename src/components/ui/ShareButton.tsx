@@ -7,7 +7,7 @@ type Props = {
   titulo: string;
   texto: string;
   children: React.ReactNode;
-  variante?: "fogo" | "suave";
+  variante?: "fogo" | "suave" | "pequeno";
 };
 
 /**
@@ -43,7 +43,7 @@ export function ShareButton({ url, titulo, texto, children, variante = "suave" }
 
   return (
     <div>
-      <button type="button" onClick={compartilhar} className={`${styles.botao} ${variante === "fogo" ? styles.fogo : ""}`}>
+      <button type="button" onClick={compartilhar} className={`${styles.botao} ${variante === "fogo" ? styles.fogo : ""} ${variante === "pequeno" ? styles.pequeno : ""}`}>
         <span aria-hidden="true">↗</span> {children}
       </button>
       {aviso && <p className={styles.aviso} role="status">{aviso}</p>}

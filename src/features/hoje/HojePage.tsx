@@ -98,24 +98,36 @@ export function HojePage() {
         </div>
       </section>
 
-      <Link to="/convite" className={styles.destaque}>
-        <div className={styles.eventoLogo}>
-          <BrandLogo width={230} />
+      <div className={styles.destaque}>
+        <Link to="/convite" className={styles.eventoLink}>
+          <div className={styles.eventoLogo}>
+            <BrandLogo width={230} />
+          </div>
+          <img
+            src="/evento/que-nasca-em-nos.jpg"
+            alt="Que Nasça em Nós, Luau Especial de Natal. 20 de dezembro."
+            className={styles.destaqueImg}
+          />
+          <div className={styles.destaqueTexto}>
+            <p className="eyebrow">Evento · 20 de dezembro</p>
+            <h3 className={styles.destaqueTitulo}>Que Nasça em Nós</h3>
+            <p className={styles.miniText}>
+              Último grupo do ano, fim da novena de Natal, com participação especial do Sacrário.
+            </p>
+            <span className={styles.botaoIngresso}>Comprar convite · R$ 15</span>
+          </div>
+        </Link>
+        <div className={styles.eventoCompartilhar}>
+          <ShareButton
+            variante="pequeno"
+            url={`${window.location.origin}/convite`}
+            titulo="Que Nasça em Nós · Luau Especial de Natal"
+            texto="Que Nasça em Nós, Luau Especial de Natal da Missão Adonai, 20 de dezembro. Último grupo do ano, fim da novena de Natal, com participação especial do Sacrário. Compre seu convite:"
+          >
+            Compartilhar
+          </ShareButton>
         </div>
-        <img
-          src="/evento/que-nasca-em-nos.jpg"
-          alt="Que Nasça em Nós, Luau Especial de Natal. 20 de dezembro."
-          className={styles.destaqueImg}
-        />
-        <div className={styles.destaqueTexto}>
-          <p className="eyebrow">Evento · 20 de dezembro</p>
-          <h3 className={styles.destaqueTitulo}>Que Nasça em Nós</h3>
-          <p className={styles.miniText}>
-            Último grupo do ano, fim da novena de Natal, com participação especial do Sacrário.
-          </p>
-          <span className={styles.botaoIngresso}>Comprar convite · R$ 15</span>
-        </div>
-      </Link>
+      </div>
 
       <Link to="/comunidade/desperta" className={styles.destaque}>
         <img src={capaDesperta.src} alt="Desperta, 8ª edição" className={styles.destaqueImg} />
