@@ -6,6 +6,7 @@ type Usuario = {
   nome: string;
   email: string;
   admin?: boolean;
+  pode_conferir?: boolean;
   foto_url?: string | null;
   idade?: number | null;
   telefone?: string | null;
@@ -26,6 +27,8 @@ type AuthState = {
   assinaturaAtiva: boolean;
   acesso: Acesso | null;
   isAdmin: boolean;
+  /** liberado pelo admin para conferir ingressos (portaria do evento) */
+  podeConferir: boolean;
   carregando: boolean;
   entrar: (email: string, senha: string) => Promise<void>;
   cadastrar: (nome: string, email: string, senha: string, telefone: string) => Promise<void>;
@@ -125,6 +128,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         assinaturaAtiva,
         acesso,
         isAdmin: Boolean(usuario?.admin),
+        podeConferir: Boolean(usuario?.pode_conferir),
         carregando,
         entrar,
         cadastrar,

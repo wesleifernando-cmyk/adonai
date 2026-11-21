@@ -257,3 +257,9 @@ Deus Caritas Est veio quebrado na fonte oficial (1 página em branco) — mantid
 - Plano: embalar o site com Capacitor (Android + iOS); contas Google Play (~US$ 25) e Apple Developer (~US$ 99/ano) abertas pelo Weslei.
 - Decisão pendente: cobrança dentro do app (assinatura pela loja vs. só pelo site) e qual loja primeiro (recomendado: Google Play).
 - Lojas exigem política de privacidade e exclusão de conta pelo próprio usuário.
+
+## Convites do evento (R$ 15, QR de uso único) — construído e testado local em 2026-11-21, NÃO publicado
+- Compra pública em /convite (sem login), pagamento Mercado Pago (Pix/crédito/débito), página do convite /convite/:token com QR, e-mail via Resend, portaria por câmera em /convite/conferir (só usuários liberados pelo admin em Administração → "Liberar: conferir ingresso").
+- Backend: routes/convites.js, services/convites.js, services/email.js, config/evento.js (variáveis EVENTO_*, RESEND_API_KEY, EMAIL_FROM no Railway). Tabelas criadas sozinhas ao subir o servidor.
+- Falta: dados reais do evento, chave do Resend + domínio de envio, publicar (Vercel + Railway) quando o Weslei mandar.
+- WhatsApp automático (API oficial da Meta) não foi ligado: hoje há botão "Enviar para o meu WhatsApp" na página do convite.

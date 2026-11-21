@@ -18,7 +18,7 @@ router.get("/usuarios", exigirAdmin, async (req, res) => {
   try {
     const usuarios = await query(`
       SELECT
-        u.id, u.nome, u.email, u.telefone, u.admin, u.bloqueado, u.criado_em,
+        u.id, u.nome, u.email, u.telefone, u.admin, u.pode_conferir, u.bloqueado, u.criado_em,
         EXISTS (
           SELECT 1 FROM pagamentos p
           WHERE p.email = u.email AND p.status = 'aprovado' AND p.valido_ate IS NULL
@@ -122,6 +122,25 @@ router.post("/usuarios/:id/tornar-admin", exigirAdmin, async (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ erro: "Erro ao tornar administrador.", detalhe: err.message });
+  }
+});
+
+// Libera ou tira a permissão de conferir ingressos (ler QR) na portaria do evento.
+router.post("/usuarios/:id/liberar-portaria", exigirAdmin, async (req, res) => {
+  try {
+    await query(`UPDATE usuarios SET pode_conferir = true WHERE id = $1`, [req.params.id]);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao liberar a portaria.", detalhe: err.message });
+  }
+});
+
+router.post("/usuarios/:id/remover-portaria", exigirAdmin, async (req, res) => {
+  try {
+    await query(`UPDATE usuarios SET pode_conferir = false WHERE id = $1`, [req.params.id]);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao tirar a portaria.", detalhe: err.message });
   }
 });
 

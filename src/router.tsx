@@ -45,12 +45,16 @@ import { AparicaoPage } from "./features/rosario/AparicaoPage";
 import { MaisPage } from "./features/mais/MaisPage";
 import { RequireAcesso } from "./components/auth/RequireAcesso";
 import { RequireAdmin } from "./components/auth/RequireAdmin";
+import { RequirePortaria } from "./components/auth/RequirePortaria";
 import { EntrarPage } from "./features/auth/EntrarPage";
 import { CadastroPage } from "./features/auth/CadastroPage";
 import { AssinarPage } from "./features/assinar/AssinarPage";
 import { FacebookCallbackPage } from "./features/auth/FacebookCallbackPage";
 import { PerfilPage } from "./features/perfil/PerfilPage";
 import { GaleriaPage } from "./features/comunidade/GaleriaPage";
+import { ConvitePage } from "./features/convite/ConvitePage";
+import { ConviteIngressoPage } from "./features/convite/ConviteIngressoPage";
+import { PortariaPage } from "./features/convite/PortariaPage";
 
 export const router = createBrowserRouter([
   {
@@ -72,10 +76,18 @@ export const router = createBrowserRouter([
       { path: "cadastro", element: <CadastroPage /> },
       { path: "assinar", element: <AssinarPage /> },
       { path: "perfil", element: <PerfilPage /> },
+      { path: "convite", element: <ConvitePage /> },
+      { path: "convite/:token", element: <ConviteIngressoPage /> },
       { path: "auth/instagram/callback", element: <FacebookCallbackPage /> },
       {
         element: <RequireAdmin />,
-        children: [{ path: "admin", element: <AdminPage /> }],
+        children: [
+          { path: "admin", element: <AdminPage /> },
+        ],
+      },
+      {
+        element: <RequirePortaria />,
+        children: [{ path: "convite/conferir", element: <PortariaPage /> }],
       },
       {
         // Tudo de "Explorar a fé" pra baixo: precisa de login + assinatura ativa.

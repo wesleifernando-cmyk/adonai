@@ -194,3 +194,18 @@
   line-height: 1.15;
 }
 .cardGrande { padding: 22px 20px; }
+
+.eventoTopo { display: flex; align-items: center; gap: 10px; }
+.eventoTopo .eyebrow, .eventoTopo p { margin: 0; }
+.botaoIngresso {
+  display: block;
+  margin-top: 14px;
+  padding: 14px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(180deg, #e8481c, #b8300f);
+  border-radius: var(--radius);
+}

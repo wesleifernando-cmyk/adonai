@@ -47,7 +47,7 @@ const grupos: { titulo: string; itens: { to: string; label: string; nota?: strin
 ];
 
 export function MaisPage() {
-  const { usuario, assinaturaAtiva, acesso, isAdmin, sair } = useAuth();
+  const { usuario, assinaturaAtiva, acesso, isAdmin, podeConferir, sair } = useAuth();
 
   return (
     <div>
@@ -103,6 +103,32 @@ export function MaisPage() {
               <Link to="/entrar" className={styles.row}>
                 <span>Entrar ou criar conta</span>
                 <span aria-hidden="true">→</span>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </section>
+
+      <section className={styles.grupo}>
+        <h2 className={styles.grupoTitulo}>Evento · Que Nasça em Nós</h2>
+        <ul className={styles.lista}>
+          <li>
+            <Link to="/convite" className={styles.row}>
+              <span>Comprar ingresso</span>
+              <span className={styles.right}>
+                <em className={styles.nota}>20 de dezembro</em>
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+          </li>
+          {podeConferir && (
+            <li>
+              <Link to="/convite/conferir" className={styles.row}>
+                <span>Conferir ingresso</span>
+                <span className={styles.right}>
+                  <em className={styles.nota}>ler QR</em>
+                  <span aria-hidden="true">→</span>
+                </span>
               </Link>
             </li>
           )}

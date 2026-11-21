@@ -8,6 +8,7 @@ import {
   buscarPagamentosPorReferencia,
 } from "../services/mercadopago.js";
 import { exigirLogin } from "./auth.js";
+import { processarPagamentoConvite } from "../services/convites.js";
 import { acessoDe, assinaturaAtivaPara, registrarAcessoComPrazo, DIAS_ACESSO } from "../services/assinatura.js";
 
 const router = Router();
@@ -110,7 +111,12 @@ router.post("/webhook", async (req, res) => {
     const preapprovalId = req.query["data.id"] || req.body?.data?.id;
 
     if (tipo === "payment" && preapprovalId) {
-      await processarPagamentoAvulso(await buscarPagamento(preapprovalId));
+      const pagamento = await buscarPagamento(preapprovalId);
+      if (String(pagamento?.external_reference || "").startsWith("CONVITE:")) {
+        await processarPagamentoConvite(pagamento);
+      } else {
+        await processarPagamentoAvulso(pagamento);
+      }
       return res.sendStatus(200);
     }
 

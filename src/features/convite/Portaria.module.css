@@ -1,0 +1,103 @@
+.resumo { display: flex; gap: 10px; margin-bottom: 16px; }
+.stat {
+  flex: 1; padding: 12px 8px; text-align: center;
+  border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hairline);
+}
+.statNum { font-family: var(--font-display); font-size: var(--step-3); color: var(--ember); line-height: 1.1; }
+.statLabel { font-size: var(--step--1); color: var(--text-dim); }
+
+.palco {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  max-height: 62vh;
+  width: 100%;
+  margin: 0 auto 12px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  background: #000;
+}
+.video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mira {
+  position: absolute; inset: 18% 14%;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+}
+.vazio {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; padding: 24px; text-align: center; color: var(--text-dim);
+}
+
+.resultado {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; padding: 24px; text-align: center; color: #fff;
+}
+.resOk { background: #14803f; }
+.resRuim { background: #b3261e; }
+.resAviso { background: #a65f00; }
+.resIcone { font-size: 4rem; line-height: 1; }
+.resTitulo { margin: 0; font-family: var(--font-display); font-size: var(--step-3); line-height: 1.1; }
+.resNome { margin: 0; font-size: var(--step-1); font-weight: 700; }
+.resDetalhe { margin: 0; font-size: var(--step-0); opacity: 0.92; }
+.resBotao {
+  margin-top: 14px; padding: 13px 26px;
+  border: 2px solid #fff; border-radius: 999px;
+  background: transparent; color: #fff;
+  font-family: var(--font-ui); font-weight: 700; font-size: var(--step-0); cursor: pointer;
+}
+
+.botao {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  cursor: pointer;
+}
+.botao:disabled { opacity: 0.5; cursor: default; }
+.botaoFogo { border: none; background: var(--grad-fire); color: var(--on-fire); font-weight: 700; }
+.botaoPeq { padding: 8px 12px; font-size: var(--step--1); }
+
+.manual { display: flex; gap: 8px; margin-bottom: 18px; }
+.input {
+  flex: 1; min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+}
+.input:focus { outline: 2px solid var(--ember); outline-offset: 1px; }
+
+.secao { margin: 22px 0 10px; font-family: var(--font-display); font-size: var(--step-1); }
+
+.linha {
+  margin-bottom: 8px; padding: 12px 14px;
+  border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hairline);
+}
+.linhaTopo { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.nome { margin: 0; font-weight: 700; }
+.sub { margin: 2px 0 0; font-size: var(--step--1); color: var(--text-dim); word-break: break-all; }
+.chip { flex: none; padding: 3px 10px; border-radius: 999px; font-size: var(--step--1); font-weight: 700; }
+.chipOk { background: rgba(75, 191, 123, 0.16); color: var(--ok); }
+.chipEntrou { background: rgba(242, 176, 30, 0.16); color: var(--ember); }
+.chipRuim { background: rgba(229, 83, 61, 0.16); color: var(--err); }
+.linhaAcoes { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.whats { color: var(--ok); font-weight: 700; font-size: var(--step--1); text-decoration: none; padding: 8px 0; }
+
+.erro {
+  margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius-sm);
+  background: rgba(229, 83, 61, 0.15); color: var(--err); font-size: var(--step--1);
+}
+.caixa { margin-top: 12px; padding: 14px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hairline); }
+.caixa summary { cursor: pointer; font-weight: 700; }
+.caixa form { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.link { word-break: break-all; font-size: var(--step--1); color: var(--ember); }

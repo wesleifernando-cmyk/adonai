@@ -1,0 +1,138 @@
+.arte {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(242, 176, 30, 0.35);
+  box-shadow: var(--shadow);
+}
+.evento {
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(242, 176, 30, 0.35);
+  background:
+    linear-gradient(180deg, rgba(242, 176, 30, 0.08), transparent),
+    var(--surface);
+}
+.eventoNome { margin: 4px 0 8px; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.15; }
+.eventoLinha { margin: 2px 0; color: var(--text-dim); font-size: var(--step-0); }
+.eventoDesc { margin: 10px 0 0; color: var(--text-dim); font-size: var(--step--1); line-height: 1.5; }
+
+.campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.campo label { font-family: var(--font-ui); font-size: var(--step--1); color: var(--text-dim); }
+.campo input {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+}
+.campo input:focus { outline: 2px solid var(--ember); outline-offset: 1px; }
+
+.qtd { display: flex; align-items: center; gap: 14px; }
+.qtdBotao {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.qtdBotao:disabled { opacity: 0.4; cursor: default; }
+.qtdNum { min-width: 2ch; text-align: center; font-family: var(--font-display); font-size: var(--step-2); }
+
+.total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 6px 0 14px;
+  font-size: var(--step-0);
+  color: var(--text-dim);
+}
+.totalValor { font-family: var(--font-display); font-size: var(--step-3); color: var(--ember); }
+
+.enviar {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--grad-fire);
+  color: var(--on-fire);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--step-0);
+  cursor: pointer;
+}
+.enviar:disabled { opacity: 0.6; cursor: default; }
+
+.secundario {
+  display: block; width: 100%; margin-top: 10px;
+  padding: 13px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.erro {
+  margin: 0 0 14px; padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(229, 83, 61, 0.15);
+  color: var(--err);
+  font-size: var(--step--1);
+}
+.aviso {
+  margin: 0 0 14px; padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(242, 176, 30, 0.12);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+.nota { margin-top: 14px; font-size: var(--step--1); color: var(--text-mute); line-height: 1.5; text-align: center; }
+
+/* ---- Convite com QR ---- */
+.ingresso {
+  margin-bottom: 16px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  text-align: center;
+}
+.ingressoUsado { opacity: 0.55; }
+.ingressoNome { margin: 0 0 12px; font-weight: 700; font-size: var(--step-0); }
+.qr {
+  display: block;
+  width: min(100%, 300px);
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #fff;
+}
+.codigo { margin: 12px 0 4px; font-family: ui-monospace, Menlo, monospace; font-size: var(--step--1); letter-spacing: 0.08em; color: var(--text-dim); }
+.selo {
+  display: inline-block; margin-top: 8px; padding: 4px 12px;
+  border-radius: 999px; font-size: var(--step--1); font-weight: 700;
+}
+.seloOk { background: rgba(75, 191, 123, 0.16); color: var(--ok); }
+.seloUsado { background: rgba(229, 83, 61, 0.16); color: var(--err); }
+.acoesLinha { display: flex; gap: 8px; margin-top: 12px; }
+.acoesLinha > * { flex: 1; }
+
+.conferir {
+  display: block;
+  margin: 0 0 14px;
+  padding: 14px;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(180deg, #e8481c, #b8300f);
+  border-radius: var(--radius);
+  text-decoration: none;
+}

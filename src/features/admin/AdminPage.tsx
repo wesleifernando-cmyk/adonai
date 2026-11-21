@@ -4,6 +4,7 @@ import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { dataCurta, textoDiasRestantes } from "../../lib/dates";
 import { linkWhatsApp, telefoneBonito } from "../../lib/telefone";
+import { Link } from "react-router-dom";
 import styles from "./AdminPage.module.css";
 
 type UsuarioAdmin = {
@@ -12,6 +13,7 @@ type UsuarioAdmin = {
   email: string;
   telefone: string | null;
   admin: boolean;
+  pode_conferir: boolean;
   bloqueado: boolean;
   assinatura_ativa: boolean;
   assinatura_status: "pending" | "authorized" | "paused" | "cancelled" | null;
@@ -169,6 +171,10 @@ export function AdminPage() {
       <PageHeader eyebrow="Administração" title="Controle de usuários" />
 
       {erro && <p className={styles.erro}>{erro}</p>}
+
+      <Link to="/convite/conferir" className={`${styles.botao} ${styles.botaoFogo}`} style={{ display: "block", textAlign: "center", marginBottom: 14, padding: 12, textDecoration: "none" }}>
+        Conferir ingresso · ler QR dos convites
+      </Link>
 
       {senhaGerada && (
         <div className={styles.senhaCaixa} role="alert">
@@ -349,6 +355,13 @@ export function AdminPage() {
                   Tornar admin
                 </button>
               )}
+              <button
+                className={styles.botao}
+                disabled={emAcao === u.id}
+                onClick={() => executar(u.id, u.pode_conferir ? "remover-portaria" : "liberar-portaria")}
+              >
+                {u.pode_conferir ? "Tirar: conferir ingresso" : "Liberar: conferir ingresso"}
+              </button>
               <button className={styles.botao} disabled={emAcao === u.id} onClick={() => redefinirSenha(u)}>
                 Redefinir senha
               </button>

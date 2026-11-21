@@ -48,6 +48,15 @@ export function exigirAdmin(req, res, next) {
   });
 }
 
+// Portaria do evento: quem o administrador liberou (usuarios.pode_conferir).
+export function exigirPortaria(req, res, next) {
+  exigirLogin(req, res, async () => {
+    const [usuario] = await query(`SELECT pode_conferir FROM usuarios WHERE id = $1`, [req.usuario.id]);
+    if (!usuario?.pode_conferir) return res.status(403).json({ erro: "Você não tem permissão para conferir ingressos." });
+    next();
+  });
+}
+
 router.post("/cadastro", async (req, res) => {
   try {
     const { nome, email, senha } = req.body;
@@ -110,7 +119,7 @@ router.post("/login", async (req, res) => {
 router.get("/eu", exigirLogin, async (req, res) => {
   try {
     const [usuario] = await query(
-      `SELECT id, nome, email, admin, bloqueado, foto_url, idade, telefone FROM usuarios WHERE id = $1`,
+      `SELECT id, nome, email, admin, pode_conferir, bloqueado, foto_url, idade, telefone FROM usuarios WHERE id = $1`,
       [req.usuario.id]
     );
     if (!usuario) return res.status(404).json({ erro: "Usuário não encontrado." });
